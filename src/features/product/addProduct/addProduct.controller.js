@@ -12,13 +12,13 @@ class AddProductController{
          const {
             productName,brand,made,type,stock,description,
             category,cost,color,weight,rating,
-            tags,price,size,speed,warranty,date} = req.body;
+            tags,price,size,warranty,date} = req.body;
 
      
           
             if(!productName || !brand || !made || !type || !stock || !description ||
                 !category || !cost || !color || !weight || !rating || !file ||
-                !tags || !price || !size || !speed || !warranty || !date)
+                !tags || !price || !size || !warranty || !date)
             {
 
                 throw new AppError('Please fill all the fields', 400);
@@ -26,7 +26,7 @@ class AddProductController{
 
             const result = await service.addProduct(productName,brand,made,type,stock,description,
                 category,cost,color,weight,rating,
-                tags,price,size,speed,warranty,date,file);
+                tags,price,size,warranty,date,file);
 
                 if(!result)throw new AppError('Failed to add product',500);
 
