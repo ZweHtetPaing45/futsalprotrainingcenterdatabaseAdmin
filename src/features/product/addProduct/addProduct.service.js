@@ -1,3 +1,4 @@
+const sharp = require('sharp');
 const repo = require('./addProduct.repositories');
 const cloudinary = require('../../../config/cloudinary');
 
@@ -8,11 +9,19 @@ class AddProductService{
                 tags,price,size,warranty,date,file)
         {
 
-        const base64Image = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+        let buffer = file.buffer;
+
+        console.log(file.size);
+
+        if(file.size >= 5 * 1024 * 1024){
+            buffer = await sharp(buffer).jpeg({quality: 70}).toBuffer();
+        }
+
+        const base64Image = `data:${file.mimetype};base64,${buffer.toString('base64')}`;
 
         if(!base64Image)throw new AppError('Please fill all the fields and Error is base64image', 400);
 
-
+    
         const result = await cloudinary.uploader.upload(base64Image, {
             folder: 'products_images',
             });
