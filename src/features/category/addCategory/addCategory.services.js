@@ -1,16 +1,55 @@
 const repo = require('./addCategory.repositories');
-const cloudinary = require('../../../config/cloudinary')
+const cloudinary = require('../../../config/cloudinary');
+const sharp = require('sharp');
+const AppError = require('../../../utils/AppError');
 
 class addCategoryServices {
 
 
     async addCategory(name,file){
 
-        const base64Image = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+        let buffer = file.buffer;
 
-        const result = await cloudinary.uploader.upload(base64Image, {
-            folder: 'category_images',
-            });
+        console.log("buffer ",buffer);
+
+        const sizeMB = file.size / 1024 /1024;
+
+        console.log('sizeMB ',sizeMB);
+
+        if(file.mimetype === 'image/png'){
+            buffer = await sharp(buffer).png({quality: 70}).toBuffer();
+        }else{
+            if(sizeMB >= 5){
+                buffer = await sharp(buffer).jpeg({quality: 50}).toBuffer();
+            }else if(sizeMB > 2){
+                buffer = await sharp(buffer).jpeg({quality: 60}).toBuffer();
+            }else if(sizeMB > 1){
+                buffer = await sharp(buffer).jpeg({quality: 70}).toBuffer();
+            }
+        }
+
+        let result;
+
+        try{
+
+             result = await new Promise((resolve,reject)=>{
+
+                const stream = cloudinary.uploader.upload_stream({
+                    folder: 'category_images',
+                    resource_type: 'image',
+                },(error,result)=>{
+                    if(error) return reject(error);
+                    resolve(result);
+                }
+            );
+
+            stream.end(buffer);
+
+                });
+        
+        }catch(error){
+            throw new AppError("image upload failed",500);
+        }
         
         const imageUrl = result.secure_url;
         const publicId = result.public_id;

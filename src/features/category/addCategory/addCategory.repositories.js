@@ -5,6 +5,8 @@ const logger = require('../../../utils/logger');
 exports.addingcategory = async (name,imageUrl,publicUrl)=>{
     try{
 
+        console.log(name);
+
         const insertCategory = await com.pool.query('insert into categories (name,image_url,public_url) values(?,?,?)',[name,imageUrl,publicUrl]);
 
         if(!insertCategory)throw new AppError('Failed to create category',500);

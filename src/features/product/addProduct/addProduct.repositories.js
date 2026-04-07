@@ -4,10 +4,28 @@ const AppError = require('../../../utils/AppError');
 
 exports.addingProduct = async (productName,brand,made,type,stock,description,
         category,cost,color,weight,rating,imageUrl,publicId,
-        tags,price,size,warranty,date)=>
+        tags,price,size,warranty,date) =>
         {
             try{
 
+                console.log(category);
+
+                console.log(tags);
+                console.log(brand);
+                console.log(made);
+                console.log(description);
+                console.log(category);
+                console.log(cost);
+                console.log(color);
+                console.log(weight);
+                console.log(rating);
+                console.log(imageUrl);
+                console.log(publicId);
+                console.log(tags);
+                console.log(price);
+                console.log(size);
+                console.log(warranty);
+                console.log(date);
 
                 //adding the new product create 1 to 7 table .using database is one-to-many relation database
 
@@ -15,6 +33,8 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                 if(categoryRows.length === 0)throw new AppError('category not found',404);
 
                 const categoryId = categoryRows[0].id;
+
+                console.log(categoryId);
 
 
 
@@ -24,6 +44,9 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                 if(insertTag.length === 0)throw new AppError('tag not found',404);
 
                 const tagId = insertTag[0].id;
+
+
+                console.log(tagId);
 
                 if(!tagId)throw new AppError('can not get id to tag',500);
 
@@ -43,6 +66,7 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                     bId = result.insertId;
                 }
 
+                                console.log(brandId);
 
                 // if(await com.pool.query('select id from brands where name = ?', [brand])){
                 //          await com.pool.query('insert into brands (name) values(?)', [brand]);
@@ -52,6 +76,8 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
 
                 const bid = brandId[0].id;
 
+
+                console.log(bid);
 
                 if(!bid)throw new AppError('can not get id to brand',500);
             
@@ -64,6 +90,9 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                 const proId = productId[0].id;
 
 
+
+                console.log(proId);
+
                 if(!proId)throw new AppError('can not get id to product',500);
 
                 await com.pool.query('insert into product_images (product_id,image_url,public_id) values(?,?,?)',
@@ -73,6 +102,8 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
 
                 await com.pool.query('insert into product_variants(product_id,color,size,type,weight,stock,date) values(?,?,?,?,?,?,?)',
                     [proId,color,size,type,weight,stock,date]);
+
+                console.log(true);
 
                 return true;
 
