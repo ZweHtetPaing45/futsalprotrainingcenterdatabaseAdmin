@@ -8,24 +8,24 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
         {
             try{
 
-                console.log(category);
+                // console.log(category);
 
-                console.log(tags);
-                console.log(brand);
-                console.log(made);
-                console.log(description);
-                console.log(category);
-                console.log(cost);
-                console.log(color);
-                console.log(weight);
-                console.log(rating);
-                console.log(imageUrl);
-                console.log(publicId);
-                console.log(tags);
-                console.log(price);
-                console.log(size);
-                console.log(warranty);
-                console.log(date);
+                // console.log(tags);
+                // console.log(brand);
+                // console.log(made);
+                // console.log(description);
+                // console.log(category);
+                // console.log(cost);
+                // console.log(color);
+                // console.log(weight);
+                // console.log(rating);
+                // console.log(imageUrl);
+                // console.log(publicId);
+                // console.log(tags);
+                // console.log(price);
+                // console.log(size);
+                // console.log(warranty);
+                // console.log(date);
 
                 //adding the new product create 1 to 7 table .using database is one-to-many relation database
 

@@ -13,8 +13,6 @@ class AddProductController{
             productName,brand,made,type,stock,description,
             category,cost,color,weight,rating,
             tags,price,size,warranty,date} = req.body;
-
-     
           
             if(!productName || !brand || !made || !type || !stock || !description ||
                 !category || !cost || !color || !weight || !rating || !file ||
@@ -38,7 +36,7 @@ class AddProductController{
 
 
        }catch(error){
-        next();
+        next(error);
        }
             
     }

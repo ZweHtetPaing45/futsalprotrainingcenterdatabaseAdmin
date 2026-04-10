@@ -7,7 +7,7 @@ const createProduct = joi.object({
     brand: joi.string().min(1).max(100).required(),
     made: joi.string().min(1).max(100).required(),
     type: joi.string().min(1).max(100).required(),
-    stock: joi.string().min(0).max(100).required(),
+    stock: joi.string().min(0).max(1000000000).required(),
     description: joi.string().min(1).max(500).required(),
     category: joi.string().min(1).max(100).required(),
     cost: joi.string().min(1).max(100).required(),
@@ -18,7 +18,7 @@ const createProduct = joi.object({
     tags: joi.string().min(1).max(100).required(),
     price: joi.string().min(1).max(100).required(),
     size: joi.string().min(1).max(100).required(),
-    speed: joi.string().min(1).max(100).required(),
+    // speed: joi.string().min(1).max(100).required(),
     warranty: joi.string().min(1).max(100).required(),
     date: joi.string().min(1).max(100).required(),
 });
@@ -29,6 +29,22 @@ const addCategories = joi.object({
 
 const addTag = joi.object({
     name: joi.string().min(1).max(100).required(),
+})
+
+const deleteCategory = joi.object({
+    name: joi.string().min(1).max(100).required().trim(),
+});
+
+const deleteTag = joi.object({
+    name: joi.string().min(1).max(100).required().trim()
+});
+
+const deleteProduct = joi.object({
+    name: joi.string().min(1).required().trim()
+})
+
+const searchProduct = joi.object({
+    name: joi.string().min(1).max(100).required().trim()
 })
 
 // productName: joi.string().min(1).max(100).required(),
@@ -65,6 +81,10 @@ const validate = (schema)=>{
 
 
 module.exports = {
+    deleteProduct,
+    searchProduct,
+    deleteTag,
+    deleteCategory,
     addTag,
     addCategories,
     createProduct,

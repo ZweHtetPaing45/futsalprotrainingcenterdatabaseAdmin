@@ -30,7 +30,6 @@ class AddProductService{
         console.log('Processed: ',buffer.length / 1024 / 1024 ," MB");
 
         let result;
-
     
         try{
              result = await new Promise((resolve, reject)=>{
