@@ -1,5 +1,6 @@
 const com = require('../../../config/com');
 const AppError = require('../../../utils/AppError');
+const logger = require('../../../utils/logger');
 
 
 exports.addingProduct = async (productName,brand,made,type,stock,description,
@@ -87,7 +88,6 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                     [productName,categoryId,bid,cost,price,description,warranty,rating,made]);
 
                 const proId = productId[0].id;
-
 
 
                 console.log(proId);

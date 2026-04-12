@@ -204,3 +204,24 @@ GROUP BY p.id' at line 55
 2026-04-11 11:24:11 [31merror[39m:: Failed to update product
 2026-04-11 11:25:17 [31merror[39m:: Cannot read properties of undefined (reading 'id')
 2026-04-11 11:25:17 [31merror[39m:: Failed to update product
+2026-04-12 20:30:17 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-12 20:30:17 [31merror[39m:: Failed to create user
+2026-04-12 20:30:40 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-12 20:30:40 [31merror[39m:: Failed to create user
+2026-04-12 21:05:14 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-12 21:05:14 [31merror[39m:: Failed to create user
+2026-04-12 21:07:43 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-12 21:07:43 [31merror[39m:: Failed to create user
+2026-04-12 21:13:41 [31merror[39m:: Duplicate entry 'FirstSecond' for key 'categories.name'
+2026-04-12 21:13:41 [31merror[39m:: Failed to create category
+2026-04-12 21:39:49 [31merror[39m:: Cannot read properties of undefined (reading 'public_id')
+2026-04-12 21:41:45 [31merror[39m:: Cannot read properties of undefined (reading 'public_id')
+2026-04-12 21:44:53 [31merror[39m:: Cannot read properties of undefined (reading 'split')
+2026-04-12 21:45:20 [31merror[39m:: public_id.split is not a function
+2026-04-12 21:45:45 [31merror[39m:: public_id.split is not a function
+2026-04-12 23:26:01 [31merror[39m:: Duplicate entry '47-9' for key 'product_tags.PRIMARY'
+2026-04-12 23:26:01 [31merror[39m:: Failed to create user
+2026-04-12 23:27:53 [31merror[39m:: Duplicate entry '47-9' for key 'product_tags.PRIMARY'
+2026-04-12 23:27:53 [31merror[39m:: Failed to create user
+2026-04-12 23:43:27 [31merror[39m:: Failed to delete category
+2026-04-12 23:43:27 [31merror[39m:: Failed to delete category

@@ -2,6 +2,7 @@ const AppError = require('../../../utils/AppError');
 const repo = require('./updateProduct.repositories');
 const cloudinary = require('../../../config/cloudinary');
 const logger = require('../../../utils/logger');
+const uploader = require('@zwehtetpaing55/uploader');
 
 
 class UpdateProductService {
@@ -21,7 +22,8 @@ class UpdateProductService {
 
         if(!public_id)throw new AppError('Public id is required',400);
 
-        const result = await cloudinary.uploader.destroy(public_id);
+        // const result = await cloudinary.uploader.destroy(public_id);
+        const result = await uploader.delete(public_id);
 
         if(!result)throw new AppError('Fail delete image',500);
 

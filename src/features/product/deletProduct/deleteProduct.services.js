@@ -1,7 +1,6 @@
 const repo = require('./deleteProduct.repositories');
 
 
-
 class deleteProductServices{
 
     async deleteProduct(id){

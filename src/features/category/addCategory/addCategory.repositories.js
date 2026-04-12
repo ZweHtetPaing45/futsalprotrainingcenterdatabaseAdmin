@@ -6,7 +6,6 @@ exports.addingcategory = async (name,imageUrl,publicUrl)=>{
     try{
 
         console.log(name);
-        console
 
         const insertCategory = await com.pool.query('insert into categories (name,image_url,public_url) values(?,?,?)',[name,imageUrl,publicUrl]);
 
