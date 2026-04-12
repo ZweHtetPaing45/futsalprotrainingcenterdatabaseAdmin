@@ -669,3 +669,138 @@ GROUP BY p.id' at line 55
 2026-04-10 08:59:00 [32minfo[39m:: 7
 2026-04-10 08:59:00 [32minfo[39m:: 27
 2026-04-10 08:59:00 [32minfo[39m:: 27
+2026-04-10 11:53:35 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:26:40 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:29:16 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:30:17 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:30:55 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:31:52 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:40:24 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:41:41 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:42:28 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:50:22 [32minfo[39m:: Server is running on port 5000
+2026-04-10 12:52:32 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:17:12 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:18:13 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:18:29 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:19:22 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:19:27 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:19:32 [31merror[39m:: Cannot upload product
+2026-04-10 13:21:12 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:24:26 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:27:28 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:28:39 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:34:30 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:38:21 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:40:27 [32minfo[39m:: Server is running on port 50002026-04-10 13:51:04 [32minfo[39m:: Server is running on port 5000
+2026-04-10 13:54:03 [32minfo[39m:: Server is running on port 5000
+2026-04-10 14:02:10 [32minfo[39m:: Server is running on port 5000
+2026-04-10 14:02:20 [32minfo[39m:: delete image successful
+2026-04-10 14:02:52 [32minfo[39m:: Server is running on port 5000
+2026-04-10 14:08:28 [32minfo[39m:: Server is running on port 5000
+2026-04-10 14:08:36 [32minfo[39m:: delete image successful
+2026-04-10 14:19:26 [32minfo[39m:: Server is running on port 5000
+2026-04-10 14:19:34 [32minfo[39m:: delete image successful
+2026-04-10 20:17:43 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:18:29 [32minfo[39m:: delete image successful
+2026-04-10 20:20:04 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:20:13 [32minfo[39m:: delete image successful
+2026-04-10 20:21:34 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:21:42 [32minfo[39m:: delete image successful
+2026-04-10 20:30:11 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:30:23 [32minfo[39m:: delete image successful
+2026-04-10 20:30:39 [32minfo[39m:: delete image successful
+2026-04-10 20:31:32 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:31:50 [32minfo[39m:: delete image successful
+2026-04-10 20:32:02 [32minfo[39m:: delete image successful
+2026-04-10 20:32:03 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-10 20:32:03 [31merror[39m:: Failed to update product
+2026-04-10 20:32:14 [32minfo[39m:: delete image successful
+2026-04-10 20:32:14 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-10 20:32:14 [31merror[39m:: Failed to update product
+2026-04-10 20:33:28 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:33:37 [32minfo[39m:: delete image successful
+2026-04-10 20:33:37 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-10 20:33:37 [31merror[39m:: Failed to update product
+2026-04-10 20:38:56 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:39:03 [32minfo[39m:: delete image successful
+2026-04-10 20:39:03 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-10 20:39:03 [31merror[39m:: Failed to update product
+2026-04-10 20:43:33 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:43:40 [32minfo[39m:: delete image successful
+2026-04-10 20:44:12 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:44:24 [32minfo[39m:: delete image successful
+2026-04-10 20:44:46 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:44:55 [32minfo[39m:: delete image successful
+2026-04-10 20:45:06 [32minfo[39m:: delete image successful
+2026-04-10 20:51:57 [32minfo[39m:: Server is running on port 5000
+2026-04-10 20:52:05 [32minfo[39m:: delete image successful
+2026-04-10 20:52:07 [32minfo[39m:: delete image successful
+2026-04-10 21:37:31 [32minfo[39m:: Server is running on port 5000
+2026-04-10 21:39:23 [32minfo[39m:: delete image successful
+2026-04-10 21:42:22 [32minfo[39m:: delete image successful
+2026-04-10 21:42:49 [32minfo[39m:: delete image successful
+2026-04-10 21:43:46 [32minfo[39m:: delete image successful
+2026-04-10 21:44:34 [32minfo[39m:: delete image successful
+2026-04-10 21:44:45 [32minfo[39m:: delete image successful
+2026-04-10 21:45:14 [32minfo[39m:: delete image successful
+2026-04-10 21:45:26 [32minfo[39m:: delete image successful
+2026-04-10 21:46:05 [32minfo[39m:: delete image successful
+2026-04-10 21:46:30 [32minfo[39m:: delete image successful
+2026-04-10 21:47:16 [32minfo[39m:: delete image successful
+2026-04-10 21:47:37 [32minfo[39m:: delete image successful
+2026-04-10 23:49:15 [32minfo[39m:: Server is running on port 5000
+2026-04-10 23:49:36 [32minfo[39m:: delete image successful
+2026-04-10 23:49:59 [32minfo[39m:: delete image successful
+2026-04-10 23:50:15 [32minfo[39m:: Server is running on port 5000
+2026-04-10 23:51:20 [32minfo[39m:: delete image successful
+2026-04-10 23:52:45 [32minfo[39m:: delete image successful
+2026-04-10 23:52:59 [32minfo[39m:: delete image successful
+2026-04-10 23:53:14 [32minfo[39m:: delete image successful
+2026-04-11 00:00:16 [32minfo[39m:: Server is running on port 5000
+2026-04-11 00:01:45 [31merror[39m:: category not found
+2026-04-11 00:01:56 [31merror[39m:: category not found
+2026-04-11 00:03:29 [31merror[39m:: category not found
+2026-04-11 00:10:56 [32minfo[39m:: Server is running on port 5000
+2026-04-11 00:12:16 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:21:10 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:21:53 [32minfo[39m:: delete image successful
+2026-04-11 11:21:53 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-11 11:21:53 [31merror[39m:: Failed to update product
+2026-04-11 11:22:07 [32minfo[39m:: delete image successful
+2026-04-11 11:22:07 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-11 11:22:07 [31merror[39m:: Failed to update product
+2026-04-11 11:22:38 [32minfo[39m:: delete image successful
+2026-04-11 11:22:38 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-11 11:22:38 [31merror[39m:: Failed to update product
+2026-04-11 11:24:03 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:24:11 [32minfo[39m:: delete image successful
+2026-04-11 11:24:11 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-11 11:24:11 [31merror[39m:: Failed to update product
+2026-04-11 11:25:09 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:25:17 [32minfo[39m:: delete image successful
+2026-04-11 11:25:17 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-11 11:25:17 [31merror[39m:: Failed to update product
+2026-04-11 11:26:05 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:26:43 [32minfo[39m:: delete image successful
+2026-04-11 11:27:52 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:28:08 [32minfo[39m:: delete image successful
+2026-04-11 11:28:27 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:28:34 [32minfo[39m:: delete image successful
+2026-04-11 11:33:54 [32minfo[39m:: delete image successful
+2026-04-11 11:38:44 [32minfo[39m:: delete image successful
+2026-04-11 11:39:17 [32minfo[39m:: delete image successful
+2026-04-11 11:41:18 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:56:15 [32minfo[39m:: Server is running on port 5000
+2026-04-11 11:58:55 [32minfo[39m:: delete image successful
+2026-04-11 12:02:36 [32minfo[39m:: Server is running on port 5000
+2026-04-11 12:04:24 [32minfo[39m:: delete image successful
+2026-04-11 12:10:01 [32minfo[39m:: Server is running on port 5000
+2026-04-11 12:14:55 [32minfo[39m:: Server is running on port 5000
+2026-04-11 12:17:13 [32minfo[39m:: Server is running on port 5000
+2026-04-11 12:17:53 [32minfo[39m:: delete image successful
+2026-04-11 12:23:35 [32minfo[39m:: Server is running on port 5000
+2026-04-11 12:24:08 [32minfo[39m:: delete image successful
+2026-04-11 12:30:26 [32minfo[39m:: Server is running on port 5000
+2026-04-11 12:49:29 [32minfo[39m:: Server is running on port 5000
+2026-04-11 13:14:45 [32minfo[39m:: Server is running on port 5000

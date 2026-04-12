@@ -30,13 +30,12 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                 //adding the new product create 1 to 7 table .using database is one-to-many relation database
 
                 const [categoryRows]  = await com.pool.query("select id from categories where name = ?",[category]);
-                if(categoryRows.length === 0)throw new AppError('category not found',404);
+                
+                // if(categoryRows.length === 0)throw new AppError('category not found',404);
 
                 const categoryId = categoryRows[0].id;
 
                 console.log(categoryId);
-
-
 
                 if(!categoryId)throw new AppError('can not get id to category',500);
 

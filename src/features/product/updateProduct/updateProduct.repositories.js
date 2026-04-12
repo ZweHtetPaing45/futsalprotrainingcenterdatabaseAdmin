@@ -8,6 +8,8 @@ exports.updateShowProduct = async (id)=>{
 
     try{
 
+        let finalResult = [];
+
         const result = await com.pool.query(`SELECT 
                     p.id,
                     p.name AS productName,
@@ -48,7 +50,100 @@ exports.updateShowProduct = async (id)=>{
         helper.updateProductData(result[0]);
 
 
-        return result[0];
+        finalResult.push(result[0]);
+
+         const flat = finalResult.flat();
+
+        // console.log('flat',flat);
+
+        const unique = [];
+
+        flat.forEach(item => {
+        if (!unique.some(u => u.name === item.name)) {
+            unique.push(item);
+        }
+        });
+
+        return unique;
+
+    }catch(error){
+        logger.error({
+            message: error.message,
+            stack: error.stack
+        });
+        throw new AppError('Failed to update product', 500);
+    }
+
+}
+
+exports.updateProduct = async(finalData)=>{
+
+    try{
+
+        let bid;
+
+        console.log(finalData);
+
+        const [result] = await com.pool.query('select id from brands where name = ?',[finalData.brand]);
+
+        if(result.length > 0){
+            bid = result[0].id;
+        }else{
+            const [createbid] = await com.pool.query('insert into brands (name) values (?)',[finalData.brand]);
+
+            bid = createbid.insertId;
+        }
+
+        const [resultCid] = await com.pool.query('select id from categories where name = ?',[finalData.category]);
+
+        const cid = resultCid[0].id;
+
+        const [resultTid] = await com.pool.query('select id from tags where name = ?',[finalData.tag]);
+
+        const tid = resultTid[0].id;
+
+        console.log('tagId',tid);
+
+        const updateProducts = await com.pool.query(`
+            update products set name = ?, price = ?, cost = ?, description = ?, warranty = ?, rating = ?, made = ?, brand_id = ?, category_id = ? where id = ?
+            `,[finalData.productName,finalData.price,finalData.cost,finalData.description,finalData.warranty,finalData.rating,finalData.made,bid,cid,finalData.id]);
+        
+        // if(updateProducts.affectedRows === 0)throw new AppError('Failed to update product',404);
+
+        // console.log("Update Products",updateProducts);
+
+        const updateProductImage = await com.pool.query(`
+            update product_images set image_url = ?, public_id = ? where product_id = ?
+            `,[finalData.image_url,finalData.public_id,finalData.id]);
+
+        // if(updateProductImage.affectedRows === 0)throw new AppError('Failed to update product',404);
+        // console.log('Update Product Images',updateProductImage);
+
+        const updateProductVariant = await com.pool.query(`
+            update product_variants set type = ?, color = ?, size = ?, weight = ?, stock = ?, date = ? where product_id = ?
+            `,[finalData.type,finalData.color,finalData.size,finalData.weight,finalData.stock,finalData.date,finalData.id]);
+
+        // if(updateProductVariant.affectedRows === 0)throw new AppError('Failed to update product',404);
+        // console.log('Update Product Variant',updateProductVariant);
+
+
+        //can not use update so insert product_tags
+
+        const [findProductTag] = await com.pool.query('select tag_id from product_tags where product_id = ?',[finalData.id]);
+
+        if(findProductTag.length > 0){
+            const updateProductTag = await com.pool.query(`
+            update product_tags set tag_id = ? where product_id = ?
+            `,[tid,finalData.id]);
+        }else{
+            const updateProductTag = await com.pool.query(`
+            insert into product_tags (product_id,tag_id) values (?,?)
+            `,[finalData.id,tid]);
+        }
+
+        // if(updateProductTag.affectedRows === 0)throw new AppError('Failed to update product',404);
+        
+        return true;
 
     }catch(error){
         logger.error({

@@ -1,11 +1,17 @@
-
+let storagedata;
 
 exports.updateProductData = (product)=>{
 
-    const storagedata = product;
+    storagedata = product;
 
-    console.log(storagedata);
+    // console.log(storagedata);
 
     return product;
 
+}
+
+exports.insertData = ()=>{
+    const data = storagedata[0];
+
+    return data;
 }

@@ -34,7 +34,6 @@ class AddProductController{
                     data: result
                 });
 
-
        }catch(error){
         next(error);
        }
