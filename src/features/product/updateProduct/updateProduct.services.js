@@ -8,33 +8,33 @@ const uploader = require('@zwehtetpaing55/uploader');
 class UpdateProductService {
 
 
-    async updateShowProduct(id){
+    // async updateShowProduct(id){
         
-        const result = await repo.updateShowProduct(id);
+    //     const result = await repo.updateShowProduct(id);
 
-        return result;
+    //     return result;
 
-    }
+    // }
 
-    async deleteImage(public_id){
+    // async deleteImage(public_id){
 
-        console.log('public_id',public_id);
+    //     console.log('public_id',public_id);
 
-        if(!public_id)throw new AppError('Public id is required',400);
+    //     if(!public_id)throw new AppError('Public id is required',400);
 
-        // const result = await cloudinary.uploader.destroy(public_id);
-        const result = await uploader.delete(public_id);
+    //     // const result = await cloudinary.uploader.destroy(public_id);
+    //     const result = await uploader.delete(public_id);
 
-        if(!result)throw new AppError('Fail delete image',500);
+    //     if(!result)throw new AppError('Fail delete image',500);
 
-        logger.info('delete image successful');
+    //     logger.info('delete image successful');
 
-    }
+    // }
 
 
-    async updateProduct(finalData,inputData){
+    async updateProduct(inputData){
 
-        const result = await repo.updateProduct(finalData);
+        const result = await repo.updateProduct(inputData);
 
         return result;
 

@@ -63,15 +63,15 @@ class AddProductService{
         // console.log(publicId);
 
 
-        const result = await uploader.upload(file,'products_images');
+        // const result = await uploader.upload(file,'products_images');
 
-        const imageUrl = result.image_url;
-        console.log('imageUrl',imageUrl);
-        const publicId = result.public_id;
-        console.log('publicId',publicId);
+        // const imageUrl = result.image_url;
+        // console.log('imageUrl',imageUrl);
+        // const publicId = result.public_id;
+        // console.log('publicId',publicId);
 
         const insertProduct = await repo.addingProduct(productName,brand,made,type,stock,description,
-            category,cost,color,weight,rating,imageUrl,publicId,
+            category,cost,color,weight,rating,file,
             tags,price,size,warranty,date);
 
             return insertProduct;

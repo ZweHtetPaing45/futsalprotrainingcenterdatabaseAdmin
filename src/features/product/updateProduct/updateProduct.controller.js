@@ -23,37 +23,37 @@ const compare = require('./updateProduct.compare');
 class UpdateProductController{
 
 
-    async updateShowProduct(req,res,next){
+    // async updateShowProduct(req,res,next){
 
-        try{
+    //     try{
 
-            const id = req.params.id;
+    //         const id = req.params.id;
 
-            if(!id || id === '')throw new AppError('Product id is required',400);
+    //         if(!id || id === '')throw new AppError('Product id is required',400);
 
-            const result = await service.updateShowProduct(id);
+    //         const result = await service.updateShowProduct(id);
 
-            // await helper.updateProductData(result);
+    //         // await helper.updateProductData(result);
 
-            if(result){
-                res.status(201).json({
-                    status: 'success',
-                    message: 'Update Successful Product',
-                    data: result
-                })
-            }else{
-                res.status(400).json({
-                    status: 'failed',
-                    message: 'Cannot update product',
-                    data: result
-                })
-            }
+    //         if(result){
+    //             res.status(201).json({
+    //                 status: 'success',
+    //                 message: 'Update Successful Product',
+    //                 data: result
+    //             })
+    //         }else{
+    //             res.status(400).json({
+    //                 status: 'failed',
+    //                 message: 'Cannot update product',
+    //                 data: result
+    //             })
+    //         }
 
-        }catch(error){
-            next(error);
-        }
+    //     }catch(error){
+    //         next(error);
+    //     }
 
-    }
+    // }
 
     async updateProduct(req,res,next){
         try{
@@ -120,31 +120,38 @@ class UpdateProductController{
              imageUrl = result.image_url;
              publicId = result.public_id;
 
-            }else{
-                
-            imageUrl = "";
-            publicId = "";
-
             }
 
             console.log(imageUrl);
             console.log(publicId);
             // console.log(file);
 
-            const {
+           
+            
+             const {
+            id,
             productName,brand,made,type,stock,description,
             category,cost,color,weight,rating,
             tags,price,size,warranty,date} = req.body;
 
+            if(!productName || !brand || !made || !type || !stock || !description ||
+                !category || !cost || !color || !weight || !rating ||
+                !tags || !price || !size || !warranty || !date)
+            {
+
+                throw new AppError('Please fill all the fields', 400);
+            }
+
             const userinput = {
+                id,
                 productName,brand,made,type,stock,description,
                 category,cost,color,weight,rating,
                 tags,price,size,warranty,date,imageUrl,publicId
             }
             
-            const insertresult = await helper.insertData();
+            // const insertresult = await helper.insertData();
 
-            const finalData = await compare.mergeProductData(insertresult,userinput);
+            // const finalData = await compare.mergeProductData(userinput);
 
             
 
@@ -154,7 +161,7 @@ class UpdateProductController{
 
             // console.log('Final Data',finalData);
 
-            const result = await service.updateProduct(finalData);
+            const result = await service.updateProduct(userinput);
 
              res.status(201).json({
                     status: 'success',

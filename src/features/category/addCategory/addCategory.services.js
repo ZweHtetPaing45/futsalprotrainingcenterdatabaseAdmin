@@ -52,14 +52,13 @@ class addCategoryServices {
         //     throw new AppError("image upload failed",500);
         // }
 
-        const result = await uploader.upload(file,'category_images');
+        // const result = await uploader.upload(file,'category_images');
         
-        const imageUrl = result.image_url;
-        console.log('imageUrl',imageUrl);
-        const publicId = result.public_id;
-        console.log('publicId',publicId);
+        // const imageUrl = result.image_url;
+        // console.log('imageUrl',imageUrl);
+        // const publicId = result.public_id;
 
-        const resultcategory = await repo.addingcategory(name,imageUrl,publicId);
+        const resultcategory = await repo.addingcategory(name,file);
 
         return resultcategory;
 

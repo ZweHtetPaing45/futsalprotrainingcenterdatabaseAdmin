@@ -21,7 +21,6 @@ class AddCategoryController{
                 data: result
             });
 
-
         }catch(error){
             next(error);
         }

@@ -858,3 +858,102 @@ GROUP BY p.id' at line 55
 2026-04-12 23:27:53 [31merror[39m:: Failed to create user
 2026-04-12 23:43:27 [31merror[39m:: Failed to delete category
 2026-04-12 23:43:27 [31merror[39m:: Failed to delete category
+2026-04-14 10:13:29 [32minfo[39m:: Server is running on port 5000
+2026-04-14 10:14:06 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-14 10:14:06 [31merror[39m:: Failed to create user
+2026-04-14 10:14:11 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-14 10:14:11 [31merror[39m:: Failed to create user
+2026-04-14 10:14:49 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-14 10:14:49 [31merror[39m:: Failed to create user
+2026-04-14 10:16:32 [32minfo[39m:: Server is running on port 5000
+2026-04-14 10:16:34 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-14 10:16:34 [31merror[39m:: Failed to create user
+2026-04-14 10:19:17 [32minfo[39m:: Server is running on port 5000
+2026-04-14 10:24:09 [32minfo[39m:: Server is running on port 5000
+2026-04-14 10:39:42 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:38:21 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:41:52 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:43:42 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:44:10 [31merror[39m:: Duplicate entry 'Football' for key 'categories.name'
+2026-04-16 09:44:10 [31merror[39m:: Failed to create category
+2026-04-16 09:44:41 [31merror[39m:: Duplicate entry 'Football' for key 'categories.name'
+2026-04-16 09:44:41 [31merror[39m:: Failed to create category
+2026-04-16 09:48:10 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:48:14 [31merror[39m:: publicUrl is not defined
+2026-04-16 09:48:14 [31merror[39m:: Failed to create category
+2026-04-16 09:48:50 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:48:52 [31merror[39m:: publicUrl is not defined
+2026-04-16 09:48:52 [31merror[39m:: Failed to create category
+2026-04-16 09:49:39 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:49:42 [31merror[39m:: publicUrl is not defined
+2026-04-16 09:49:42 [31merror[39m:: Category same name already exist !
+2026-04-16 09:51:24 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:51:27 [31merror[39m:: publicUrl is not defined
+2026-04-16 09:51:27 [31merror[39m:: Category same name already exist !
+2026-04-16 09:53:13 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:53:15 [31merror[39m:: Category same name already exist !
+2026-04-16 09:53:15 [31merror[39m:: Category same name already exist !
+2026-04-16 09:53:15 [31merror[39m:: Failed to create category
+2026-04-16 09:54:02 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:54:09 [31merror[39m:: Category same name already exist !
+2026-04-16 09:54:09 [31merror[39m:: Category same name already exist !
+2026-04-16 09:54:09 [31merror[39m:: Failed to create category
+2026-04-16 09:54:25 [31merror[39m:: Category same name already exist !
+2026-04-16 09:54:25 [31merror[39m:: Category same name already exist !
+2026-04-16 09:54:25 [31merror[39m:: Failed to create category
+2026-04-16 09:55:14 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:55:16 [31merror[39m:: Category same name already exist !
+2026-04-16 09:55:16 [31merror[39m:: Category same name already exist !
+2026-04-16 09:55:16 [31merror[39m:: Failed to create category
+2026-04-16 09:55:38 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:55:39 [31merror[39m:: Category same name already exist !
+2026-04-16 09:56:06 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:56:08 [31merror[39m:: Category same name already exist !
+2026-04-16 09:56:20 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:56:22 [31merror[39m:: Category same name already exist !
+2026-04-16 09:56:30 [32minfo[39m:: Server is running on port 5000
+2026-04-16 09:56:33 [31merror[39m:: Category same name already exist !
+2026-04-16 09:57:05 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:01:33 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:03:39 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:04:47 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:05:33 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:05:50 [31merror[39m:: Category same name already exist !
+2026-04-16 10:09:52 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:11:32 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:12:11 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:13:39 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:14:02 [31merror[39m:: Category same name already exist !
+2026-04-16 10:16:04 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:16:34 [31merror[39m:: Product same name already exist !
+2026-04-16 10:21:34 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:21:37 [31merror[39m:: Product same name already exist !
+2026-04-16 10:22:45 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:25:33 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:29:34 [31merror[39m:: Cannot read properties of undefined (reading 'id')
+2026-04-16 10:29:34 [31merror[39m:: Failed to update product
+2026-04-16 10:30:37 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:33:34 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:34:55 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:37:58 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:48:45 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:50:18 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:51:50 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:53:02 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:54:59 [31merror[39m:: Product same name already exist !
+2026-04-16 10:55:41 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:58:09 [32minfo[39m:: Server is running on port 5000
+2026-04-16 10:59:48 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:04:50 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:06:48 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:07:07 [31merror[39m:: brand not found
+2026-04-16 11:10:36 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:10:45 [31merror[39m:: brand not found
+2026-04-16 11:11:34 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:12:09 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:17:09 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:19:13 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:20:25 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:21:34 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:22:33 [32minfo[39m:: Server is running on port 5000
+2026-04-16 11:23:43 [32minfo[39m:: Server is running on port 5000
