@@ -6,7 +6,7 @@ class AppError extends Error{
         this.statusCode = statusCode;
         
         logger.error({
-            message: this.message,       
+            message: this.message,   
             stack: this.stack
         });
     }

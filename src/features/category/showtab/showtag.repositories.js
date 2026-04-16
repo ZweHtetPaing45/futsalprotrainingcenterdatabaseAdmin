@@ -6,7 +6,7 @@ const AppError = require("../../../utils/AppError");
 exports.showTag = async ()=>{
     try{
 
-        const result = await com.pool.query('select name from tags');
+        const result = await com.pool.query('select id,name from tags');
 
         if(!result)throw new AppError('Failed to show tags',500);
 

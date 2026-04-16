@@ -270,3 +270,30 @@ GROUP BY p.id' at line 55
 2026-04-16 10:54:59 [31merror[39m:: Product same name already exist !
 2026-04-16 11:07:07 [31merror[39m:: brand not found
 2026-04-16 11:10:45 [31merror[39m:: brand not found
+2026-04-16 23:00:48 [31merror[39m:: Failed to update category
+2026-04-16 23:01:10 [31merror[39m:: Failed to update category
+2026-04-16 23:01:33 [31merror[39m:: Failed to update category
+2026-04-16 23:01:52 [31merror[39m:: Failed to update category
+2026-04-16 23:28:34 [31merror[39m:: tag not found
+2026-04-16 23:39:58 [31merror[39m:: [object Object]
+2026-04-16 23:39:58 [31merror[39m:: Same Category name already exist !
+2026-04-16 23:40:08 [31merror[39m:: [object Object]
+2026-04-16 23:40:08 [31merror[39m:: Same Category name already exist !
+2026-04-16 23:41:28 [31merror[39m:: [object Object]
+2026-04-16 23:41:28 [31merror[39m:: Same Category name already exist !
+2026-04-16 23:42:44 [31merror[39m:: [object Object]
+2026-04-16 23:42:44 [31merror[39m:: Same Category name already exist !
+2026-04-16 23:48:34 [31merror[39m:: Category same name already exist !
+2026-04-16 23:48:55 [31merror[39m:: Category same name already exist !
+2026-04-16 23:49:45 [31merror[39m:: Category same name already exist !
+2026-04-16 23:59:53 [31merror[39m:: Category same name already exist !
+2026-04-17 00:00:16 [31merror[39m:: Category same name already exist !
+2026-04-17 00:00:20 [31merror[39m:: Category same name already exist !
+2026-04-17 00:00:39 [31merror[39m:: Category same name already exist !
+2026-04-17 00:01:15 [31merror[39m:: Category same name already exist !
+2026-04-17 00:01:22 [31merror[39m:: Category same name already exist !
+2026-04-17 00:01:54 [31merror[39m:: Category same name already exist !
+2026-04-17 00:03:23 [31merror[39m:: Category same name already exist !
+2026-04-17 00:18:57 [31merror[39m:: Tag same name already exist !
+2026-04-17 00:20:48 [31merror[39m:: Tag same name already exist !
+2026-04-17 00:22:09 [31merror[39m:: Tag same name already exist !

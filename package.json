@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vscode/vsce": "^3.9.0",
     "@zwehtetpaing55/image-uploader-sdk": "^1.0.0",
     "@zwehtetpaing55/uploader": "^1.0.0",
     "bcrypt": "^6.0.0",

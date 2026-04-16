@@ -4,7 +4,7 @@ const logger = require('../../../utils/logger');
 
 exports.showCategory = async ()=>{
     try{
-        const result = await com.pool.query('select name,image_url from categories');
+        const result = await com.pool.query('select id,name,image_url,public_url from categories');
         
         return result[0];
 

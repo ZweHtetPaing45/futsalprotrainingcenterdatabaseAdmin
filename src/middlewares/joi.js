@@ -29,7 +29,7 @@ const addCategories = joi.object({
 
 const addTag = joi.object({
     name: joi.string().min(1).max(100).required(),
-})
+});
 
 const deleteCategory = joi.object({
     name: joi.string().min(1).max(100).required().trim(),
