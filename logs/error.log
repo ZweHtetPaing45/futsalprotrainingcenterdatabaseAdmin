@@ -297,3 +297,4 @@ GROUP BY p.id' at line 55
 2026-04-17 00:18:57 [31merror[39m:: Tag same name already exist !
 2026-04-17 00:20:48 [31merror[39m:: Tag same name already exist !
 2026-04-17 00:22:09 [31merror[39m:: Tag same name already exist !
+2026-04-17 21:03:52 [31merror[39m:: Category same name already exist !

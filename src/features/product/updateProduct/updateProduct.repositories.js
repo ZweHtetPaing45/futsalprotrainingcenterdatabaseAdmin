@@ -2,6 +2,7 @@ const com = require('../../../config/com');
 const AppError = require('../../../utils/AppError');
 const logger = require('../../../utils/logger');
 const helper = require('./updateProduct.helper');
+const uploader = require('@zwehtetpaing55/uploader');
 
 
 exports.updateShowProduct = async (id)=>{
@@ -86,8 +87,11 @@ exports.updateProduct = async(finalData)=>{
         const [result] = await com.pool.query('select id from brands where name = ?',[finalData.brand]);
 
         if(result.length > 0){
+            
             bid = result[0].id;
+
         }else{
+
             const [createbid] = await com.pool.query('insert into brands (name) values (?)',[finalData.brand]);
 
             bid = createbid.insertId;
@@ -115,11 +119,25 @@ exports.updateProduct = async(finalData)=>{
 
         // console.log("Update Products",updateProducts);
 
-        const [updateProductImage] = await com.pool.query(`update product_images set image_url = ?, public_id = ? where product_id = ?`,[finalData.imageUrl,finalData.publicId,finalData.id]);
+        if(finalData.file){
 
-        if(updateProductImage.affectedRows === 0)throw new AppError('Failed to update product',404);
-        // console.log('Update Product Images',updateProductImage);
+            const result = await uploader.upload(finalData.file,'products_images');
 
+            const imageUrl = result.image_url;
+            const publicId = result.public_id;
+
+            const [selectPublicId] = await com.pool.query('select public_id from product_images where product_id = ?',[finalData.id])
+
+            console.log('selectPublicId',selectPublicId[0].public_id);
+
+            await uploader.delete(selectPublicId[0].public_id);
+
+            const [updateProductImage] = await com.pool.query(`update product_images set image_url = ?, public_id = ? where product_id = ?`,[imageUrl,publicId,finalData.id]);
+
+            if(updateProductImage.affectedRows === 0)throw new AppError('Failed to update product',404);
+
+        }
+       
         const [updateProductVariant] = await com.pool.query(`
             update product_variants set type = ?, color = ?, size = ?, weight = ?, stock = ?, date = ? where product_id = ?
             `,[finalData.type,finalData.color,finalData.size,finalData.weight,finalData.stock,finalData.date,finalData.id]);

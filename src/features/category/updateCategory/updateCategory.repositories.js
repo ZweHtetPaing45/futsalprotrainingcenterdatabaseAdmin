@@ -17,6 +17,18 @@ exports.updateCategory = async (id,name,file)=>{
             throw new AppError("Category same name already exist !",400);
         }
 
+        if(file === null || file === undefined){
+
+        const [result] = await com.pool.query('update categories set name = ? where id = ?',[name,id]);
+
+        if(result.affectedRows === 0)throw new AppError('Failed to update category',500);
+
+        // console.log('Update Category',result);
+
+        return true;
+
+        }
+
         const [seletepublicId] = await com.pool.query('select public_url from categories where id = ?',[id]);
 
         // console.log('publicId',seletepublicId[0].public_url);

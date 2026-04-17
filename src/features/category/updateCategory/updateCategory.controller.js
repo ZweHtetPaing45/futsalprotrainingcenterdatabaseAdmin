@@ -8,15 +8,15 @@ class updateCategoryController{
 
             const file = req.file;
 
-            if(!file){
-                throw new AppError('Please fill all the fields', 400);
-            }
+            // if(!file){
+            //     throw new AppError('Please fill all the fields', 400);
+            // }
 
             const {id,name} = req.body;
 
-            if(!id || !name){
-                throw new AppError('Please fill all the fields', 400);
-            }
+            // if(!id || !name){
+            //     throw new AppError('Please fill all the fields', 400);
+            // }
 
             const result = await service.updateCategory(id,name,file);
 
