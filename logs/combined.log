@@ -1046,3 +1046,27 @@ GROUP BY p.id' at line 55
 2026-04-17 21:41:38 [32minfo[39m:: Server is running on port 5000
 2026-04-18 11:24:21 [32minfo[39m:: Server is running on port 5000
 2026-04-18 11:29:41 [32minfo[39m:: Server is running on port 5000
+2026-04-18 11:42:00 [32minfo[39m:: Server is running on port 5000
+2026-04-18 11:43:47 [32minfo[39m:: Server is running on port 5000
+2026-04-18 11:45:44 [32minfo[39m:: Server is running on port 5000
+2026-04-18 11:51:52 [31merror[39m:: Failed to update category
+2026-04-19 00:03:21 [32minfo[39m:: Server is running on port 5000
+2026-04-19 00:11:32 [31merror[39m:: Failed to update product
+2026-04-19 00:12:04 [31merror[39m:: Failed to update product
+2026-04-19 00:12:40 [31merror[39m:: Failed to update product
+2026-04-19 00:13:59 [32minfo[39m:: Server is running on port 5000
+2026-04-19 00:14:04 [31merror[39m:: Failed to update product
+2026-04-19 00:14:35 [31merror[39m:: Failed to update product
+2026-04-19 00:14:44 [31merror[39m:: Failed to update product
+2026-04-19 00:16:35 [32minfo[39m:: Server is running on port 5000
+2026-04-19 00:16:38 [31merror[39m:: Failed to update product
+2026-04-19 00:17:37 [31merror[39m:: Failed to update product
+2026-04-19 00:19:18 [31merror[39m:: Failed to update product
+2026-04-19 00:21:19 [32minfo[39m:: Server is running on port 5000
+2026-04-19 00:21:21 [31merror[39m:: Failed to update product
+2026-04-19 00:22:45 [32minfo[39m:: Server is running on port 5000
+2026-04-19 00:22:47 [31merror[39m:: Failed to update product
+2026-04-19 00:24:07 [31merror[39m:: Failed to update product variant
+2026-04-19 00:25:52 [32minfo[39m:: Server is running on port 5000
+2026-04-19 00:26:00 [31merror[39m:: Failed to update product variant
+2026-04-19 00:34:54 [31merror[39m:: tag not found

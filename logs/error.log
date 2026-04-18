@@ -298,3 +298,18 @@ GROUP BY p.id' at line 55
 2026-04-17 00:20:48 [31merror[39m:: Tag same name already exist !
 2026-04-17 00:22:09 [31merror[39m:: Tag same name already exist !
 2026-04-17 21:03:52 [31merror[39m:: Category same name already exist !
+2026-04-18 11:51:52 [31merror[39m:: Failed to update category
+2026-04-19 00:11:32 [31merror[39m:: Failed to update product
+2026-04-19 00:12:04 [31merror[39m:: Failed to update product
+2026-04-19 00:12:40 [31merror[39m:: Failed to update product
+2026-04-19 00:14:04 [31merror[39m:: Failed to update product
+2026-04-19 00:14:35 [31merror[39m:: Failed to update product
+2026-04-19 00:14:44 [31merror[39m:: Failed to update product
+2026-04-19 00:16:38 [31merror[39m:: Failed to update product
+2026-04-19 00:17:37 [31merror[39m:: Failed to update product
+2026-04-19 00:19:18 [31merror[39m:: Failed to update product
+2026-04-19 00:21:21 [31merror[39m:: Failed to update product
+2026-04-19 00:22:47 [31merror[39m:: Failed to update product
+2026-04-19 00:24:07 [31merror[39m:: Failed to update product variant
+2026-04-19 00:26:00 [31merror[39m:: Failed to update product variant
+2026-04-19 00:34:54 [31merror[39m:: tag not found

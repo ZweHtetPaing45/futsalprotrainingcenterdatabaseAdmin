@@ -9,7 +9,7 @@ exports.updateCategory = async (id,name,file)=>{
 
     //Name မှာ data မပါဘဲ image data ပါရင်
 
-        if((file !== null || file !== undefined) && (name === null || name === undefined)){
+        if((file !== null || file !== undefined) && (name === '' || name === null || name === undefined)){
 
         const [seletepublicId] = await com.pool.query('select public_url from categories where id = ?',[id]);
 

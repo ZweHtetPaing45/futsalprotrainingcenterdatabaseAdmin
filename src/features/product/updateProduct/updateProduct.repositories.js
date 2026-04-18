@@ -82,7 +82,7 @@ exports.updateProduct = async(finalData)=>{
 
         let bid;
 
-        console.log(finalData);
+        // console.log(finalData);
 
         const [result] = await com.pool.query('select id from brands where name = ?',[finalData.brand]);
 
@@ -128,13 +128,15 @@ exports.updateProduct = async(finalData)=>{
 
             const [selectPublicId] = await com.pool.query('select public_id from product_images where product_id = ?',[finalData.id])
 
-            console.log('selectPublicId',selectPublicId[0].public_id);
+            // console.log('selectPublicId',selectPublicId[0].public_id);
 
             await uploader.delete(selectPublicId[0].public_id);
 
             const [updateProductImage] = await com.pool.query(`update product_images set image_url = ?, public_id = ? where product_id = ?`,[imageUrl,publicId,finalData.id]);
 
-            if(updateProductImage.affectedRows === 0)throw new AppError('Failed to update product',404);
+            if(updateProductImage.affectedRows === 0)throw new AppError('Failed to update product Image',404);
+
+            // console.log('Update Product Image',updateProductImage);
 
         }
        
@@ -142,7 +144,7 @@ exports.updateProduct = async(finalData)=>{
             update product_variants set type = ?, color = ?, size = ?, weight = ?, stock = ?, date = ? where product_id = ?
             `,[finalData.type,finalData.color,finalData.size,finalData.weight,finalData.stock,finalData.date,finalData.id]);
 
-        if(updateProductVariant.affectedRows === 0)throw new AppError('Failed to update product',404);
+        if(updateProductVariant.affectedRows === 0)throw new AppError('Failed to update product variant',404);
         // console.log('Update Product Variant',updateProductVariant);
 
         //can not use update so insert product_tags
@@ -154,12 +156,16 @@ exports.updateProduct = async(finalData)=>{
             update product_tags set tag_id = ? where product_id = ?
             `,[tid,finalData.id]);
 
-            if(updateProductTag.affectedRows === 0)throw new AppError('Failed to update product',404);
+            if(updateProductTag.affectedRows === 0)throw new AppError('Failed to update product Tags',404);
+
+            // console.log('Update Product Tag',updateProductTag);
         }else{
             const [updateProductTag] = await com.pool.query(`
             insert into product_tags (product_id,tag_id) values (?,?)
             `,[finalData.id,tid]);
-            if(updateProductTag.affectedRows === 0)throw new AppError('Failed to update product',404);
+            if(updateProductTag.affectedRows === 0)throw new AppError('Failed to update product Tags',404);
+
+            // console.log('Update Product Tag',updateProductTag);
         }
 
         // if(updateProductTag.affectedRows === 0)throw new AppError('Failed to update product',404);
