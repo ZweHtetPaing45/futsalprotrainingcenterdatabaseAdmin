@@ -15,7 +15,7 @@ class deleteCategoryController {
             if(!name)throw new AppError('Please enter delete category name',400);
 
             const result = await service.deleteName(name);
-
+            
             console.log(result);
 
             if(result){
