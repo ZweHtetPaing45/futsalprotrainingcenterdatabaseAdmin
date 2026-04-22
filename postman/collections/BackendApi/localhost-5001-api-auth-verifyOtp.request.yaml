@@ -1,0 +1,14 @@
+$kind: http-request
+name: localhost:5001/api/auth/verifyOtp
+url: localhost:5001/api/auth/verifyOtp
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"tempToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbCI6ImtvYXVuZzgyOC41MEBnbWFpbC5jb20iLCJwaG9uZSI6IjA5NjY2MjI2MzI2IiwiaWF0IjoxNzc2ODczMTQ5LCJleHAiOjE3NzY5NTk1NDl9.8WGd9vXsM3eNjgrNuEECy57LZCUqrqCKwHsLvVkwFLo\",\r
+
+    \    \"otp\": \"959730\"\r
+
+    }"
+order: 4500773923944240

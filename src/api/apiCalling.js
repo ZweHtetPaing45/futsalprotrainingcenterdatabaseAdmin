@@ -13,6 +13,7 @@ const deleteProductRouter = require('../features/product/deletProduct/deleteProd
 const updateProductRouter = require('../features/product/updateProduct/updateProduct.route');
 const updateCategoryRouter = require('../features/category/updateCategory/updateCategory.route');
 const updateTagRouter = require('../features/category/updateTags/updateTags.route');
+const orderRouter = require('../features/order/order.route');
 
 router.use('/product', addProductRouter,(error)=>{
     logger.error({
@@ -32,5 +33,6 @@ router.use('/deleteproducts',deleteProductRouter);
 router.use('/updateshowproduct',updateProductRouter);
 router.use('/updateCat',updateCategoryRouter);
 router.use('/updateTag',updateTagRouter);
+router.use('/order',orderRouter);
 
 module.exports = router;

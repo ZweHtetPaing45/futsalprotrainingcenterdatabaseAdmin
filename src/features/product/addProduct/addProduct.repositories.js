@@ -10,6 +10,8 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
         tags,price,size,warranty,date) =>
         {
 
+            console.log(file);
+
                 // console.log(category);
 
                 // console.log(tags);
@@ -103,7 +105,6 @@ exports.addingProduct = async (productName,brand,made,type,stock,description,
                     [productName,categoryId,bid,cost,price,description,warranty,rating,made]);
 
                 const proId = productId[0].id;
-
 
                 console.log('product id',proId);
 

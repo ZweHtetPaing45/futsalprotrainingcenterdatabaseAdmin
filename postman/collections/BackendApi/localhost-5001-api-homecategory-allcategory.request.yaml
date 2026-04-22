@@ -1,0 +1,9 @@
+$kind: http-request
+name: localhost:5001/api/homecategory/allcategory
+url: 38.60.216.25:5001/api/homecategory/allcategory
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbCI6ImtvYXVuZzgyOC41MEBnbWFpbC5jb20iLCJwaG9uZSI6IjA5OTQxMTAxMTI2IiwiaWF0IjoxNzc2NzkxMTI1LCJleHAiOjE3NzY4Nzc1MjV9.ZCVNHNCtI5s4OiJq6CwfRyavorKTPEy-7TaSrUT0sEI
+order: 4502775483075541

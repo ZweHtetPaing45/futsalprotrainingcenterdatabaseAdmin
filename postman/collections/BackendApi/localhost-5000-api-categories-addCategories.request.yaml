@@ -1,0 +1,19 @@
+$kind: http-request
+name: localhost:5000/api/categories/addCategories
+url: localhost:5000/api/categories/addCategories
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: name
+      value: CategoryName
+      description: ""
+      disabled: false
+    - type: file
+      key: image
+      src:
+        - /C:/Users/zweht/Downloads/lamborghini-7680x4320-26117.jpeg
+      description: ""
+      disabled: false
+order: 4175304105708790

@@ -41,11 +41,17 @@ const deleteTag = joi.object({
 
 const deleteProduct = joi.object({
     name: joi.string().min(1).required().trim()
-})
+});
 
 const searchProduct = joi.object({
     name: joi.string().min(1).max(100).required().trim()
-})
+});
+
+
+const updateOrder = joi.object({
+    id: joi.string().required(),
+    action: joi.string().min(1).max(100).required().trim()
+});
 
 // productName: joi.string().min(1).max(100).required(),
 //     brand: joi.string().min(1).max(100).required(),
@@ -88,6 +94,7 @@ module.exports = {
     addTag,
     addCategories,
     createProduct,
+    updateOrder,
     validate
 }
 

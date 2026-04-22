@@ -1,0 +1,71 @@
+$kind: http-request
+name: localhost:5001/api/cart/order
+url: localhost:5001/api/cart/order
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: image
+      src:
+        - /C:/Users/zweht/Downloads/FB_IMG_1737778412000.jpg
+      description: ""
+      disabled: false
+    - type: text
+      key: user_id
+      value: "23"
+      description: ""
+      disabled: false
+    - type: text
+      key: customer_name
+      value: Oo Aung Aung Myo
+      description: ""
+      disabled: false
+    - type: text
+      key: phone
+      value: "09941101125"
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: koaung828.50@gmail.com
+      description: ""
+      disabled: false
+    - type: text
+      key: delivery_address
+      value: delivery_addressText
+      description: ""
+      disabled: false
+    - type: text
+      key: remark
+      value: remarkText
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_method
+      value: kpay
+      description: ""
+      disabled: false
+    - type: text
+      key: items
+      value: |-
+        [
+            {"product_id": 84, "quantity": 2}
+        ]
+      description: ""
+      disabled: false
+    - type: text
+      key: tax
+      value: "500"
+      description: ""
+      disabled: false
+    - type: text
+      key: delivery_fee
+      value: "1000"
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbE9ycGhvbmUiOiJrb2F1bmc4MjguNTBAZ21haWwuY29tIiwiaWF0IjoxNzc2ODM2NTM3LCJleHAiOjE3NzY5MjI5Mzd9.DknkL-w7wPHGEQC7NPnELJrv50YUM1hESlaKOtSvqqQ
+order: 4500764867152328

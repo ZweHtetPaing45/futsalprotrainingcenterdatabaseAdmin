@@ -1,0 +1,94 @@
+$kind: http-request
+name: localhost:5000/api/product/addproduct
+url: localhost:5000/api/product/addproduct
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: image
+      src:
+        - /C:/Users/zweht/Downloads/chase-infiniti-7680x4320-26130.jpg
+      description: ""
+      disabled: false
+    - type: text
+      key: productName
+      value: FirstSecond
+      description: ""
+      disabled: false
+    - type: text
+      key: brand
+      value: US
+      description: ""
+      disabled: false
+    - type: text
+      key: made
+      value: US
+      description: ""
+      disabled: false
+    - type: text
+      key: type
+      value: type
+      description: ""
+      disabled: false
+    - type: text
+      key: stock
+      value: "100"
+      description: ""
+      disabled: false
+    - type: text
+      key: description
+      value: textdescripton
+      description: ""
+      disabled: false
+    - type: text
+      key: category
+      value: FirstSecond
+      description: ""
+      disabled: false
+    - type: text
+      key: cost
+      value: "10000"
+      description: ""
+      disabled: false
+    - type: text
+      key: color
+      value: blue
+      description: ""
+      disabled: false
+    - type: text
+      key: weight
+      value: "2.3"
+      description: ""
+      disabled: false
+    - type: text
+      key: rating
+      value: "20"
+      description: ""
+      disabled: false
+    - type: text
+      key: tags
+      value: special promotion
+      description: ""
+      disabled: false
+    - type: text
+      key: price
+      value: "20000"
+      description: ""
+      disabled: false
+    - type: text
+      key: size
+      value: "2.3"
+      description: ""
+      disabled: false
+    - type: text
+      key: warranty
+      value: 1 year
+      description: ""
+      disabled: false
+    - type: text
+      key: date
+      value: 2004-02-03
+      description: ""
+      disabled: false
+order: 4427799239218392

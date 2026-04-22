@@ -1,0 +1,14 @@
+$kind: http-request
+name: localhost:5001/api/auth/login
+url: 38.60.216.25:5001/api/auth/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"emailOrphone\": \"koaung828.50@gmail.com\",\r
+
+    \    \"password\" : \"123456\"\r
+
+    }"
+order: 4502138393842437

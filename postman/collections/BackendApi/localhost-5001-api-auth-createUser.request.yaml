@@ -1,0 +1,20 @@
+$kind: http-request
+name: localhost:5001/api/auth/createUser
+url: localhost:5001/api/auth/createUser
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Ko Aung Myo\",\r
+
+    \    \"email\": \"koaung828.50@gmail.com\",\r
+
+    \    \"phone\": \"09666226326\",\r
+
+    \    \"dateOfBirth\" : \"2004-02-03\",\r
+
+    \    \"password\" : \"123456\"\r
+
+    }"
+order: 4501430049803355
