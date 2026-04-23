@@ -323,3 +323,11 @@ GROUP BY p.id' at line 55
 2026-04-20 15:34:14 [31merror[39m:: Only JPG, PNG and JPEG files are allowed
 2026-04-22 23:29:45 [31merror[39m:: Unexpected token '}', ..."ction": 
 }" is not valid JSON
+2026-04-23 13:11:24 [31merror[39m:: Cannot delete product because it is used in another table
+2026-04-23 13:12:06 [31merror[39m:: status is not defined
+2026-04-23 13:12:06 [31merror[39m:: Failed to delete product
+2026-04-23 13:13:12 [31merror[39m:: status is not defined
+2026-04-23 13:13:12 [31merror[39m:: Failed to delete product
+2026-04-23 13:14:46 [31merror[39m:: status is not defined
+2026-04-23 13:14:46 [31merror[39m:: Failed to delete product
+2026-04-23 13:21:05 [31merror[39m:: Cannot delete product because it is used in order_items table and orders table

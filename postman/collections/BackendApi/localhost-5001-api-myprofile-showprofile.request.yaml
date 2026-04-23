@@ -1,9 +1,9 @@
 $kind: http-request
 name: localhost:5001/api/myprofile/showprofile
-url: localhost:5001/api/myprofile/showprofile
+url: 38.60.216.25:5001/api/myprofile/showprofile
 method: GET
 auth:
   type: bearer
   credentials:
-    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbCI6ImtvYXVuZzgyOC41MEBnbWFpbC5jb20iLCJwaG9uZSI6IjA5NjY2MjI2MzI2IiwiaWF0IjoxNzc2ODczMTg4LCJleHAiOjE3NzY5NTk1ODh9.ifp9CZoNkU_4Vm1z77d_08VkYe9OCwPTIfj3dqtDd30
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbE9ycGhvbmUiOiJrb2F1bmc4MjguNTBAZ21haWwuY29tIiwiaWF0IjoxNzc2ODczODY5LCJleHAiOjE3NzY5NjAyNjl9.qI3vI8Ubmil0A3XVUh7wbtSDriRgvtlMF6mUCbihkzg
 order: 4501688274895170

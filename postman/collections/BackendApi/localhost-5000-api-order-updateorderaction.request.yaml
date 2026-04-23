@@ -1,12 +1,12 @@
 $kind: http-request
 name: localhost:5000/api/order/updateorderaction
-url: localhost:5000/api/order/updateorderaction
+url: 38.60.216.25:5000/api/order/updateorderaction
 method: PUT
 body:
   type: json
   content: "{\r
 
-    \    \"id\": \"1102\",\r
+    \    \"id\": \"1101\",\r
 
     \    \"action\": \"complete\"\r
 

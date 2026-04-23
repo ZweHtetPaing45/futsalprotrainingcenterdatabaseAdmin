@@ -1,0 +1,5 @@
+$kind: http-request
+name: Untitled Request
+url: localhost:5000/api/inventory/showinventory
+method: GET
+order: 4503599621212793

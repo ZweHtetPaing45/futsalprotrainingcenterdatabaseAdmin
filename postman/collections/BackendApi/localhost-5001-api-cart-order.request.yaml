@@ -1,6 +1,6 @@
 $kind: http-request
 name: localhost:5001/api/cart/order
-url: localhost:5001/api/cart/order
+url: 38.60.216.25:5001/api/cart/order
 method: POST
 body:
   type: formdata
@@ -13,7 +13,7 @@ body:
       disabled: false
     - type: text
       key: user_id
-      value: "23"
+      value: "18"
       description: ""
       disabled: false
     - type: text
@@ -50,7 +50,7 @@ body:
       key: items
       value: |-
         [
-            {"product_id": 84, "quantity": 2}
+            {"product_id": 21, "quantity": 2}
         ]
       description: ""
       disabled: false
@@ -67,5 +67,5 @@ body:
 auth:
   type: bearer
   credentials:
-    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbE9ycGhvbmUiOiJrb2F1bmc4MjguNTBAZ21haWwuY29tIiwiaWF0IjoxNzc2ODM2NTM3LCJleHAiOjE3NzY5MjI5Mzd9.DknkL-w7wPHGEQC7NPnELJrv50YUM1hESlaKOtSvqqQ
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS28gQXVuZyBNeW8iLCJlbWFpbE9ycGhvbmUiOiJrb2F1bmc4MjguNTBAZ21haWwuY29tIiwiaWF0IjoxNzc2ODczODY5LCJleHAiOjE3NzY5NjAyNjl9.qI3vI8Ubmil0A3XVUh7wbtSDriRgvtlMF6mUCbihkzg
 order: 4500764867152328

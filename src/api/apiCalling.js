@@ -14,6 +14,7 @@ const updateProductRouter = require('../features/product/updateProduct/updatePro
 const updateCategoryRouter = require('../features/category/updateCategory/updateCategory.route');
 const updateTagRouter = require('../features/category/updateTags/updateTags.route');
 const orderRouter = require('../features/order/order.route');
+const inventoryRouter = require('../features/inventory/inventory.route');
 
 router.use('/product', addProductRouter,(error)=>{
     logger.error({
@@ -34,5 +35,6 @@ router.use('/updateshowproduct',updateProductRouter);
 router.use('/updateCat',updateCategoryRouter);
 router.use('/updateTag',updateTagRouter);
 router.use('/order',orderRouter);
+router.use('/inventory',inventoryRouter);
 
 module.exports = router;
