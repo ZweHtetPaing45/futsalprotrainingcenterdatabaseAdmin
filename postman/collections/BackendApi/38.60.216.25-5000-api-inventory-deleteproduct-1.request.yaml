@@ -1,0 +1,5 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/inventory/deleteproduct/1
+url: 38.60.216.25:5000/api/inventory/deleteproduct/1
+method: DELETE
+order: 4503599622329780

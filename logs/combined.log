@@ -1139,3 +1139,8 @@ GROUP BY p.id' at line 55
 2026-04-23 13:21:05 [31merror[39m:: Cannot delete product because it is used in order_items table and orders table
 2026-04-23 13:21:49 [32minfo[39m:: Server is running on port 5000
 2026-04-23 13:29:27 [32minfo[39m:: Server is running on port 5000
+2026-04-24 11:41:26 [32minfo[39m:: Server is running on port 5000
+2026-04-24 14:54:24 [32minfo[39m:: Server is running on port 5000
+2026-04-24 14:55:16 [32minfo[39m:: Server is running on port 5000
+2026-04-24 14:55:35 [32minfo[39m:: Server is running on port 5000
+2026-04-24 14:56:09 [32minfo[39m:: Server is running on port 5000

@@ -1,0 +1,5 @@
+$kind: http-request
+name: 38.60.216.25:5001/api/homecategory/allbrand
+url: 38.60.216.25:5001/api/homecategory/allbrand
+method: GET
+order: 4503599627363028

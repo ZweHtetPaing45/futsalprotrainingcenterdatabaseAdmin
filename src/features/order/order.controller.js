@@ -21,10 +21,13 @@ class orderController{
 
     async updateOrderAction(req,res,next){
         try{
+            const id = req.params.id;
 
-            const {id,action} = req.body;
+            console.log(id);
 
-            if(!id || !action) throw new AppError('Please provide order id and action',400);
+            const {action} = req.body;
+
+            if(!action) throw new AppError('Please provide order id and action',400);
 
             console.log('id',id);
             console.log('action',action);

@@ -49,7 +49,6 @@ const searchProduct = joi.object({
 
 
 const updateOrder = joi.object({
-    id: joi.string().required(),
     action: joi.string().min(1).max(100).required().trim()
 });
 
