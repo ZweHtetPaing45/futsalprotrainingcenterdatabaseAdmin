@@ -23,6 +23,15 @@ const createProduct = joi.object({
     date: joi.string().min(1).max(100).required(),
 });
 
+const addOrder = joi.object({
+    customer_name: joi.string().min(1).max(100).required().trim(),
+    total_amount: joi.string().required(),
+    payment_method: joi.string().min(1).max(100).required().trim(),
+    payment_name: joi.string().min(1).max(100).required().trim(),
+    phone: joi.string().pattern(/^[0-9]{11}$/).required().trim(),
+    user_id: joi.string().min(1).max(100).required(),
+});
+
 const addCategories = joi.object({
     name: joi.string().min(1).max(100).required(),
 });
@@ -94,6 +103,7 @@ module.exports = {
     addCategories,
     createProduct,
     updateOrder,
+    addOrder,
     validate
 }
 

@@ -3,6 +3,18 @@ const repo = require('./order.repositories');
 
 class orderService{
 
+
+    async addOrder(file,customer_name,total_amount,payment_method,payment_name,phone,user_id){
+
+        const addOrder = await repo.addOrder(file,customer_name,total_amount,payment_method,payment_name,phone,user_id);
+
+        if(!addOrder) throw new AppError('Failed to add order',500);
+
+        return addOrder;
+        
+    }
+
+
     async showOrderData(){
 
         const orderData = await repo.showOrderData();

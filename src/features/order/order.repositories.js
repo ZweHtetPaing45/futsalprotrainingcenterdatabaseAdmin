@@ -4,6 +4,29 @@ const logger = require('../../utils/logger');
 const uploader = require('@zwehtetpaing55/uploader');
 
 
+
+exports.addOrder = async (file,customer_name,total_amount,payment_method,payment_name,phone,user_id)=>{
+
+
+    const result = await uploader.upload(file, 'orders_payment_image');
+
+    const imageUrl = result.image_url;
+    
+    // console.log('imageUrl',imageUrl);
+
+    const publicId = result.public_id;
+    
+    console.log('publicId',publicId);
+
+    const [addorder] = await com.pool.query('insert into orders (customer_name,total_amount,payment_method,payment_name,phone,payment_image_url,public_id,user_id) values (?,?,?,?,?,?,?,?)',[customer_name,total_amount,payment_method,payment_name,phone,imageUrl,publicId,user_id]);
+
+    if(!addorder)throw new AppError('Failed to add order',500);
+
+    // console.log('addorder',addorder);
+
+    return true;
+}
+
 exports.showOrderData = async ()=>{
 
     const [orderData] = await com.pool.query(`
@@ -32,6 +55,8 @@ exports.updateOrderAction = async (id,action)=>{
     return true;
 
 }
+
+
 
 exports.deleteOrder = async (id)=>{
 

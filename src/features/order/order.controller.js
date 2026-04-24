@@ -2,6 +2,38 @@ const service = require('./order.service');
 
 class orderController{
 
+
+    async addOrder(req,res,next){
+        try{
+
+               const file = req.file;
+
+               const {user_id,customer_name,total_amount,payment_method,payment_name,phone} = req.body;
+
+            //    console.log('user_id',user_id);
+            //    console.log('customer_name',customer_name);
+            //    console.log('total_amount',total_amount);
+            //    console.log('payment_method',payment_method);
+            //    console.log('payment_name',payment_name);
+            //    console.log('phone',phone);
+
+                if(!customer_name || !total_amount || !payment_method || !payment_name || !phone) throw new AppError('Please provide all required fields',400);
+
+                const addOrder = await service.addOrder(file,customer_name,total_amount,payment_method,payment_name,phone,user_id);
+
+                if(!addOrder) throw new AppError('Failed to add order',500);
+
+                res.status(201).json({
+                    status: 'success',
+                    message: 'Order added successfully',
+                    data: addOrder
+                });
+
+        }catch(error){
+            next(error);
+        }
+    }
+
     async showOrderData(req,res,next){
         try {
 

@@ -1,6 +1,6 @@
 $kind: http-request
 name: localhost:5001/api/cart/order
-url: 38.60.216.25:5001/api/cart/order
+url: localhost:5001/api/cart/order
 method: POST
 body:
   type: formdata
@@ -50,7 +50,7 @@ body:
       key: items
       value: |-
         [
-            {"product_id": 21, "quantity": 2}
+            {"product_id":84 , "quantity": 2}
         ]
       description: ""
       disabled: false
