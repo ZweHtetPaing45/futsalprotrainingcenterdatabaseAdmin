@@ -13,6 +13,16 @@ class customerServices {
 
     }
 
+    async deleteCustomer(id){
+
+        const result = await repo.deleteCustomer(id);
+
+        if(!result)throw new AppError('Failed to delete customer data',500);
+
+        return true;
+
+    }
+
 }
 
 module.exports = new customerServices();

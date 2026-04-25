@@ -331,3 +331,9 @@ GROUP BY p.id' at line 55
 2026-04-23 13:14:46 [31merror[39m:: status is not defined
 2026-04-23 13:14:46 [31merror[39m:: Failed to delete product
 2026-04-23 13:21:05 [31merror[39m:: Cannot delete product because it is used in order_items table and orders table
+2026-04-25 09:58:22 [31merror[39m:: No data found with that id
+2026-04-25 10:03:33 [31merror[39m:: No customer data found
+2026-04-25 10:10:18 [31merror[39m:: No customer data found
+2026-04-25 10:17:41 [31merror[39m:: No customer data found
+2026-04-25 10:24:29 [31merror[39m:: No customer data found
+2026-04-25 10:29:05 [31merror[39m:: No customer data found
