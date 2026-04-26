@@ -10,7 +10,6 @@ class StaffManagementController {
 
         if(!name || !email || !password || !role){
             return res.status(400).json({message:"All fields are required"});
-
         }
 
         const result = await service.newStaff(name,email,password,role);
@@ -45,6 +44,25 @@ class StaffManagementController {
                 message: 'Staff deleted successfully',
                 data: result
             })
+
+        }catch(error){
+            next(error);
+        }
+    }
+
+    async showStaff(req,res,next){
+        try{
+
+            const result = await service.showStaff();
+
+            if(!result){
+                return res.status(404).json({message:"No staff found"});
+            }
+
+            res.status(200).json({
+                message: 'Staff shown successfully',
+                data: result
+            });
 
         }catch(error){
             next(error);

@@ -33,6 +33,12 @@ class StaffManagementService {
 
     }
 
+    async showStaff(){
+        const showStaffResult = await repo.showStaff();
+
+        return showStaffResult;
+    }
+
 }
 
 module.exports = new StaffManagementService();

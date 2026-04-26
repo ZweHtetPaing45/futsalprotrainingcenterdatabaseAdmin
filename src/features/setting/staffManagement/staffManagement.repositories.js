@@ -36,5 +36,16 @@ exports.deleteStaff = async (id)=>{
     }
 
     return true;
+}
+
+exports.showStaff = async ()=>{
+
+    const [showStaff] = await com.pool.query('select * from staff');
+
+    if(!showStaff)throw new AppError('Failed to show staff',500);
+
+    if(showStaff.length === 0)throw new AppError('No staff found',404);
+
+    return showStaff;
 
 }
