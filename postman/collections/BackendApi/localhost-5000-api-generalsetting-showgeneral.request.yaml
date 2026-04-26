@@ -1,0 +1,12 @@
+$kind: http-request
+name: localhost:5000/api/generalsetting/showgeneral
+url: localhost:5000/api/generalsetting/showgeneral
+method: GET
+body:
+  type: formdata
+  content: []
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvYXVuZ0BnbWFpbC5jb20iLCJyb2xlX2lkIjoyLCJuYW1lIjoiS28gQXVuZyBBdW5nIiwiaWF0IjoxNzc3MTkwODE4LCJleHAiOjE3NzcyNzcyMTh9.JHOUPtcsdVR-IlWKZ2Dvwkx83kcpri6eKKdoSqkYXP0
+order: 28000

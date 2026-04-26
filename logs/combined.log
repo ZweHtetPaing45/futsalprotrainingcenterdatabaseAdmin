@@ -1172,3 +1172,52 @@ GROUP BY p.id' at line 55
 2026-04-25 10:24:29 [31merror[39m:: No customer data found
 2026-04-25 10:28:58 [32minfo[39m:: Server is running on port 5000
 2026-04-25 10:29:05 [31merror[39m:: No customer data found
+2026-04-26 11:46:47 [32minfo[39m:: Server is running on port 5000
+2026-04-26 11:50:29 [32minfo[39m:: Server is running on port 5000
+2026-04-26 11:50:43 [32minfo[39m:: Server is running on port 5000
+2026-04-26 11:52:35 [32minfo[39m:: Server is running on port 5000
+2026-04-26 11:52:52 [31merror[39m:: Role not found
+2026-04-26 11:54:00 [32minfo[39m:: Server is running on port 5000
+2026-04-26 11:54:31 [32minfo[39m:: Server is running on port 5000
+2026-04-26 11:58:58 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:05:40 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:08:03 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:08:04 [31merror[39m:: Failed to delete staff
+2026-04-26 12:08:33 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:08:52 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:09:15 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:10:02 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:25:43 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:27:48 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:28:07 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:29:19 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:30:38 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:31:01 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:53:50 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:54:47 [32minfo[39m:: Server is running on port 5000
+2026-04-26 12:59:42 [32minfo[39m:: Server is running on port 5000
+2026-04-26 13:00:26 [31merror[39m:: Unauthorized
+2026-04-26 13:00:26 [31merror[39m:: Unauthorized
+2026-04-26 13:00:34 [31merror[39m:: No customer data found
+2026-04-26 13:21:35 [32minfo[39m:: Server is running on port 5000
+2026-04-26 13:22:07 [31merror[39m:: Unauthorized
+2026-04-26 13:22:07 [31merror[39m:: Unauthorized
+2026-04-26 14:19:30 [32minfo[39m:: Server is running on port 5000
+2026-04-26 14:31:59 [32minfo[39m:: Server is running on port 5000
+2026-04-26 14:36:45 [31merror[39m:: Unauthorized
+2026-04-26 14:36:45 [31merror[39m:: Unauthorized
+2026-04-26 14:42:23 [32minfo[39m:: Server is running on port 5000
+2026-04-26 14:44:10 [31merror[39m:: Unauthorized
+2026-04-26 14:44:10 [31merror[39m:: Unauthorized
+2026-04-26 14:45:34 [32minfo[39m:: Server is running on port 5000
+2026-04-26 14:46:43 [32minfo[39m:: Server is running on port 5000
+2026-04-26 14:47:14 [31merror[39m:: Unauthorized
+2026-04-26 14:47:14 [31merror[39m:: Unauthorized
+2026-04-26 14:56:16 [32minfo[39m:: Server is running on port 5000
+2026-04-26 15:00:22 [32minfo[39m:: Server is running on port 5000
+2026-04-26 15:01:41 [31merror[39m:: jwt malformed
+2026-04-26 15:12:50 [32minfo[39m:: Server is running on port 5000
+2026-04-26 15:14:16 [32minfo[39m:: Server is running on port 5000
+2026-04-26 15:15:40 [32minfo[39m:: Server is running on port 5000
+2026-04-26 15:16:35 [32minfo[39m:: Server is running on port 5000
+2026-04-26 15:16:48 [32minfo[39m:: Server is running on port 5000

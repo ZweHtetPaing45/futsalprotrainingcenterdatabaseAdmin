@@ -2,10 +2,11 @@ const router = require('express').Router();
 const controller = require('./order.controller');
 const {validate,updateOrder,addOrder} = require('../../middlewares/joi');
 const upload = require('../../middlewares/multer');
+const auth = require('../../middlewares/auth.middleware');
 
-router.get('/showorder', controller.showOrderData);
-router.put('/updateorderaction/:id', validate(updateOrder), controller.updateOrderAction);
-router.delete('/deleteorder/:id',controller.deleteOrder);
-router.post('/addorder', upload.single('payment_image'), validate(addOrder),controller.addOrder);
+router.get('/showorder', auth.authMiddle,controller.showOrderData);
+router.put('/updateorderaction/:id',auth.authMiddle, validate(updateOrder), controller.updateOrderAction);
+router.delete('/deleteorder/:id',auth.authMiddle,controller.deleteOrder);
+router.post('/addorder', upload.single('payment_image'), validate(addOrder),auth.authMiddle,controller.addOrder);
 
 module.exports = router;

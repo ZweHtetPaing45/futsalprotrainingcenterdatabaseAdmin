@@ -2,4 +2,4 @@ $kind: http-request
 name: 38.60.216.25:5001/api/homecategory/category
 url: 38.60.216.25:5001/api/homecategory/category
 method: GET
-order: 4503259064053975
+order: 12000

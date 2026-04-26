@@ -1,0 +1,18 @@
+$kind: http-request
+name: localhost:5000/api/setting/newstaff
+url: localhost:5000/api/setting/newstaff
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\" : \"Ko Aung Aung3\",\r
+
+    \    \"email\": \"koaung3@gmail.com\",\r
+
+    \    \"password\": \"1234567\",\r
+
+    \    \"role\": \"manager\"\r
+
+    }"
+order: 25000

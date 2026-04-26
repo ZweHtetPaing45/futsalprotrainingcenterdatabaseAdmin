@@ -337,3 +337,17 @@ GROUP BY p.id' at line 55
 2026-04-25 10:17:41 [31merror[39m:: No customer data found
 2026-04-25 10:24:29 [31merror[39m:: No customer data found
 2026-04-25 10:29:05 [31merror[39m:: No customer data found
+2026-04-26 11:52:52 [31merror[39m:: Role not found
+2026-04-26 12:08:04 [31merror[39m:: Failed to delete staff
+2026-04-26 13:00:26 [31merror[39m:: Unauthorized
+2026-04-26 13:00:26 [31merror[39m:: Unauthorized
+2026-04-26 13:00:34 [31merror[39m:: No customer data found
+2026-04-26 13:22:07 [31merror[39m:: Unauthorized
+2026-04-26 13:22:07 [31merror[39m:: Unauthorized
+2026-04-26 14:36:45 [31merror[39m:: Unauthorized
+2026-04-26 14:36:45 [31merror[39m:: Unauthorized
+2026-04-26 14:44:10 [31merror[39m:: Unauthorized
+2026-04-26 14:44:10 [31merror[39m:: Unauthorized
+2026-04-26 14:47:14 [31merror[39m:: Unauthorized
+2026-04-26 14:47:14 [31merror[39m:: Unauthorized
+2026-04-26 15:01:41 [31merror[39m:: jwt malformed

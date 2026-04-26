@@ -1,0 +1,38 @@
+$kind: http-request
+name: localhost:5000/api/generalsetting/addgeneral
+url: localhost:5000/api/generalsetting/addgeneral
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: logo
+      src:
+        - /C:/Users/zweht/Downloads/Gemini_Generated_Image_k8xpfrk8xpfrk8xp.png
+      description: ""
+      disabled: false
+    - type: text
+      key: shop_name
+      value: NYX
+      description: ""
+      disabled: false
+    - type: text
+      key: contact_info
+      value: "09111222333"
+      description: ""
+      disabled: false
+    - type: text
+      key: address
+      value: bago
+      description: ""
+      disabled: false
+    - type: text
+      key: social_link
+      value: https://www.youtube.com/watch?v=j8XzcsMrvJI&list=RDEM3nrYNT7zWiWmChfd3Q8R0A&start_radio=1
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvYXVuZ0BnbWFpbC5jb20iLCJyb2xlX2lkIjoyLCJuYW1lIjoiS28gQXVuZyBBdW5nIiwiaWF0IjoxNzc3MTkwODE4LCJleHAiOjE3NzcyNzcyMTh9.JHOUPtcsdVR-IlWKZ2Dvwkx83kcpri6eKKdoSqkYXP0
+order: 27000

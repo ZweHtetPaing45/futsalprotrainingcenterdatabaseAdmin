@@ -1,5 +1,6 @@
 const joi = require('joi');
 const AppError = require('../utils/AppError');
+const { password } = require('../config/env');
 
 
 const createProduct = joi.object({
@@ -22,6 +23,13 @@ const createProduct = joi.object({
     warranty: joi.string().min(1).max(100).required(),
     date: joi.string().min(1).max(100).required(),
 });
+
+const addStaff = joi.object({
+    name: joi.string().min(1).max(100).required().trim(),
+    email: joi.string().email().required().trim(),
+    password: joi.string().min(6).max(20).required(),
+    role: joi.string().min(1).max(100).required().trim()
+})
 
 const addOrder = joi.object({
     customer_name: joi.string().min(1).max(100).required().trim(),
@@ -61,6 +69,7 @@ const updateOrder = joi.object({
     action: joi.string().min(1).max(100).required().trim()
 });
 
+
 // productName: joi.string().min(1).max(100).required(),
 //     brand: joi.string().min(1).max(100).required(),
 //     made: joi.string().min(1).max(100).required(),
@@ -95,6 +104,7 @@ const validate = (schema)=>{
 
 
 module.exports = {
+    addStaff,
     deleteProduct,
     searchProduct,
     deleteTag,
