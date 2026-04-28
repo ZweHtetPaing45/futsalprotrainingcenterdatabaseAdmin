@@ -5,7 +5,7 @@ const uploader = require('@zwehtetpaing55/uploader');
 
 
 
-exports.addOrder = async (file,customer_name,total_amount,payment_method,payment_name,phone,user_id)=>{
+exports.addOrder = async (file,customer_name,total_amount,payment_method,payment_name,phone,userId)=>{
 
 
     const result = await uploader.upload(file, 'orders_payment_image');
@@ -18,7 +18,7 @@ exports.addOrder = async (file,customer_name,total_amount,payment_method,payment
     
     console.log('publicId',publicId);
 
-    const [addorder] = await com.pool.query('insert into orders (customer_name,total_amount,payment_method,payment_name,phone,payment_image_url,public_id,user_id) values (?,?,?,?,?,?,?,?)',[customer_name,total_amount,payment_method,payment_name,phone,imageUrl,publicId,user_id]);
+    const [addorder] = await com.pool.query('insert into orders (customer_name,total_amount,payment_method,payment_name,phone,payment_image_url,public_id,user_id) values (?,?,?,?,?,?,?,?)',[customer_name,total_amount,payment_method,payment_name,phone,imageUrl,publicId,userId]);
 
     if(!addorder)throw new AppError('Failed to add order',500);
 

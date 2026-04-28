@@ -40,7 +40,7 @@ exports.deleteStaff = async (id)=>{
 
 exports.showStaff = async ()=>{
 
-    const [showStaff] = await com.pool.query('select * from staff');
+    const [showStaff] = await com.pool.query('select staff.id,staff.name,staff.email,roles.role_name,staff.status from staff join roles on staff.role_id = roles.id');
 
     if(!showStaff)throw new AppError('Failed to show staff',500);
 

@@ -351,3 +351,12 @@ GROUP BY p.id' at line 55
 2026-04-26 14:47:14 [31merror[39m:: Unauthorized
 2026-04-26 14:47:14 [31merror[39m:: Unauthorized
 2026-04-26 15:01:41 [31merror[39m:: jwt malformed
+2026-04-26 23:43:03 [31merror[39m:: Unauthorized
+2026-04-26 23:43:03 [31merror[39m:: Unauthorized
+2026-04-27 16:10:35 [31merror[39m:: Unauthorized
+2026-04-27 16:10:35 [31merror[39m:: Unauthorized
+2026-04-28 09:29:02 [31merror[39m:: Unauthorized
+2026-04-28 09:29:02 [31merror[39m:: Unauthorized
+2026-04-28 09:41:46 [31merror[39m:: Unauthorized
+2026-04-28 09:41:46 [31merror[39m:: Unauthorized
+2026-04-28 09:42:07 [31merror[39m:: jwt malformed

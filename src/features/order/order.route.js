@@ -7,6 +7,6 @@ const auth = require('../../middlewares/auth.middleware');
 router.get('/showorder', auth.authMiddle,controller.showOrderData);
 router.put('/updateorderaction/:id',auth.authMiddle, validate(updateOrder), controller.updateOrderAction);
 router.delete('/deleteorder/:id',auth.authMiddle,controller.deleteOrder);
-router.post('/addorder', upload.single('payment_image'), validate(addOrder),auth.authMiddle,controller.addOrder);
+router.post('/addorder', upload.single('payment_image'),auth.authMiddle,controller.addOrder);
 
 module.exports = router;
