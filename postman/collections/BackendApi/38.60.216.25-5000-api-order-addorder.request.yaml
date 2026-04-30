@@ -1,0 +1,33 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/order/addorder
+url: 38.60.216.25:5000/api/order/addorder
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: payment_image
+      src:
+        - /C:/Users/zweht/Downloads/lamborghini-7680x4320-26117.jpeg
+      description: ""
+      disabled: false
+    - type: text
+      key: total_amount
+      value: "20000"
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_method
+      value: KPAY
+      description: ""
+      disabled: false
+    - type: text
+      key: items
+      value: ""
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: ""
+order: 3393702331988011

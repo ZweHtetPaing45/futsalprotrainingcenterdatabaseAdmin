@@ -360,3 +360,8 @@ GROUP BY p.id' at line 55
 2026-04-28 09:41:46 [31merror[39m:: Unauthorized
 2026-04-28 09:41:46 [31merror[39m:: Unauthorized
 2026-04-28 09:42:07 [31merror[39m:: jwt malformed
+2026-04-28 12:15:16 [31merror[39m:: Unauthorized
+2026-04-28 12:15:16 [31merror[39m:: Unauthorized
+2026-04-28 21:23:08 [31merror[39m:: Unauthorized
+2026-04-28 21:23:08 [31merror[39m:: Unauthorized
+2026-04-29 20:15:41 [31merror[39m:: Payment method already exist

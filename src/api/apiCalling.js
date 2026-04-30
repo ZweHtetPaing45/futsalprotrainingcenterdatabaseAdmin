@@ -19,6 +19,7 @@ const customerRouter = require('../features/customer/customer.route');
 const staffManagementRouter = require('../features/setting/staffManagement/staffManagement.route');
 const authRouter = require('../features/auth/auth.route');
 const generalSettingRouter = require('../features/setting/generalSetting/generalSetting.route');
+const paymentRouter = require('../features/setting/payment&tax/payment&tax.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -45,5 +46,6 @@ router.use('/customer',customerRouter);
 router.use('/setting',staffManagementRouter);
 router.use('/auth',authRouter);
 router.use('/generalsetting',generalSettingRouter);
+router.use('/payment',paymentRouter);
 
 module.exports = router;

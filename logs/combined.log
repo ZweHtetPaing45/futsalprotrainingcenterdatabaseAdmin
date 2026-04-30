@@ -1245,3 +1245,53 @@ GROUP BY p.id' at line 55
 2026-04-28 09:41:46 [31merror[39m:: Unauthorized
 2026-04-28 09:41:46 [31merror[39m:: Unauthorized
 2026-04-28 09:42:07 [31merror[39m:: jwt malformed
+2026-04-28 12:11:38 [32minfo[39m:: Server is running on port 5000
+2026-04-28 12:15:16 [31merror[39m:: Unauthorized
+2026-04-28 12:15:16 [31merror[39m:: Unauthorized
+2026-04-28 21:23:05 [32minfo[39m:: Server is running on port 5000
+2026-04-28 21:23:08 [31merror[39m:: Unauthorized
+2026-04-28 21:23:08 [31merror[39m:: Unauthorized
+2026-04-29 20:09:22 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:11:02 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:13:12 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:14:55 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:15:41 [31merror[39m:: Payment method already exist
+2026-04-29 20:28:30 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:31:09 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:34:40 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:39:41 [32minfo[39m:: Server is running on port 5000
+2026-04-29 20:48:16 [32minfo[39m:: Server is running on port 5000
+2026-04-29 23:16:26 [32minfo[39m:: Server is running on port 5000
+2026-04-30 01:13:50 [32minfo[39m:: Server is running on port 5000
+2026-04-30 01:16:49 [32minfo[39m:: Server is running on port 5000
+2026-04-30 01:18:23 [32minfo[39m:: Server is running on port 5000
+2026-04-30 01:20:22 [32minfo[39m:: Server is running on port 5000
+2026-04-30 01:28:43 [32minfo[39m:: Server is running on port 5000
+2026-04-30 01:32:33 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:11:35 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:12:45 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:13:54 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:15:32 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:16:08 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:16:28 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:17:31 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:21:13 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:21:58 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:22:57 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:24:13 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:25:41 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:29:11 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:29:52 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:30:23 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:31:45 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:32:05 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:32:34 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:37:18 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:38:18 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:45:58 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:47:10 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:48:14 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:49:05 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:49:38 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:50:34 [32minfo[39m:: Server is running on port 5000
+2026-04-30 08:54:11 [32minfo[39m:: Server is running on port 5000

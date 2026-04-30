@@ -4,9 +4,9 @@ const repo = require('./order.repositories');
 class orderService{
 
 
-    async addOrder(file,customer_name,total_amount,payment_method,payment_name,phone,userId){
+    async addOrder(file,payment_method,items){
 
-        const addOrder = await repo.addOrder(file,customer_name,total_amount,payment_method,payment_name,phone,userId);
+        const addOrder = await repo.addOrder(file,payment_method,items);
 
         if(!addOrder) throw new AppError('Failed to add order',500);
 
@@ -17,9 +17,19 @@ class orderService{
 
     async showOrderData(){
 
-        const orderData = await repo.showOrderData();
+        const orderData = await repo.showAdminOrderData();
 
         if(!orderData) throw new AppError('No order data found',404);
+
+        return orderData;
+
+    }
+
+    async showMobileOrderData(){
+
+        const orderData = await repo.showMobileOrderData();
+
+        if(!orderData) throw new AppError('No order data found',404);    
 
         return orderData;
 

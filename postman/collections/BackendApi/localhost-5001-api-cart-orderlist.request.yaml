@@ -1,0 +1,5 @@
+$kind: http-request
+name: localhost:5001/api/cart/orderlist
+url: localhost:5001/api/cart/orderlist
+method: GET
+order: 3268051424808687

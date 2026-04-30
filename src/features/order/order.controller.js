@@ -8,20 +8,11 @@ class orderController{
 
                const file = req.file;
 
-               const {customer_name,total_amount,payment_method,payment_name,phone} = req.body;
+               const {payment_method,items} = req.body;
 
-               const userId = null;
-               console.log('userId',userId);
+                if(!payment_method || !items || !file) throw new AppError('Please provide all required fields',400);
 
-            //    console.log('customer_name',customer_name);
-            //    console.log('total_amount',total_amount);
-            //    console.log('payment_method',payment_method);
-            //    console.log('payment_name',payment_name);
-            //    console.log('phone',phone);
-
-                if(!customer_name || !total_amount || !payment_method || !payment_name || !phone) throw new AppError('Please provide all required fields',400);
-
-                const addOrder = await service.addOrder(file,customer_name,total_amount,payment_method,payment_name,phone,userId);
+                const addOrder = await service.addOrder(file,payment_method,items);
 
                 if(!addOrder) throw new AppError('Failed to add order',500);
 
@@ -40,6 +31,23 @@ class orderController{
         try {
 
             const orderData = await service.showOrderData();
+
+            if(!orderData) throw new AppError('No order data found',404);
+
+            res.status(200).json({
+                status: 'success',
+                data: orderData
+            });
+
+        }catch(error){
+            next(error);
+        }
+    }
+
+    async showMobileOrderData(req,res,next){
+        try{
+
+            const orderData = await service.showMobileOrderData();
 
             if(!orderData) throw new AppError('No order data found',404);
 
