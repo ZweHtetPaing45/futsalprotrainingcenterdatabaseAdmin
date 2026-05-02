@@ -1,0 +1,8 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/payment/addtax
+url: 38.60.216.25:5000/api/payment/addtax
+method: POST
+body:
+  type: json
+  content: "{\r\n    \"tax\": \"100\"\r\n}"
+order: 3635739200885658

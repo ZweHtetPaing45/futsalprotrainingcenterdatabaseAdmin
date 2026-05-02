@@ -12,7 +12,7 @@ class AdminAuthService {
         // console.log(userData);
 
         if(userData === null){
-            return 'Invalid email or password';
+            return 'User not found';
         }
 
         if(!userData)throw new AppError('Failed to find user data',500);
@@ -22,7 +22,7 @@ class AdminAuthService {
         const isMatch = await bcrypt.compare(password,userData.password);
 
         if(!isMatch){
-            return 'Invalid email or password';
+            return 'Incorrect Password';
         }
 
         const token = jwt.generateToken({email:userData.email,role_id:userData.role_id,name:userData.name});

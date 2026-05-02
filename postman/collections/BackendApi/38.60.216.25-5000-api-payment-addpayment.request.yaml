@@ -1,0 +1,29 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/payment/addpayment
+url: 38.60.216.25:5000/api/payment/addpayment
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: payment_image
+      src:
+        - /X:/My Logo/Global Theme Logo for Zan Htet.png
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_method
+      value: WAVE
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_name
+      value: admin_name
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_number
+      value: "09692190769"
+      description: ""
+      disabled: false
+order: 4257252249420034

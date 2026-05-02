@@ -193,17 +193,6 @@ exports.showAdminOrderData = async ()=>{
 //     return data;
 // }
 
-// exports.updateOrderAction = async (id,action)=>{
-
-//     const updateOrderAction = await com.pool.query('update orders set order_status = ? where id = ?',[action,id]);
-
-//     if(!updateOrderAction)throw new AppError('Failed to update order action',400);
-
-//     return true;
-
-// }
-
-
 
 // exports.deleteOrder = async (id)=>{
 
@@ -226,7 +215,7 @@ exports.showAdminOrderData = async ()=>{
 
 
     const [result] = await com.pool.query(
-                    `   SELECT 
+                    `  SELECT 
                         o.id AS order_id,
                         o.amount,
                         o.admin_image_url,
@@ -341,5 +330,16 @@ exports.showMobileOrderData = async ()=>{
             console.log('result1',result1);
 
     return result1;
+
+}
+
+
+exports.updateOrderAction = async (id,action)=>{
+
+    const updateOrderAction = await com.pool.query('update mobile_order set order_status = ? where id = ?',[action,id]);
+
+    if(!updateOrderAction)throw new AppError('Failed to update order action',400);
+
+    return true;
 
 }
