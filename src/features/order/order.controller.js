@@ -112,6 +112,24 @@ class orderController{
         }
 
     }
+
+    async totalResult(req,res,next){
+        try{
+
+            const totalResult = await service.totalResult();
+
+            if(!totalResult) throw new AppError('Failed to get total result',400);
+
+            res.status(200).json({
+                status: 'success',
+                message: 'Total result shown successfully',
+                totalResult
+            });
+
+        }catch(error){
+            next(error);
+        }
+    }
 }
 
 module.exports = new orderController();

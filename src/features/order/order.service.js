@@ -53,6 +53,14 @@ class orderService{
         return deleteOrder;
     }
 
+    async totalResult(){
+        
+        const result = await repo.totalResult();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new orderService();

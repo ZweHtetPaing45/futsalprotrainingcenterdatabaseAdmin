@@ -343,3 +343,60 @@ exports.updateOrderAction = async (id,action)=>{
     return true;
 
 }
+
+
+exports.totalResult = async ()=>{
+
+    const [mobile_order_total] = await com.pool.query('select sum(total_amount) as total_mobile_order from mobile_order');
+
+    if(mobile_order_total[0].total_mobile_order === null || mobile_order_total[0].total_mobile_order === undefined)mobile_order_total[0].total_mobile_order = 0;
+
+    const [admin_order_total] = await com.pool.query('select sum(amount) as total_admin_order from admin_order');
+
+    if(admin_order_total[0].total_admin_order === null || admin_order_total[0].total_admin_order === undefined)admin_order_total[0].total_admin_order = 0;
+
+    const total_revenue = Number(mobile_order_total[0].total_mobile_order) + Number(admin_order_total[0].total_admin_order);
+
+    if(total_revenue === null || total_revenue === undefined)total_revenue = 0;
+
+    console.log('mobile_order_total',mobile_order_total[0].total_mobile_order);
+    console.log('admin_order_total',admin_order_total[0].total_admin_order);
+
+
+    console.log('total_revenue',total_revenue);
+
+    const [mobile_order_count] = await com.pool.query('select count(id) as mobile_order_count from mobile_order');
+
+    if(mobile_order_count[0].mobile_order_count === null || mobile_order_count[0].mobile_order_count === undefined)mobile_order_count[0].mobile_order_count = 0;
+
+    const [admin_order_count] = await com.pool.query('select count(id) as admin_order_count from admin_order');
+
+    if(admin_order_count[0].admin_order_count === null || admin_order_count[0].mobile_order_count === undefined)admin_order_count[0].mobile_order_count = 0;
+
+    console.log('mobile_order_count',mobile_order_count[0].mobile_order_count);
+    console.log('admin_order_count',admin_order_count[0].admin_order_count);
+
+    const total_order = mobile_order_count[0].mobile_order_count + admin_order_count[0].admin_order_count;
+
+    console.log('total_order',total_order);
+
+
+    const [total_product] = await com.pool.query('select count(id) as total_product from products');
+
+    if(total_product[0].total_product === null || total_product[0].total_product === undefined)total_product[0].total_product = 0;
+
+    console.log('total_product',total_product[0].total_product);
+
+    const [total_customer] = await com.pool.query('select count(id) as total_customer from createuser');
+
+    if(total_customer[0].total_customer === null || total_customer[0].total_customer === undefined)total_customer[0].total_customer = 0;
+
+    console.log('total_customer',total_customer[0].total_customer);
+
+    return {
+        total_revenue: total_revenue,
+        total_order: total_order,
+        total_product: total_product[0].total_product,
+        total_customer: total_customer[0].total_customer
+    }
+}

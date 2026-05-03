@@ -9,5 +9,6 @@ router.get('/showmobileorder',auth.authMiddle,controller.showMobileOrderData);
 router.put('/updateorderaction/:id',auth.authMiddle, validate(updateOrder), controller.updateOrderAction);
 router.delete('/deleteorder/:id',auth.authMiddle,controller.deleteOrder);
 router.post('/addorder',auth.authMiddle,upload.single('payment_image'),controller.addOrder);
+router.get('/totalResult',auth.authMiddle,controller.totalResult);
 
 module.exports = router;
