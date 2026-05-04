@@ -1,0 +1,43 @@
+$kind: http-request
+name: localhost:5001/api/editProfiled/update
+url: localhost:5001/api/editProfiled/update
+method: PUT
+body:
+  type: formdata
+  content:
+    - type: file
+      key: image
+      src:
+        - /C:/Users/zweht/Downloads/image (2).png
+      description: ""
+      disabled: false
+    - type: text
+      key: name
+      value: ""
+      description: ""
+      disabled: false
+    - type: text
+      key: dateOfbirth
+      value: ""
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: ""
+      description: ""
+      disabled: false
+    - type: text
+      key: phone
+      value: ""
+      description: ""
+      disabled: false
+    - type: text
+      key: address
+      value: yangon
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsIm5hbWUiOiJLbyBBdW5nIE15byIsImVtYWlsIjoiendlaHRldDUwNzM3N0BnbWFpbC5jb20iLCJwaG9uZSI6IjA5NjY2MjI2MzI5IiwiaWF0IjoxNzc3NjQxNDk4LCJleHAiOjE3Nzc3Mjc4OTh9._mtB7cEGIFiLSPwhndNe_yidx1lbO4P2EfjunWb0LRI
+order: 4495372002649733

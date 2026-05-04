@@ -1,5 +1,9 @@
 $kind: http-request
 name: localhost:5001/api/cart/orderlist
-url: localhost:5001/api/cart/orderlist
+url: 38.60.216.25:5001/api/cart/orderlist
 method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsIm5hbWUiOiJLbyBBdW5nIE15byIsImVtYWlsT3JwaG9uZSI6ImtvYXVuZzgyOC41MEBnbWFpbC5jb20iLCJpYXQiOjE3Nzc2MzA4MTIsImV4cCI6MTc3NzcxNzIxMn0.aSnemuRHXuBhiyfpbUTUGRGrlZuTlAS1WEWq7VAddqk
 order: 3268051424808687

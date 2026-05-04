@@ -1,0 +1,9 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/order/showadminorder
+url: 38.60.216.25:5000/api/order/showadminorder
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlZAZ21haWwuY29tIiwicm9sZV9pZCI6MiwibmFtZSI6IlRlc3RlciIsImlhdCI6MTc3NzY1NTEyMiwiZXhwIjoxNzc3NzQxNTIyfQ.sNPl5RsYUm_NFESSsbgZPaTtxV_JeN37KKnHD03y2fg
+order: 4468481490029879

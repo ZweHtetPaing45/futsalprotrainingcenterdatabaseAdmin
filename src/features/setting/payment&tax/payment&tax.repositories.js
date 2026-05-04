@@ -134,3 +134,13 @@ exports.updateTax = async (id,tax)=>{
     return true;
 
 }
+
+exports.showTax = async ()=>{
+
+    const [result] = await com.pool.query('select id,tax from tax');
+
+    if(result.length === 0)throw new AppError('No tax found',404);
+
+    return result;
+
+}

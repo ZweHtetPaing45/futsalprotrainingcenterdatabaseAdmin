@@ -1,0 +1,9 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/payment/showpayment
+url: 38.60.216.25:5000/api/payment/showpayment
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlZAZ21haWwuY29tIiwicm9sZV9pZCI6MiwibmFtZSI6IlRlc3RlciIsImlhdCI6MTc3NzYxNzUwMiwiZXhwIjoxNzc3NzAzOTAyfQ.1xIB7ICPdUSHCHMkNtQ17o9r6-ANV6wN1lBjCTpGhfA
+order: 4503521669539265

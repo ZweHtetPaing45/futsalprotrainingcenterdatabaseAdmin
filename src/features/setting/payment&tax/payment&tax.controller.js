@@ -184,6 +184,30 @@ class paymentandtaxController{
         }
     }
 
+    async showTax(req,res,next){
+
+        try{
+
+            const result = await service.showTax();
+
+            if(result){
+                res.status(201).json({
+                    message: "Show tax successful",
+                    result
+                });
+            }else{
+                res.status(400).json({
+                    message: "Show tax Error",
+                    result
+                })
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new paymentandtaxController();

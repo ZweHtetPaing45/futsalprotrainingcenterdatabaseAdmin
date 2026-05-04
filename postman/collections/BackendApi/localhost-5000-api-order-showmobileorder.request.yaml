@@ -1,0 +1,9 @@
+$kind: http-request
+name: localhost:5000/api/order/showmobileorder
+url: localhost:5000/api/order/showmobileorder
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvYXVuZ0BnbWFpbC5jb20iLCJyb2xlX2lkIjoyLCJuYW1lIjoiS28gQXVuZyBBdW5nIiwiaWF0IjoxNzc3NzAxMjU0LCJleHAiOjE3Nzc3ODc2NTR9.TPN4GFIfJAGFLgqis61t2KhADm5h1y0ZzZuFbRQFSB8
+order: 4362346925148986

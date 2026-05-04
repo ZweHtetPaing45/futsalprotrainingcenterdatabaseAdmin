@@ -1,0 +1,9 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/order/totalResult
+url: 38.60.216.25:5000/api/order/totalResult
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlZAZ21haWwuY29tIiwicm9sZV9pZCI6MiwibmFtZSI6IlRlc3RlciIsImlhdCI6MTc3Nzc3OTU3MywiZXhwIjoxNzc3ODY1OTczfQ.GOOpHCDvxwhL9Dcg6a_-xpvkXq09W50gLFGTQ_8ocEE
+order: 4407206201926078

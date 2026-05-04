@@ -1,0 +1,34 @@
+$kind: http-request
+name: localhost:5000/api/menus/addmenu
+url: localhost:5000/api/menus/addmenu
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: image
+      src:
+        - /X:/Wallpapers/abstract-background-with-colorful-glowing-neon-lights.jpg
+      description: ""
+      disabled: false
+    - type: text
+      key: name
+      value: Burger
+      description: ""
+      disabled: false
+    - type: text
+      key: price
+      value: "3000"
+      description: ""
+      disabled: false
+    - type: text
+      key: available
+      value: "true"
+      description: ""
+      disabled: false
+    - type: text
+      key: category_name
+      value: Meal
+      description: ""
+      disabled: false
+order: 4503599431974656

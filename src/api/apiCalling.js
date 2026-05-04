@@ -20,6 +20,7 @@ const staffManagementRouter = require('../features/setting/staffManagement/staff
 const authRouter = require('../features/auth/auth.route');
 const generalSettingRouter = require('../features/setting/generalSetting/generalSetting.route');
 const paymentRouter = require('../features/setting/payment&tax/payment&tax.route');
+const menusRouter = require('../class/canteens/menus/menus.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -47,5 +48,6 @@ router.use('/setting',staffManagementRouter);
 router.use('/auth',authRouter);
 router.use('/generalsetting',generalSettingRouter);
 router.use('/payment',paymentRouter);
+router.use('/menus',menusRouter);
 
 module.exports = router;

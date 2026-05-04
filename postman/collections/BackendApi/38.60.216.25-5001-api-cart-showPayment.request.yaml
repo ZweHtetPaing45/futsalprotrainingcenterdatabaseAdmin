@@ -1,0 +1,5 @@
+$kind: http-request
+name: 38.60.216.25:5001/api/cart/showPayment
+url: 38.60.216.25:5001/api/cart/showPayment
+method: GET
+order: 4497340685924373

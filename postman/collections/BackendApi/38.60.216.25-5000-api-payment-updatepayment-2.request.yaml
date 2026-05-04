@@ -1,0 +1,29 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/payment/updatepayment/2
+url: 38.60.216.25:5000/api/payment/updatepayment/2
+method: PUT
+body:
+  type: formdata
+  content:
+    - type: file
+      key: payment_image
+      src:
+        - /C:/Users/zweht/Downloads/chase-infiniti-1206x2622-26130.jpg
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_method
+      value: ""
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_name
+      value: ""
+      description: ""
+      disabled: false
+    - type: text
+      key: payment_number
+      value: ""
+      description: ""
+      disabled: false
+order: 4503596051355834

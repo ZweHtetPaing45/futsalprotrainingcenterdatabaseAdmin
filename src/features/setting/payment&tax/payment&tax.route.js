@@ -9,5 +9,6 @@ router.delete('/deletepayment/:id',auth.authMiddle,controller.deletePayment);
 router.get('/showpayment',auth.authMiddle,controller.showPayment);
 router.post('/addtax',auth.authMiddle,controller.addingTax);
 router.put('/updatetax/:id',auth.authMiddle,controller.updateTax);
+router.get('/showtax',controller.showTax);
 
 module.exports = router;

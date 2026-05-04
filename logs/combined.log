@@ -1314,3 +1314,37 @@ GROUP BY p.id' at line 55
 2026-05-03 09:56:47 [32minfo[39m:: Server is running on port 5000
 2026-05-03 10:01:45 [32minfo[39m:: Server is running on port 5000
 2026-05-03 10:03:39 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:25:02 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:38:46 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:42:25 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:46:33 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:47:31 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:56:00 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:56:02 [31merror[39m:: Category not found
+2026-05-03 22:58:14 [32minfo[39m:: Server is running on port 5000
+2026-05-03 22:59:51 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:04:20 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:05:29 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:09:31 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:10:16 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:11:43 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:12:36 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:13:43 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:14:31 [32minfo[39m:: Server is running on port 5000
+2026-05-03 23:28:27 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:02:22 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:09:57 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:11:00 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:11:27 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:14:36 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:30:18 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:32:27 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:34:46 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:42:26 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:42:49 [31merror[39m:: Menu not found
+2026-05-04 00:42:56 [31merror[39m:: Category not found
+2026-05-04 00:43:07 [31merror[39m:: Category not found
+2026-05-04 00:50:48 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:53:05 [32minfo[39m:: Server is running on port 5000
+2026-05-04 00:55:37 [32minfo[39m:: Server is running on port 5000
+2026-05-04 10:24:03 [32minfo[39m:: Server is running on port 5000

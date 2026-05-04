@@ -1,0 +1,5 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/order/showmobileorder
+url: 38.60.216.25:5000/api/order/showmobileorder
+method: GET
+order: 4499411390387313

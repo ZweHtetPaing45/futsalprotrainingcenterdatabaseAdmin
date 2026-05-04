@@ -13,7 +13,7 @@ body:
       disabled: false
     - type: text
       key: payment_method
-      value: WAVE
+      value: KPAY
       description: ""
       disabled: false
     - type: text
@@ -26,4 +26,8 @@ body:
       value: "09692190769"
       description: ""
       disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlZAZ21haWwuY29tIiwicm9sZV9pZCI6MiwibmFtZSI6IlRlc3RlciIsImlhdCI6MTc3NzUyNzQyNywiZXhwIjoxNzc3NjEzODI3fQ.1ThNTxwbt31To4XL3av0Ls5nE7NTCiFOMixLoEUThRo
 order: 4257252249420034
