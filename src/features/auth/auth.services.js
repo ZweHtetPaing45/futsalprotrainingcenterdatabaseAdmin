@@ -25,11 +25,13 @@ class AdminAuthService {
             return 'Incorrect Password';
         }
 
-        const token = jwt.generateToken({email:userData.email,role_id:userData.role_id,name:userData.name});
+        return true;
 
-        if(!token)throw new AppError('Failed to generate token',500);
+        // const token = jwt.generateToken({email:userData.email,role_id:userData.role_id,name:userData.name});
 
-        return token;
+        // if(!token)throw new AppError('Failed to generate token',500);
+
+        // return token;
         
     }
 

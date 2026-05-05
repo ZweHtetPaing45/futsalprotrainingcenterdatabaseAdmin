@@ -233,7 +233,7 @@ exports.showAdminOrderData = async ()=>{
                     JOIN admin_order_items oi ON o.id = oi.admin_order_id
                     JOIN products p ON p.id = oi.product_id
                     LEFT JOIN payment p2 ON p2.id = o.payment_id
-                    LEFT JOIN tax t ON t.id = o.tax_id`);
+                    LEFT JOIN tax t ON t.id = o.tax_id order by o.id desc`);
 
     const grouped = {};
 
@@ -265,7 +265,10 @@ exports.showAdminOrderData = async ()=>{
 
             const result1 = Object.values(grouped);
 
-            console.log('result1',result1);
+            result1.sort((a,b)=> b.order_id - a.order_id);
+
+                        console.log('result1',result1);
+
 
     return result1;
     
@@ -294,7 +297,7 @@ exports.showMobileOrderData = async ()=>{
                     JOIN mobile_order_items oi ON o.id = oi.order_id
                     JOIN products p ON p.id = oi.product_id
                     LEFT JOIN payment p2 ON p2.id = o.payment_id
-                    LEFT JOIN tax t ON t.id = o.tax_id ;`);
+                    LEFT JOIN tax t ON t.id = o.tax_id order by o.id desc;`);
 
     const grouped = {};
 
@@ -326,6 +329,8 @@ exports.showMobileOrderData = async ()=>{
             });
 
             const result1 = Object.values(grouped);
+
+            result1.sort((a,b)=> b.order_id - a.order_id);
 
             console.log('result1',result1);
 

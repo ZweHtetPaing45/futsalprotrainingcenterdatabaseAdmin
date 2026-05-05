@@ -1,0 +1,9 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/payment/showtax
+url: 38.60.216.25:5000/api/payment/showtax
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlZAZ21haWwuY29tIiwicm9sZV9pZCI6MiwibmFtZSI6IlRlc3RlciIsImlhdCI6MTc3Nzg2NzA5MywiZXhwIjoxNzc3OTUzNDkzfQ.eWQcULD9Xq_bXKa71YXhMAn7T8A2q5NTAez8RjvYQSI
+order: 4503599627359708

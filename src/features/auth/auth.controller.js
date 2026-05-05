@@ -27,7 +27,6 @@ class AdminAuthController {
             next(error);
         }
     }
-
 }
 
 module.exports = new AdminAuthController();

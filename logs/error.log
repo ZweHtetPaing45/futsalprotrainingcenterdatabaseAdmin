@@ -369,3 +369,9 @@ GROUP BY p.id' at line 55
 2026-05-04 00:42:49 [31merror[39m:: Menu not found
 2026-05-04 00:42:56 [31merror[39m:: Category not found
 2026-05-04 00:43:07 [31merror[39m:: Category not found
+2026-05-05 21:23:05 [31merror[39m:: Unauthorized
+2026-05-05 21:23:05 [31merror[39m:: Unauthorized
+2026-05-05 21:23:09 [31merror[39m:: Unauthorized
+2026-05-05 21:23:09 [31merror[39m:: Unauthorized
+2026-05-05 21:23:26 [31merror[39m:: Unauthorized
+2026-05-05 21:23:26 [31merror[39m:: Unauthorized

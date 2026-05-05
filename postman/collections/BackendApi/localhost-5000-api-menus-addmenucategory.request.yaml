@@ -1,6 +1,6 @@
 $kind: http-request
 name: localhost:5000/api/menus/addmenucategory
-url: localhost:5000/api/menus/addmenucategory
+url: 38.60.216.25:5000/api/menus/addmenucategory
 method: POST
 body:
   type: json

@@ -1,0 +1,5 @@
+$kind: http-request
+name: 38.60.216.25:5000/api/menus/showmenu
+url: 38.60.216.25:5000/api/menus/showmenu
+method: GET
+order: 4503599627319346
