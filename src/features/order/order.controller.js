@@ -8,11 +8,20 @@ class orderController{
 
                const file = req.file;
 
-               const {payment_method,items} = req.body;
+               const {payment_method,items,reciept_no} = req.body;
+
+
+               console.log('file',file);
+
+               console.log('payment_method',payment_method);
+
+               console.log('items',items);
+
+               console.log('reciept_no',reciept_no);
 
                 if(!payment_method || !items || !file) throw new AppError('Please provide all required fields',400);
 
-                const addOrder = await service.addOrder(file,payment_method,items);
+                const addOrder = await service.addOrder(file,payment_method,items,reciept_no);
 
                 if(!addOrder) throw new AppError('Failed to add order',500);
 

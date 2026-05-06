@@ -5,7 +5,7 @@ const uploader = require('@zwehtetpaing55/uploader');
 
 
 
-exports.addOrder = async (file,payment_method,items)=>{
+exports.addOrder = async (file,payment_method,items,reciept_no)=>{
 
     console.log('file',file);
     console.log('payment_method',payment_method);
@@ -56,8 +56,8 @@ exports.addOrder = async (file,payment_method,items)=>{
 
     const tax_id  = tax[0].id;
 
-    const [order] = await com.pool.query('insert into admin_order (payment_id,tax_id,admin_image_url,admin_public_id) values (?,?,?,?)',
-    [payment_method_id,tax_id,imageUrl,publicId]);
+    const [order] = await com.pool.query('insert into admin_order (payment_id,tax_id,admin_image_url,admin_public_id,reciept_no) values (?,?,?,?,?)',
+    [payment_method_id,tax_id,imageUrl,publicId,reciept_no]);
 
     const orderId = order.insertId;
 
@@ -115,6 +115,7 @@ exports.addOrder = async (file,payment_method,items)=>{
                     `SELECT 
                         o.id AS order_id,
                         o.amount,
+                        o.reciept_no As reciept_no,
                         p2.payment_method,
                         t.tax,
                         p.name AS product_name,
@@ -140,6 +141,7 @@ console.log('prindOrder',prindOrder);
             if (!grouped[row.order_id]) {
                 grouped[row.order_id] = {
                 order_id: row.order_id,
+                reciept_no: row.reciept_no,
                 create_at: row.create_at,
                 customer_name: row.customer_name,
                 items: [],
@@ -217,6 +219,7 @@ exports.showAdminOrderData = async ()=>{
     const [result] = await com.pool.query(
                     `  SELECT 
                         o.id AS order_id,
+                        o.reciept_no,
                         o.amount,
                         o.admin_image_url,
                         p2.payment_method,
@@ -244,6 +247,7 @@ exports.showAdminOrderData = async ()=>{
                 payment_proof: row.admin_image_url,
                 order_status: row.order_status,
                 order_id: row.order_id,
+                reciept_no: row.reciept_no,
                 Date: row.Date,
                 Time: row.Time,
                 customer_name: row.customer_name,

@@ -4,9 +4,9 @@ const repo = require('./order.repositories');
 class orderService{
 
 
-    async addOrder(file,payment_method,items){
+    async addOrder(file,payment_method,items,reciept_no){
 
-        const addOrder = await repo.addOrder(file,payment_method,items);
+        const addOrder = await repo.addOrder(file,payment_method,items,reciept_no);
 
         if(!addOrder) throw new AppError('Failed to add order',500);
 
