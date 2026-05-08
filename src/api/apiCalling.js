@@ -21,7 +21,7 @@ const authRouter = require('../features/auth/auth.route');
 const generalSettingRouter = require('../features/setting/generalSetting/generalSetting.route');
 const paymentRouter = require('../features/setting/payment&tax/payment&tax.route');
 const menusRouter = require('../class/canteens/menus/menus.route');
-
+const bookingRouter = require('../class/rentals/booking/booking.route');
 
 router.use('/product', addProductRouter,(error)=>{
     logger.error({
@@ -29,6 +29,7 @@ router.use('/product', addProductRouter,(error)=>{
         stack: error.stack
     });
 });
+
 router.use('/categories',addCategoryRouter);
 router.use('/tags',addTagRouter);
 router.use('/showpro',showProductRouter);
@@ -49,5 +50,6 @@ router.use('/auth',authRouter);
 router.use('/generalsetting',generalSettingRouter);
 router.use('/payment',paymentRouter);
 router.use('/menus',menusRouter);
+router.use('/booking',bookingRouter);
 
 module.exports = router;

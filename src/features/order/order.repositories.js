@@ -196,25 +196,6 @@ exports.showAdminOrderData = async ()=>{
 // }
 
 
-// exports.deleteOrder = async (id)=>{
-
-//      const [public_id] = await com.pool.query('select public_id from orders where id = ?',[id]);
-
-//     if(!public_id)throw new AppError("Can not found public_id",404);
-
-//     console.log(public_id[0].public_id);
-
-//         const DeleteImage = await uploader.delete(public_id[0].public_id);
-
-//     if(!DeleteImage)throw new AppError('Failed to delete image',500);
-
-//     const deleteOrderId = await com.pool.query('delete from orders where id = ?',[id]);
-
-//     if(!deleteOrderId)throw new AppError("Can not delete order",400);
-
-//     return true;
-
-
 
     const [result] = await com.pool.query(
                     `  SELECT 
@@ -408,4 +389,30 @@ exports.totalResult = async ()=>{
         total_product: total_product[0].total_product,
         total_customer: total_customer[0].total_customer
     }
+}
+
+
+
+exports.deleteOrder = async (id)=>{
+
+     const [public_id] = await com.pool.query('select admin_public_id from admin_order where id = ?',[id]);
+
+    if(!public_id)throw new AppError("Can not found public_id",404);
+
+    console.log(public_id[0].admin_public_id);
+
+    const DeleteImage = await uploader.delete(public_id[0].admin_public_id);
+
+    if(!DeleteImage)throw new AppError('Failed to delete image',500);
+
+    const deleteOrderItemId = await com.pool.query('delete from admin_order_items where admin_order_id = ?',[id]);
+
+    if(!deleteOrderItemId)throw new AppError("Can not delete order item",400);
+
+    const deleteOrderId = await com.pool.query('delete from admin_order where id = ?',[id]);
+
+    if(!deleteOrderId)throw new AppError("Can not delete order",400);
+
+    return true;
+
 }
