@@ -8,6 +8,7 @@ router.get('/showadminorder',controller.showOrderData);
 router.get('/showmobileorder',controller.showMobileOrderData);
 router.put('/updateorderaction/:id', validate(updateOrder), controller.updateOrderAction);
 router.delete('/deleteadminorder/:id',controller.deleteOrder);
+router.delete('/deletemobileorder/:id',controller.mobileDeleteOrder);
 router.post('/addorder',upload.single('payment_image'),controller.addOrder);
 router.get('/totalResult',controller.totalResult);
 

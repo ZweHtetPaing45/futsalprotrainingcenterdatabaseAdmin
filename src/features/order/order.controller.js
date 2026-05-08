@@ -122,6 +122,28 @@ class orderController{
 
     }
 
+    async mobileDeleteOrder(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            if(!id) throw new AppError('Please provide order id',400);
+
+            const result = await service.mobileDeleteOrder(id);
+
+            res.status(200).json({
+                status: 'success',
+                message: 'Order deleted successfully',
+                result
+            });
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
     async totalResult(req,res,next){
         try{
 

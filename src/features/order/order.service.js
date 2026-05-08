@@ -61,6 +61,14 @@ class orderService{
 
     }
 
+    async mobileDeleteOrder(id){
+
+        const deleteMobileOrderResult = await repo.mobileDeleteOrder(id);
+
+        return deleteMobileOrderResult;
+
+    }
+
 }
 
 module.exports = new orderService();
