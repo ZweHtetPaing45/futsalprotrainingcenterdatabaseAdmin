@@ -375,3 +375,33 @@ GROUP BY p.id' at line 55
 2026-05-05 21:23:09 [31merror[39m:: Unauthorized
 2026-05-05 21:23:26 [31merror[39m:: Unauthorized
 2026-05-05 21:23:26 [31merror[39m:: Unauthorized
+2026-05-09 10:46:33 [31merror[39m:: Delete failed: 
+2026-05-09 10:46:33 [31merror[39m:: Failed to delete product
+2026-05-09 10:47:21 [31merror[39m:: Cannot read properties of null (reading 'split')
+2026-05-09 10:47:21 [31merror[39m:: Failed to delete product
+2026-05-09 10:47:23 [31merror[39m:: Cannot read properties of null (reading 'split')
+2026-05-09 10:47:23 [31merror[39m:: Failed to delete product
+2026-05-09 10:47:23 [31merror[39m:: Cannot read properties of null (reading 'split')
+2026-05-09 10:47:23 [31merror[39m:: Failed to delete product
+2026-05-09 10:47:58 [31merror[39m:: Cannot read properties of null (reading 'split')
+2026-05-09 10:47:58 [31merror[39m:: Failed to delete product
+2026-05-09 10:52:02 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 10:52:02 [31merror[39m:: Failed to delete product
+2026-05-09 10:52:44 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 10:52:44 [31merror[39m:: Failed to delete product
+2026-05-09 10:54:59 [31merror[39m:: Cannot read properties of null (reading 'split')
+2026-05-09 10:54:59 [31merror[39m:: Failed to delete product
+2026-05-09 10:59:16 [31merror[39m:: Cannot delete or update a parent row: a foreign key constraint fails (`futsalprotrainingcenterdatabase`.`admin_order_items`, CONSTRAINT `admin_order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`))
+2026-05-09 10:59:16 [31merror[39m:: Failed to delete product
+2026-05-09 11:00:16 [31merror[39m:: Cannot read properties of undefined (reading 'public_id')
+2026-05-09 11:00:16 [31merror[39m:: Failed to delete product
+2026-05-09 11:00:36 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 11:00:36 [31merror[39m:: Failed to delete product
+2026-05-09 11:01:15 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 11:01:15 [31merror[39m:: Failed to delete product
+2026-05-09 11:38:26 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 11:38:26 [31merror[39m:: Failed to delete product
+2026-05-09 11:39:02 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 11:39:02 [31merror[39m:: Failed to delete product
+2026-05-09 11:41:19 [31merror[39m:: Delete failed: Request failed with status code 500
+2026-05-09 11:41:19 [31merror[39m:: Failed to delete product

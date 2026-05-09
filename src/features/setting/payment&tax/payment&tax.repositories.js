@@ -94,6 +94,24 @@ exports.updatePayment = async (id,payment_method,payment_name,payment_number,fil
 
 exports.deletePayment = async (id)=>{
 
+    const [findAdminOrder] = await com.pool.query('select * from admin_order where payment_id = ?',[id]);
+
+    if(findAdminOrder.length > 0){
+        return {
+            message:'Payment has been admin_order',
+            success:false
+        };
+    }
+
+    const [findMobileOrder] = await com.pool.query('select * from mobile_order where payment_id = ?',[id]);
+
+    if(findMobileOrder.length > 0){
+        return {
+            message: 'Payment has been mobile_order',
+            success: false
+        };
+    }
+
     const [deletePayment] = await com.pool.query('delete from payment where id = ?',[id]);
 
     if(deletePayment.affectedRows === 0){

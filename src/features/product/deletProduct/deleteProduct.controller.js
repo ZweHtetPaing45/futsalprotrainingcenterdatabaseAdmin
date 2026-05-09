@@ -8,6 +8,8 @@ class deleteProductController{
 
             const id = req.params.id;
 
+            console.log(id);
+
             const result = await service.deleteProduct(id);
 
             if(result){
