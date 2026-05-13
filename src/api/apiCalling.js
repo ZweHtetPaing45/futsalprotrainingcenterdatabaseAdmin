@@ -22,6 +22,8 @@ const generalSettingRouter = require('../features/setting/generalSetting/general
 const paymentRouter = require('../features/setting/payment&tax/payment&tax.route');
 const menusRouter = require('../class/canteens/menus/menus.route');
 const bookingRouter = require('../class/rentals/booking/booking.route');
+const venueManagementRouter = require('../class/rentals/venueManagement/venueManagement.route');
+
 
 router.use('/product', addProductRouter,(error)=>{
     logger.error({
@@ -51,5 +53,6 @@ router.use('/generalsetting',generalSettingRouter);
 router.use('/payment',paymentRouter);
 router.use('/menus',menusRouter);
 router.use('/booking',bookingRouter);
+router.use('/venue',venueManagementRouter);
 
 module.exports = router;

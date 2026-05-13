@@ -9,7 +9,9 @@ exports.showCustomerData = async ()=>{
 
     const [customerData] = await com.pool.query('select id,name,address,phone,email from createuser;')
 
-    if(customerData.length === 0)throw new AppError('No customer data found',404);
+    if(customerData.length === 0){
+        return 'No Data Found';
+    }
 
     return customerData;
 }
@@ -36,7 +38,7 @@ exports.deleteCustomer = async (id)=>{
     
     const deleteImage = await uploader.delete(publicId[0][0].public_id);
 
-    if(!deleteImage)throw new AppError('Failed to delete customer image',500);
+    // if(!deleteImage)throw new AppError('Failed to delete customer image',500);
 
     const [deleteData] = await com.pool.query('delete from createuser where id = ?',[id]);
 

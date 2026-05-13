@@ -43,7 +43,9 @@ exports.deleteProduct =async (id)=>{
 
         const result = await com.pool.query('delete from products where id = ?',[id]);
 
-        if(result.affectedRows === 0)throw new AppError('Failed to delete product',404);
+        console.log(result);
+
+        if(!result)throw new AppError('Failed to delete product',404);
 
         return true;
 
