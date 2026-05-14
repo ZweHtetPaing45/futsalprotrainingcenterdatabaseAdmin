@@ -21,8 +21,8 @@ const authRouter = require('../features/auth/auth.route');
 const generalSettingRouter = require('../features/setting/generalSetting/generalSetting.route');
 const paymentRouter = require('../features/setting/payment&tax/payment&tax.route');
 const menusRouter = require('../class/canteens/menus/menus.route');
-const bookingRouter = require('../class/rentals/booking/booking.route');
 const venueManagementRouter = require('../class/rentals/venueManagement/venueManagement.route');
+const localBookingRouter = require('../class/rentals/booking/localBooking/localBooking.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -52,7 +52,8 @@ router.use('/auth',authRouter);
 router.use('/generalsetting',generalSettingRouter);
 router.use('/payment',paymentRouter);
 router.use('/menus',menusRouter);
-router.use('/booking',bookingRouter);
 router.use('/venue',venueManagementRouter);
+router.use('/localbooking',localBookingRouter);
+
 
 module.exports = router;

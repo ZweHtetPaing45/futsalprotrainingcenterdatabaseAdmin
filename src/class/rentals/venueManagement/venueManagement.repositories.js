@@ -207,7 +207,7 @@ exports.ShowCourt = async (venue_id)=>{
                 (
                     SELECT JSON_ARRAYAGG(
                         JSON_OBJECT(
-                            -- 'id', ts.id,
+                            'id', ts.id,
                             'start_time', ts.start_time,
                             'end_time', ts.end_time
                         )

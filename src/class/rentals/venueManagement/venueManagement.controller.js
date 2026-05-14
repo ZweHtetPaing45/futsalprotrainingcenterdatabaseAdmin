@@ -18,19 +18,21 @@ class VenueController{
 
             available = available === 'true' ? 1 : 0;
 
-            // console.log("name",name);
-            // console.log("price",price);
-            // console.log("available",available);
-            // console.log("file",file);
+            console.log("name",name);
+            console.log("price",price);
+            console.log("available",available);
+            console.log("file",file);
 
             const result = await service.NewVenue(name,price,file,available);
 
             if(result){
+                
                 res.status(201).json({
                     success: true,
                     message: 'Venue added successfully',
                     data: result
                 });
+
             }else{
                 res.status(400).json({
                     success: false,
