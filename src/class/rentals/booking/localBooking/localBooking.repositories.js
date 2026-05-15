@@ -101,6 +101,122 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
     }
 
 }
-    return true;
+
+const [printBooking] = await com.pool.query(
+
+    `SELECT 
+    ab.id AS booking_id,
+    ab.price,
+    ab.reciept_no,
+    p.payment_method,
+
+    v.venue_name,
+    c.court_name,
+
+    cts.start_time,
+    cts.end_time,
+
+    e.product_name AS equipment_name,
+    abe.quantity,
+    abe.price,
+    abe.total,
+
+    CONVERT_TZ(ab.create_at, '+00:00', '+06:30') AS create_at
+
+FROM admin_booking ab
+
+JOIN venue v
+    ON v.id = ab.venue_id
+
+JOIN court c
+    ON c.id = ab.court_id
+
+LEFT JOIN payment p
+    ON p.id = ab.payment_id
+
+LEFT JOIN admin_booking_time_slot abts
+    ON abts.booking_id = ab.id
+
+LEFT JOIN court_time_slot cts
+    ON cts.id = abts.court_time_slot_id
+
+LEFT JOIN admin_booking_equipment abe
+    ON abe.booking_id = ab.id
+
+LEFT JOIN equipment e
+    ON e.id = abe.equipment_id
+
+WHERE ab.id = ?`
+,
+[bookingId]
+);
+
+console.log('printBooking', printBooking);
+
+const grouped = {};
+
+printBooking.forEach(row => {
+
+    if (!grouped[row.booking_id]) {
+
+        grouped[row.booking_id] = {
+
+            booking_id: row.booking_id,
+            payment_method: row.payment_method,
+            reciept_no: row.reciept_no,
+            create_at: row.create_at,
+
+            venue_name: row.venue_name,
+            court_name: row.court_name,
+
+            time_slots: [],
+
+            items: [],
+
+            Total: row.price
+        };
+    }
+
+    // time slot
+    if (row.start_time && row.end_time) {
+
+        const exists = grouped[row.booking_id]
+        .time_slots
+        .find(
+            slot =>
+                slot.start_time === row.start_time &&
+                slot.end_time === row.end_time
+        );
+
+        if (!exists) {
+
+            grouped[row.booking_id].time_slots.push({
+                start_time: row.start_time,
+                end_time: row.end_time
+            });
+        }
+    }
+
+    // equipment items
+    if (row.equipment_name) {
+
+        grouped[row.booking_id].items.push({
+
+            equipment_name: row.equipment_name,
+            quantity: row.quantity,
+            price: row.price,
+            total: row.total
+        });
+    }
+
+});
+
+const result = Object.values(grouped);
+
+console.log('result', result);
+
+return result;
+
+    
 
 }

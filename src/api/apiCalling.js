@@ -23,6 +23,7 @@ const paymentRouter = require('../features/setting/payment&tax/payment&tax.route
 const menusRouter = require('../class/canteens/menus/menus.route');
 const venueManagementRouter = require('../class/rentals/venueManagement/venueManagement.route');
 const localBookingRouter = require('../class/rentals/booking/localBooking/localBooking.route');
+const canteenOrderRouter = require('../class/canteens/orders/orders.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -54,6 +55,7 @@ router.use('/payment',paymentRouter);
 router.use('/menus',menusRouter);
 router.use('/venue',venueManagementRouter);
 router.use('/localbooking',localBookingRouter);
+router.use('/canteenorder',canteenOrderRouter);
 
 
 module.exports = router;
