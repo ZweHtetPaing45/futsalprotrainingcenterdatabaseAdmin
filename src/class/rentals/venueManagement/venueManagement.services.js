@@ -60,9 +60,9 @@ class VenueService{
 
     }
 
-    async NewPros(court_id,name,detail){
+    async NewPros(court_id,name){
 
-        const result = await repo.NewPros(court_id,name,detail);
+        const result = await repo.NewPros(court_id,name);
 
         return result;
 

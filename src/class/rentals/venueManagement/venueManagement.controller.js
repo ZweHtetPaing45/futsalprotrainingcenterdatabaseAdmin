@@ -247,13 +247,13 @@ class VenueController{
 
         try{
 
-            const {court_id,name,detail} = req.body;
+            const {court_id,name} = req.body;
 
-            if(!court_id || !name || !detail){
+            if(!court_id || !name){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.NewPros(court_id,name,detail);
+            const result = await service.NewPros(court_id,name);
 
             if(result){
                 res.status(201).json({

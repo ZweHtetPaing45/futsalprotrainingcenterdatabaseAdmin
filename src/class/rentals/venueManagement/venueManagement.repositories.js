@@ -115,9 +115,9 @@ exports.NewCourt_gallery = async(court_id,file)=>{
 
 }
 
-exports.NewPros = async (court_id,name,detail)=>{
+exports.NewPros = async (court_id,name)=>{
 
-    const result = await com.pool.query('insert into pros (court_id,name,detail) values(?,?,?)',[court_id,name,detail]);
+    const result = await com.pool.query('insert into pros (court_id,name) values(?,?)',[court_id,name]);
 
     if(!result)throw new AppError('Failed to create pro',500);
 
@@ -234,8 +234,7 @@ exports.ShowCourt = async (venue_id)=>{
                     SELECT JSON_ARRAYAGG(
                         JSON_OBJECT(
                            -- 'id', p.id,
-                            'name', p.name,
-                            'detail', p.detail
+                            'name', p.name
                         )
                     )
                     FROM pros p
