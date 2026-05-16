@@ -14,9 +14,9 @@ router.post('/addpros',controller.NewPros);
 router.post('/addcons',controller.NewCons);
 
 router.get('/showvenue',controller.ShowVenue);
-router.get('/showequipment/:id',controller.ShowEquipment);
-router.get('/showrule/:id',controller.ShowRule);
-router.get('/showservice/:id',controller.ShowService);
+// router.get('/showequipment/:id',controller.ShowEquipment);
+// router.get('/showrule/:id',controller.ShowRule);
+// router.get('/showservice/:id',controller.ShowService);
 router.get('/showcourt/:id',controller.ShowCourt);
 
 module.exports = router;

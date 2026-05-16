@@ -92,6 +92,9 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
 
             total = quantity * eqprice;
 
+            admin_booking_total_price += total;
+
+
             // total += admin_booking_total_price;
 
             const insert_eq = await com.pool.query('insert into admin_booking_equipment (booking_id,equipment_id,quantity,price,total,department) values(?,?,?,?,?,?)',[bookingId,eq_id,quantity,eqprice,total,department]);
@@ -100,123 +103,181 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
 
     }
 
+    console.log('admin_booking_total_price ',admin_booking_total_price);
+
+
+    const [admin_booking_total_amount] = await com.pool.query('update admin_booking set amount = ? where id = ?',[admin_booking_total_price,bookingId]);
+
+    if(!admin_booking_total_amount)throw new AppError('admin booking total amount Error',400);
+
+}   
+
+    const [prindOrder] = await com.pool.query(`
+         
+             select 
+                a.id,
+                p.payment_method,
+                a.reciept_no,
+                DATE_FORMAT(a.create_at, '%Y-%m-%d %h:%i:%s %p') AS create_at,
+                DATE_FORMAT(a.date, '%Y-%m-%d') AS date,
+                a.price,
+                a.amount
+
+                from admin_booking a
+                join payment p on p.id = a.payment_id
+                join venue v on v.id = a.venue_id
+                join court c on c.id = a.court_id
+                join admin_booking_time_slot abts on abts.booking_id = a.id
+                join court_time_slot cts on cts.id = abts.court_time_slot_id
+                left join admin_booking_equipment abe on abe.booking_id = a.id
+                left join equipment e on e.id = abe.equipment_id
+                where a.id = ?
+        `,[bookingId]);
+
+    if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
+
+     const grouped = {};
+
+            prindOrder.forEach(row => {
+            if (!grouped[row.order_id]) {
+                grouped[row.order_id] = {
+                Registration: row.id,
+                payment_method: row.payment_method,
+                reciept_no: row.reciept_no,
+                create_at: row.create_at,
+                date: row.date,
+                Court_Fee: row.price,
+                Total: row.amount,
+                };
+            }
+
+            // grouped[row.order_id].items.push({
+            //     product_name: row.product_name,
+            //     quantity: row.quantity,
+            //     price: row.price,
+            //     total: row.total
+            // });
+
+            });
+
+            const result1 = Object.values(grouped);
+
+            console.log('result1',result1);
+
+    return result1;
 }
 
-const [printBooking] = await com.pool.query(
+                // select 
+                // a.id,
+                // v.venue_name,
+                // c.court_name,
+                // e.product_name,
+                // p.payment_method,
+                // a.reciept_no,
+                // a.payment_image_url,
+                // abe.quantity as equipment_quantity,
+                // abe.price as equipment_price,
+                // abe.total as equipment_total,
+                // DATE_FORMAT(a.create_at, '%Y-%m-%d %h:%i:%s %p') AS create_at,
+                // DATE_FORMAT(a.date, '%Y-%m-%d') AS date,
+                // a.price,
+                // a.amount
 
-    `SELECT 
-    ab.id AS booking_id,
-    ab.price,
-    ab.reciept_no,
-    p.payment_method,
+                // from admin_booking a
+                // join payment p on p.id = a.payment_id
+                // join venue v on v.id = a.venue_id
+                // join court c on c.id = a.court_id
+                // join admin_booking_time_slot abts on abts.booking_id = a.id
+                // join court_time_slot cts on cts.id = abts.court_time_slot_id
+                // left join admin_booking_equipment abe on abe.booking_id = a.id
+                // left join equipment e on e.id = abe.equipment_id
+                
 
-    v.venue_name,
-    c.court_name,
 
-    cts.start_time,
-    cts.end_time,
+exports.ShowLocalBookingData = async ()=>{
 
-    e.product_name AS equipment_name,
-    abe.quantity,
-    abe.price,
-    abe.total,
+    const [prindOrder] = await com.pool.query(`
+         
+                SELECT
+                a.id,
+                v.venue_name,
+                c.court_name,
+                p.payment_method,
+                a.reciept_no,
+                a.payment_image_url,
+                DATE_FORMAT(a.create_at, '%Y-%m-%d %h:%i:%s %p') AS create_at,
+                DATE_FORMAT(a.date, '%Y-%m-%d') AS date,
+                a.price as Court_Fee,
+                a.amount as Total,
 
-    CONVERT_TZ(ab.create_at, '+00:00', '+06:30') AS create_at
+                JSON_ARRAYAGG(  
+                    JSON_OBJECT(  
+                        'equipment', e.product_name,  
+                        'quantity', abe.quantity,  
+                        'price', abe.price,  
+                        'total', abe.total  
+                    )  
+                ) AS items
 
-FROM admin_booking ab
+                FROM admin_booking a
+                JOIN payment p ON p.id = a.payment_id
+                JOIN venue v ON v.id = a.venue_id
+                JOIN court c ON c.id = a.court_id
+                LEFT JOIN admin_booking_equipment abe ON abe.booking_id = a.id
+                LEFT JOIN equipment e ON e.id = abe.equipment_id
 
-JOIN venue v
-    ON v.id = ab.venue_id
+                GROUP BY a.id;
+                                `);
 
-JOIN court c
-    ON c.id = ab.court_id
+    // if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
 
-LEFT JOIN payment p
-    ON p.id = ab.payment_id
+    // if(prindOrder === 0){
+    //     return "No data found";
+    // };
 
-LEFT JOIN admin_booking_time_slot abts
-    ON abts.booking_id = ab.id
+    //  const grouped = {};
 
-LEFT JOIN court_time_slot cts
-    ON cts.id = abts.court_time_slot_id
+    //         prindOrder.forEach(row => {
+    //         if (!grouped[row.id]) {
+    //             grouped[row.id] = {
+    //             Registration: row.id,
+    //             payment_method: row.payment_method,
+    //             reciept_no: row.reciept_no,
+    //             payment_image_url: row.payment_image_url,
+    //             venue_name: row.venue_name,
+    //             court_name: row.court_name,
+    //             equipment: row.product_name,
+    //             create_at: row.create_at,
+    //             date: row.date,
+    //             items: [],
+    //             Court_Fee: row.price,
+    //             Total: row.amount,
+    //             };
+    //         }
 
-LEFT JOIN admin_booking_equipment abe
-    ON abe.booking_id = ab.id
+    //         grouped[row.id].items.push({
+    //             equipment: row.product_name,
+    //             quantity: row.equipment_quantity,
+    //             price: row.equipment_price,
+    //             total: row.equipment_total
+    //         });
 
-LEFT JOIN equipment e
-    ON e.id = abe.equipment_id
+    //         });
 
-WHERE ab.id = ?`
-,
-[bookingId]
-);
+    //         const result1 = Object.values(grouped);
 
-console.log('printBooking', printBooking);
+    //         console.log('result1',result1);
 
-const grouped = {};
+    return prindOrder;
 
-printBooking.forEach(row => {
+}
 
-    if (!grouped[row.booking_id]) {
+exports.DeleteLocalBooking = async (id)=>{
 
-        grouped[row.booking_id] = {
+    const result = await com.pool.query('delete from admin_booking where id = ?',[id]);
 
-            booking_id: row.booking_id,
-            payment_method: row.payment_method,
-            reciept_no: row.reciept_no,
-            create_at: row.create_at,
+    if(!result)throw new AppError('Delete admin booking Error',400);
 
-            venue_name: row.venue_name,
-            court_name: row.court_name,
-
-            time_slots: [],
-
-            items: [],
-
-            Total: row.price
-        };
-    }
-
-    // time slot
-    if (row.start_time && row.end_time) {
-
-        const exists = grouped[row.booking_id]
-        .time_slots
-        .find(
-            slot =>
-                slot.start_time === row.start_time &&
-                slot.end_time === row.end_time
-        );
-
-        if (!exists) {
-
-            grouped[row.booking_id].time_slots.push({
-                start_time: row.start_time,
-                end_time: row.end_time
-            });
-        }
-    }
-
-    // equipment items
-    if (row.equipment_name) {
-
-        grouped[row.booking_id].items.push({
-
-            equipment_name: row.equipment_name,
-            quantity: row.quantity,
-            price: row.price,
-            total: row.total
-        });
-    }
-
-});
-
-const result = Object.values(grouped);
-
-console.log('result', result);
-
-return result;
-
-    
+    return true;
 
 }

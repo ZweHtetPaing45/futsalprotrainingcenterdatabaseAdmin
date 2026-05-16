@@ -156,10 +156,10 @@ exports.ShowCanteenOrderData = async ()=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        CONVERT_TZ(o.create_at, '+00:00','+06:30') AS create_at
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d %h:%i:%s %p') AS create_at
                     FROM canteen_order o
-                    JOIN canteen_order_item oi ON o.id = oi.canteen_order_id
-                    JOIN canteen_products p ON p.id = oi.canteen_product_id
+                        JOIN canteen_order_item oi ON o.id = oi.canteen_order_id
+                        JOIN canteen_products p ON p.id = oi.canteen_product_id
                     LEFT JOIN payment p2 ON p2.id = o.payment_id;`
                 );
 

@@ -11,6 +11,22 @@ class localBookingService {
 
     }
 
+    async ShowLocalBookingData(){
+        
+        const result = await repo.ShowLocalBookingData();
+
+        return result;
+
+    }
+
+    async DeleteLocalBooking(id){
+
+        const result = await repo.DeleteLocalBooking(id);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new localBookingService();

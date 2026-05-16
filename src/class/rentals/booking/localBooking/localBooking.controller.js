@@ -52,6 +52,60 @@ class localBookingController{
 
     }
 
+    async ShowLocalBookingData(req,res,next){
+
+        try{
+
+            const result = await service.ShowLocalBookingData();
+
+            if(result){
+                res.status(201).json({
+                    success: true,
+                    message: 'Admin Booking added successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Admin Booking not added',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteLocalBooking(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const result = await service.DeleteLocalBooking(id);
+
+             if(result){
+                res.status(201).json({
+                    success: true,
+                    message: 'Admin Booking Delete successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Admin Booking not delete',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new localBookingController();

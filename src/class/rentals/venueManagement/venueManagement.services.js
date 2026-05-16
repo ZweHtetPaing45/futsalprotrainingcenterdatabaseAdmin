@@ -84,29 +84,29 @@ class VenueService{
 
     }
 
-    async ShowEquipment(id){
+    // async ShowEquipment(id){
 
-        const result = await repo.ShowEquipment(id);
+    //     const result = await repo.ShowEquipment(id);
 
-        return result;
+    //     return result;
 
-    }
+    // }
 
-    async ShowRule(id){
+    // async ShowRule(id){
 
-        const result = await repo.ShowRule(id);
+    //     const result = await repo.ShowRule(id);
 
-        return result;
+    //     return result;
 
-    }
+    // }
 
-    async ShowService(id){
+    // async ShowService(id){
 
-        const result = await repo.ShowService(id);
+    //     const result = await repo.ShowService(id);
 
-        return result;
+    //     return result;
 
-    }
+    // }
 
     async ShowCourt(id){
         

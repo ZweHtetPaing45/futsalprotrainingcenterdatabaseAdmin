@@ -327,65 +327,65 @@ class VenueController{
 
     }
 
-    async ShowEquipment(req,res,next){
-        try{
+    // async ShowEquipment(req,res,next){
+    //     try{
 
-            const venue_id = req.params.id;
+    //         const venue_id = req.params.id;
 
-            const result = await service.ShowEquipment(venue_id);
+    //         const result = await service.ShowEquipment(venue_id);
 
-            if(result){
-                res.status(200).json({
-                    success: true,
-                    message: 'Equipment shown successfully',
-                    data: result
-                });
-            }
+    //         if(result){
+    //             res.status(200).json({
+    //                 success: true,
+    //                 message: 'Equipment shown successfully',
+    //                 data: result
+    //             });
+    //         }
 
-        }catch(error){
-            next(error);
-        }
-    }
+    //     }catch(error){
+    //         next(error);
+    //     }
+    // }
 
-    async ShowRule(req,res,next){
-        try{
+    // async ShowRule(req,res,next){
+    //     try{
 
-            const venue_id = req.params.id;
+    //         const venue_id = req.params.id;
 
-            const result = await service.ShowRule(venue_id);
+    //         const result = await service.ShowRule(venue_id);
 
-            if(result){
-                res.status(200).json({
-                    success: true,
-                    message: 'Rule shown successfully',
-                    data: result
-                });
-            }
+    //         if(result){
+    //             res.status(200).json({
+    //                 success: true,
+    //                 message: 'Rule shown successfully',
+    //                 data: result
+    //             });
+    //         }
 
-        }catch(error){
-            next(error)
-        }
-    }
+    //     }catch(error){
+    //         next(error)
+    //     }
+    // }
 
-    async ShowService(req,res,next){
-        try{
+    // async ShowService(req,res,next){
+    //     try{
 
-            const venue_id = req.params.id;
+    //         const venue_id = req.params.id;
 
-            const result = await service.ShowService(venue_id);
+    //         const result = await service.ShowService(venue_id);
             
-            if(result){
-                res.status(200).json({
-                    success: true,
-                    message: 'Service shown successfully',
-                    data: result
-                });
-            }
+    //         if(result){
+    //             res.status(200).json({
+    //                 success: true,
+    //                 message: 'Service shown successfully',
+    //                 data: result
+    //             });
+    //         }
 
-        }catch(error){
-            next(error);
-        }
-    }
+    //     }catch(error){
+    //         next(error);
+    //     }
+    // }
 
     async ShowCourt(req,res,next){
 

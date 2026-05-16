@@ -150,111 +150,143 @@ exports.ShowVenue = async ()=>{
     return result;
 }
 
-exports.ShowEquipment = async (venue_id)=>{
+// exports.ShowEquipment = async (venue_id)=>{
 
-    const [result] = await com.pool.query('select e.id,e.product_name,e.rental_price,e.qty_total from equipment e join venue v on e.venue_id = v.id where v.id = ?',[venue_id]);
+//     const [result] = await com.pool.query('select e.id,e.product_name,e.rental_price,e.qty_total from equipment e join venue v on e.venue_id = v.id where v.id = ?',[venue_id]);
 
-    if(!result)throw new AppError('Failed to show equipment',500);
+//     if(!result)throw new AppError('Failed to show equipment',500);
 
-    if(result.length === 0){
-        return "No equipment found";
-    };
+//     if(result.length === 0){
+//         return "No equipment found";
+//     };
 
-    return result;
+//     return result;
 
-}
+// }
 
-exports.ShowRule = async (venue_id)=>{
+// exports.ShowRule = async (venue_id)=>{
 
-    const [result] = await com.pool.query('select r.id,r.name,r.description from rule r join venue v on r.venue_id = v.id where v.id = ?',[venue_id]);
+//     const [result] = await com.pool.query('select r.id,r.name,r.description from rule r join venue v on r.venue_id = v.id where v.id = ?',[venue_id]);
 
-    if(!result)throw new AppError('Failed to show rule',500);
+//     if(!result)throw new AppError('Failed to show rule',500);
 
-    if(result.length === 0){
-        return "No rule found";
-    };
+//     if(result.length === 0){
+//         return "No rule found";
+//     };
 
-    return result;
+//     return result;
 
-}
+// }
 
-exports.ShowService = async (venue_id)=>{
+// exports.ShowService = async (venue_id)=>{
 
-    const [result] = await com.pool.query('select s.id,s.name from service s join venue v on s.venue_id = v.id where v.id = ?',[venue_id]);
+//     const [result] = await com.pool.query('select s.id,s.name from service s join venue v on s.venue_id = v.id where v.id = ?',[venue_id]);
 
-    if(!result)throw new AppError('Failed to show service',500);
+//     if(!result)throw new AppError('Failed to show service',500);
 
-    if(result.length === 0){
-        return "No service found";
-    };
+//     if(result.length === 0){
+//         return "No service found";
+//     };
 
-    return result;
+//     return result;
 
-}
+// }
 
 exports.ShowCourt = async (venue_id)=>{
     
     const [result] = await com.pool.query(`
-                SELECT 
-                c.id,
-                c.court_name,
-                c.hourly_price,
-                c.open_at,
-                c.close_at,
-                c.about_court,
+               SELECT 
+            c.id,
+            c.court_name,
+            c.hourly_price,
+            c.open_at,
+            c.close_at,
+            c.about_court,
 
-                -- Time Slots
-                (
-                    SELECT JSON_ARRAYAGG(
-                        JSON_OBJECT(
-                            'id', ts.id,
-                            'start_time', ts.start_time,
-                            'end_time', ts.end_time
-                        )
+            -- Time Slots
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'id', ts.id,
+                        'start_time', ts.start_time,
+                        'end_time', ts.end_time
                     )
-                    FROM court_time_slot ts
-                    WHERE ts.court_id = c.id
-                ) AS time_slots,
+                )
+                FROM court_time_slot ts
+                WHERE ts.court_id = c.id
+            ) AS time_slots,
 
-                -- Gallery
-                (
-                    SELECT JSON_ARRAYAGG(
-                        JSON_OBJECT(
-                            -- 'id', g.id,
-                            'court_image_url', g.court_image_url,
-                            'court_public_id', g.court_public_id
-                        )
+            -- Gallery
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'court_image_url', g.court_image_url,
+                        'court_public_id', g.court_public_id
                     )
-                    FROM court_gallery g
-                    WHERE g.court_id = c.id
-                ) AS gallery,
+                )
+                FROM court_gallery g
+                WHERE g.court_id = c.id
+            ) AS gallery,
 
-                -- Pros
-                (
-                    SELECT JSON_ARRAYAGG(
-                        JSON_OBJECT(
-                           -- 'id', p.id,
-                            'name', p.name
-                        )
+            -- Pros
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', p.name
                     )
-                    FROM pros p
-                    WHERE p.court_id = c.id
-                ) AS pros,
+                )
+                FROM pros p
+                WHERE p.court_id = c.id
+            ) AS pros,
 
-                -- Cons
-                (
-                    SELECT JSON_ARRAYAGG(
-                        JSON_OBJECT(
-                            -- 'id', co.id,
-                            'name', co.name
-                        )
+            -- Cons
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', co.name
                     )
-                    FROM cons co
-                    WHERE co.court_id = c.id
-                ) AS cons
+                )
+                FROM cons co
+                WHERE co.court_id = c.id
+            ) AS cons,
 
-            FROM court c
-            WHERE c.venue_id = ?;`,[venue_id]);
+            -- Services
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', s.name
+                    )
+                )
+                FROM service s
+                WHERE s.venue_id = c.venue_id
+            ) AS services,
+
+            -- Rules
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', r.name
+                    )
+                )
+                FROM rule r
+                WHERE r.venue_id = c.venue_id
+            ) AS rules,
+
+            -- Equipment
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'product_name', e.product_name,
+                        'rental_price', e.rental_price,
+                        'qty_total', e.qty_total
+                    )
+                )
+                FROM equipment e
+                WHERE e.venue_id = c.venue_id
+            ) AS equipment
+
+        FROM court c
+        WHERE c.venue_id = ?;`,[venue_id]);
 
     if(!result)throw new AppError('Failed to show court',500);
 
