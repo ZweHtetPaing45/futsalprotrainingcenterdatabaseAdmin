@@ -265,7 +265,8 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
-                        'name', r.name
+                        'name', r.name,
+                        'detail', r.description
                     )
                 )
                 FROM rule r
