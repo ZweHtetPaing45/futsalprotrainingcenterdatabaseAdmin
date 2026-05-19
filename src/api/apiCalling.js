@@ -25,6 +25,7 @@ const venueManagementRouter = require('../class/rentals/venueManagement/venueMan
 const localBookingRouter = require('../class/rentals/booking/localBooking/localBooking.route');
 const canteenOrderRouter = require('../class/canteens/orders/orders.route');
 const rentalMobileBookingRouter = require('../class/rentals/booking/mobileBooking/mobileBooking.route');
+const courseRouter = require('../class/trainings/course/course.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -58,6 +59,7 @@ router.use('/venue',venueManagementRouter);
 router.use('/localbooking',localBookingRouter);
 router.use('/canteenorder',canteenOrderRouter);
 router.use('/mobilerental',rentalMobileBookingRouter);
+router.use('/course',courseRouter);
 
 
 module.exports = router;
