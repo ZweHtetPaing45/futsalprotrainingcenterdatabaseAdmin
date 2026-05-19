@@ -409,6 +409,28 @@ class VenueController{
 
     }
 
+    async DeleteVenue(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+    
+            const result = await service.DeleteVenue(id);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Venue deleted successfully',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new VenueController();

@@ -139,13 +139,13 @@ exports.ShowVenue = async ()=>{
 
     let [result] = await com.pool.query('select id,venue_name,price,venue_image_url,available from venue');
 
-    result[0].available = result[0].available === 1 ? true : false;
-
     if(!result)throw new AppError('Failed to show venue',500);
 
     if(result.length === 0){
-        return "No venue found";
+        return [];
     };
+
+    result[0].available = result[0].available === 1 ? true : false;
 
     return result;
 }
@@ -292,9 +292,24 @@ exports.ShowCourt = async (venue_id)=>{
     if(!result)throw new AppError('Failed to show court',500);
 
     if(result.length === 0){
-        return "No court found";
+        return [];
     };
 
     return result;
+
+}
+
+
+exports.DeleteVenue = async (id)=>{
+
+        const result = await com.pool.query('delete from venue where id = ?',[id]);
+
+        if(!result)throw new AppError('Failed to delete venue',500);
+
+        if(result.affectedRows === 0){
+            throw new AppError('Failed to delete venue',404);
+        };
+
+        return true;
 
 }

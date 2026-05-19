@@ -116,6 +116,14 @@ class VenueService{
 
     }
 
+    async DeleteVenue(id){
+
+        const result = await repo.DeleteVenue(id);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new VenueService();
