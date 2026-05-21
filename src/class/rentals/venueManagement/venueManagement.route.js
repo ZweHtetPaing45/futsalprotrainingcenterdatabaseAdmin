@@ -19,5 +19,6 @@ router.get('/showvenue',controller.ShowVenue);
 // router.get('/showservice/:id',controller.ShowService);
 router.get('/showcourt/:id',controller.ShowCourt);
 router.delete('/deletevenue/:id',controller.DeleteVenue);
+router.get('/remainbookingslot/:court_id/:date',controller.RemainBookingTimeSlot);
 
 module.exports = router;

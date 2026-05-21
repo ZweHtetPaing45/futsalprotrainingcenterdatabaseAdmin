@@ -124,6 +124,14 @@ class VenueService{
 
     }
 
+    async RemainBookingTimeSlot(court_id,date){
+
+        const result = await repo.RemainBookingTimeSlot(court_id,date);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new VenueService();
