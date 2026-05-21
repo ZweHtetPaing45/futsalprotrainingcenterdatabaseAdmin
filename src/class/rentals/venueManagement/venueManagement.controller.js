@@ -53,14 +53,16 @@ class VenueController{
 
             const {venue_id,product_name,rental_price,qty_total} = req.body;
 
-            const file = req.file;
+            console.log("venue_id",venue_id);
+            console.log("product_name",product_name);
+            console.log("rental_price",rental_price);
+            console.log("qty_total",qty_total);
 
-            if(!venue_id || !product_name || !rental_price || !qty_total || !file){
+            if(!venue_id || !product_name || !rental_price || !qty_total){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.NewEquipment(venue_id,product_name,rental_price,qty_total,file);
-
+            const result = await service.NewEquipment(venue_id,product_name,rental_price,qty_total);
             if(result){
                 res.status(201).json({
                     success: true,

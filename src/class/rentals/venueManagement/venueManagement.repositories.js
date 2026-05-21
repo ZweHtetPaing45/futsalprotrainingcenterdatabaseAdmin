@@ -20,40 +20,42 @@ exports.NewVenue = async (name,price,file,available)=>{
 
     }
 
-    const result1 = await com.pool.query('insert into venue (venue_name,price,venue_image_url,venue_public_id,available) values(?,?,?,?,?)',[name,price,image_url,public_id,available]);
+    const [result1] = await com.pool.query('insert into venue (venue_name,price,venue_image_url,venue_public_id,available) values(?,?,?,?,?)',[name,price,image_url,public_id,available]);
 
     if(!result1)throw new AppError('Failed to create venue',500);
 
-    return true;
+    console.log(result1.insertId);
+
+    return result1.insertId;
 }
 
 exports.NewEquipment = async(venue_id,product_name,rental_price,qty_total,file)=>{
 
-    let image_url;
-    let public_id;
+    // let image_url;
+    // let public_id;
     
 
-    if(file){
+    // if(file){
 
-        const result = await uploader.upload(file,'equipment_images');
+    //     const result = await uploader.upload(file,'equipment_images');
 
-        if(!result)throw new AppError('Failed to upload image',500);
+    //     if(!result)throw new AppError('Failed to upload image',500);
 
-        image_url = result.image_url;
-        public_id = result.public_id;
+    //     image_url = result.image_url;
+    //     public_id = result.public_id;
 
-    }
+    // }
 
-    const result1 = await com.pool.query('insert into equipment (venue_id,product_name,rental_price,qty_total,product_image_url,product_public_id) values(?,?,?,?,?,?)',[venue_id,product_name,rental_price,qty_total,image_url,public_id]);
+    const [result1] = await com.pool.query('insert into equipment (venue_id,product_name,rental_price,qty_total) values(?,?,?,?)',[venue_id,product_name,rental_price,qty_total]);
 
     if(!result1)throw new AppError('Failed to create equipment',500);
 
-    return true;
+    return result1.insertId;
 }
 
 exports.NewRule = async (venue_id,name,description)=>{
 
-    const result = await com.pool.query('insert into rule (venue_id,name,description) values(?,?,?)',[venue_id,name,description]);
+    const [result] = await com.pool.query('insert into rule (venue_id,name,description) values(?,?,?)',[venue_id,name,description]);
 
     if(!result)throw new AppError('Failed to create rule',500);
 
@@ -63,7 +65,7 @@ exports.NewRule = async (venue_id,name,description)=>{
 
 exports.NewService = async (venue_id,name)=>{
 
-    const result = await com.pool.query('insert into service(venue_id,name) values(?,?)',[venue_id,name]);
+    const [result] = await com.pool.query('insert into service(venue_id,name) values(?,?)',[venue_id,name]);
 
     if(!result)throw new AppError('Failed to create service',500);
 
@@ -73,21 +75,21 @@ exports.NewService = async (venue_id,name)=>{
 
 exports.NewCourt = async (venue_id,court_name,hourly_price,open_at,close_at,about_court)=>{
 
-    const result = await com.pool.query('insert into court (venue_id,court_name,hourly_price,open_at,close_at,about_court) values(?,?,?,?,?,?)',[venue_id,court_name,hourly_price,open_at,close_at,about_court]);
+    const [result] = await com.pool.query('insert into court (venue_id,court_name,hourly_price,open_at,close_at,about_court) values(?,?,?,?,?,?)',[venue_id,court_name,hourly_price,open_at,close_at,about_court]);
 
     if(!result)throw new AppError('Failed to create court',500);
 
-    return true;
+    return result.insertId;
 
 }
 
 exports.NewCourt_time_slot = async (court_id,start_time,end_time)=>{
 
-    const result = await com.pool.query('insert into court_time_slot (court_id,start_time,end_time) values(?,?,?)',[court_id,start_time,end_time]);
+    const [result] = await com.pool.query('insert into court_time_slot (court_id,start_time,end_time) values(?,?,?)',[court_id,start_time,end_time]);
 
     if(!result)throw new AppError('Failed to create court time slot',500);
 
-    return true;
+    return result.insertId;
 
 }
 
@@ -107,7 +109,7 @@ exports.NewCourt_gallery = async(court_id,file)=>{
 
     }
 
-    const result1 = await com.pool.query('insert into court_gallery (court_id,court_image_url,court_public_id) values(?,?,?)',[court_id,court_image_url,court_public_id]);
+    const [result1] = await com.pool.query('insert into court_gallery (court_id,court_image_url,court_public_id) values(?,?,?)',[court_id,court_image_url,court_public_id]);
 
     if(!result1)throw new AppError('Failed to create court gallery',500);
 
@@ -117,7 +119,7 @@ exports.NewCourt_gallery = async(court_id,file)=>{
 
 exports.NewPros = async (court_id,name)=>{
 
-    const result = await com.pool.query('insert into pros (court_id,name) values(?,?)',[court_id,name]);
+    const [result] = await com.pool.query('insert into pros (court_id,name) values(?,?)',[court_id,name]);
 
     if(!result)throw new AppError('Failed to create pro',500);
 
@@ -127,7 +129,7 @@ exports.NewPros = async (court_id,name)=>{
 
 exports.NewCons = async (court_id,name)=>{
 
-    const result = await com.pool.query('insert into cons (court_id,name) values(?,?)',[court_id,name]);
+    const [result] = await com.pool.query('insert into cons (court_id,name) values(?,?)',[court_id,name]);
 
     if(!result)throw new AppError('Failed to create con',500);
 
@@ -277,6 +279,7 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', e.id,
                         'product_name', e.product_name,
                         'rental_price', e.rental_price,
                         'qty_total', e.qty_total
@@ -302,6 +305,99 @@ exports.ShowCourt = async (venue_id)=>{
 
 exports.DeleteVenue = async (id)=>{
 
+        const [venuePublicId] = await com.pool.query('select venue_public_id from venue where id = ?',[id]);
+
+        if(!venuePublicId)throw new AppError('Failed to find venue',500);
+
+        console.log('venuePublicId',venuePublicId[0].venue_public_id);
+
+        // if(venuePublicId.length === 0){
+        //     throw new AppError('Venue not found',404);
+        // };
+
+        if(venuePublicId[0].venue_public_id){
+            try{
+                const result = await uploader.delete(venuePublicId[0].venue_public_id);
+            }catch(err){
+                logger.error(`Failed to delete venue image with public id ${venuePublicId[0].venue_public_id}: ${err.message}`);
+            }            // if(!result)throw new AppError('Failed to delete image',500)ca;
+        }
+
+        const [courtId] = await com.pool.query('select id from court where venue_id = ?',[id]);
+
+        if(!courtId)throw new AppError('Failed to find court',500);
+
+        console.log('courtId',courtId);
+
+        for(let j=0; j<courtId.length; j++){
+
+            const [courtIdGalleryPublicId] = await com.pool.query('select court_public_id from court_gallery where court_id = ?',[courtId[j].id]);
+
+        console.log('courtIdGalleryPublicId',courtIdGalleryPublicId);
+
+        if(!courtIdGalleryPublicId)throw new AppError('Failed to find court gallery',500);
+
+        for(let i = 0; i < courtIdGalleryPublicId.length; i++){
+           
+            if(courtIdGalleryPublicId[i].court_public_id){
+                
+                try{
+
+                    const result = await uploader.delete(courtIdGalleryPublicId[i].court_public_id);
+
+                }catch(err){
+                    logger.error(`Failed to delete court gallery image with public id ${courtIdGalleryPublicId[i].court_public_id}: ${err.message}`);
+                }
+                // if(!result)throw new AppError('Failed to delete court gallery image',500);
+            }
+        }
+
+        const [paymentPublicId] = await com.pool.query('select payment_public_id from admin_booking where venue_id = ?',[id]);
+        
+        if(!paymentPublicId)throw new AppError('Failed to find payment',500);
+
+        console.log('paymentPublicId',paymentPublicId);
+
+        for(let i = 0; i < paymentPublicId.length; i++){
+            
+            if(paymentPublicId[i].payment_public_id){
+                try{
+
+                    console.log('paymentPublicId[i].payment_public_id',paymentPublicId[i].payment_public_id);
+
+                    const result = await uploader.delete(paymentPublicId[i].payment_public_id);
+
+                }catch(err){
+                    logger.error(`Failed to delete payment image with public id ${paymentPublicId[i].payment_public_id}: ${err.message}`);
+                }
+                // if(!result)throw new AppError('Failed to delete payment image',500);
+            }
+        }
+
+        const [mobileBooking] = await com.pool.query('select payment_public_id from mobile_rental_booking where venue_id = ?',[id]);
+
+        if(!mobileBooking)throw new AppError('Failed to find mobile booking',500);
+
+        console.log('mobileBooking',mobileBooking);
+
+        for(let i = 0; i < mobileBooking.length; i++){
+            
+            if(mobileBooking[i].payment_public_id){
+                try{
+
+                    console.log('mobileBooking[i].payment_public_id',mobileBooking[i].payment_public_id);
+
+                    const result = await uploader.delete(mobileBooking[i].payment_public_id);
+
+                }catch(err){
+                    logger.error(`Failed to delete mobile booking payment image with public id ${mobileBooking[i].payment_public_id}: ${err.message}`);
+                }
+                // if(!result)throw new AppError('Failed to delete mobile booking payment image',500);
+            }
+
+        }
+
+    }
         const result = await com.pool.query('delete from venue where id = ?',[id]);
 
         if(!result)throw new AppError('Failed to delete venue',500);

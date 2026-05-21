@@ -9,6 +9,9 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
     let image_url;
     let public_id;
 
+    console.log('court_time_slot_ids',court_time_slot_ids);
+    console.log('typeof court_time_slot_ids',typeof court_time_slot_ids);
+
     if(file){
 
         const result = await uploader.upload(file, 'admin_booking');
@@ -46,10 +49,10 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
 
             let slot_id = Number(slotId);
 
-            // console.log('slot_id',slot_id);
-            // console.log('slot_id',typeof slot_id);
-            // console.log('slotId ',typeof slotId);
-            // console.log('slotId',slotId);
+            console.log('slot_id',slot_id);
+            console.log('slot_id',typeof slot_id);
+            console.log('slotId ',typeof slotId);
+            console.log('slotId',slotId);
 
             const [booking_time] = await com.pool.query('insert into admin_booking_time_slot (booking_id,court_time_slot_id) values(?,?)',[bookingId,slot_id]);
 
@@ -136,7 +139,33 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
 
     if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
 
-     const grouped = {};
+    const [remainBookingTimeSlot] = await com.pool.query(`
+        SELECT *
+FROM court_time_slot
+WHERE court_id = ?
+AND id NOT IN (
+
+    -- Admin booking slots
+    SELECT abts.court_time_slot_id
+    FROM admin_booking_time_slot abts
+    JOIN admin_booking ab
+        ON ab.id = abts.booking_id
+    WHERE ab.date = ?
+
+    UNION
+
+    -- Mobile booking slots
+    SELECT mrts.court_time_slot_id
+    FROM mobile_rental_time_slot mrts
+    JOIN mobile_rental_booking mrb
+        ON mrb.id = mrts.mobile_rental_booking_id
+    WHERE mrb.date = ?
+);
+        `,[court_id,date,date]);
+
+    if(!remainBookingTimeSlot)throw new AppError('Remain Booking Time Slot Error',400);
+
+    const grouped = {};
 
             prindOrder.forEach(row => {
             if (!grouped[row.order_id]) {
@@ -150,7 +179,6 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
                 Total: row.amount,
                 };
             }
-
             // grouped[row.order_id].items.push({
             //     product_name: row.product_name,
             //     quantity: row.quantity,
@@ -164,7 +192,7 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
 
             console.log('result1',result1);
 
-    return result1;
+    return {result1,remainBookingTimeSlot};
 }
 
                 // select 
@@ -279,5 +307,4 @@ exports.DeleteLocalBooking = async (id)=>{
     if(!result)throw new AppError('Delete admin booking Error',400);
 
     return true;
-
 }

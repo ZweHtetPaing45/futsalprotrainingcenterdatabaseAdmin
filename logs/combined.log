@@ -1620,3 +1620,42 @@ GROUP BY p.id' at line 55
 2026-05-20 01:25:16 [32minfo[39m:: Server is running on port 5000
 2026-05-20 01:27:36 [32minfo[39m:: Server is running on port 5000
 2026-05-20 01:29:32 [32minfo[39m:: Server is running on port 5000
+2026-05-20 17:40:34 [32minfo[39m:: Server is running on port 5000
+2026-05-21 08:17:13 [32minfo[39m:: Server is running on port 5000
+2026-05-21 08:19:33 [32minfo[39m:: Server is running on port 5000
+2026-05-21 08:27:08 [32minfo[39m:: Server is running on port 5000
+2026-05-21 08:34:33 [32minfo[39m:: Server is running on port 5000
+2026-05-21 09:08:08 [32minfo[39m:: Server is running on port 5000
+2026-05-21 09:31:05 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:30:54 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:33:39 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:34:35 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:35:15 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:37:01 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:37:24 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:37:54 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:38:37 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:39:06 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:39:38 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:43:19 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:43:20 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
+2026-05-21 14:44:35 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:44:39 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
+2026-05-21 14:45:08 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:45:11 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
+2026-05-21 14:48:57 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:48:59 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
+2026-05-21 14:50:21 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:52:12 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:54:22 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:54:41 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:55:27 [32minfo[39m:: Server is running on port 5000
+2026-05-21 14:59:08 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:00:06 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:16:58 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:21:34 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:33:09 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:34:35 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:49:21 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:52:18 [32minfo[39m:: Server is running on port 5000
+2026-05-21 15:54:57 [32minfo[39m:: Server is running on port 5000

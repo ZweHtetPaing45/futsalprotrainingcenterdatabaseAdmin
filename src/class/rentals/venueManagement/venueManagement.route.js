@@ -4,7 +4,7 @@ const uploads = require('../../../middlewares/multer');
 
 
 router.post('/addvenue',uploads.single('venue_image'),controller.NewVenue);
-router.post('/addequipment',uploads.single('equipment_image'),controller.NewEquipment);
+router.post('/addequipment',controller.NewEquipment);
 router.post('/addrule',controller.NewRule);
 router.post('/addservice',controller.NewService);
 router.post('/addcourt',controller.NewCourt);

@@ -12,9 +12,9 @@ class VenueService{
 
     }
 
-    async NewEquipment(venue_id,product_name,rental_price,qty_total,file){
+    async NewEquipment(venue_id,product_name,rental_price,qty_total){
 
-        const result = await repo.NewEquipment(venue_id,product_name,rental_price,qty_total,file);
+        const result = await repo.NewEquipment(venue_id,product_name,rental_price,qty_total);
 
         return result;
 
