@@ -208,6 +208,7 @@ exports.ShowCourt = async (venue_id)=>{
             c.open_at,
             c.close_at,
             c.about_court,
+            c.court_active,
 
             -- Time Slots
             (
@@ -301,6 +302,12 @@ exports.ShowCourt = async (venue_id)=>{
     if(result.length === 0){
         return [];
     };
+
+     for(let i = 0; i < result.length; i++){
+
+        result[i].court_active = result[i].court_active === 1 ? true : false;
+
+    }
 
     return result;
 
@@ -486,6 +493,7 @@ exports.AllShowCourt = async ()=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id' , g.id,
                         'court_image_url', g.court_image_url,
                         'court_public_id', g.court_public_id
                     )
@@ -498,6 +506,7 @@ exports.AllShowCourt = async ()=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', p.id,
                         'name', p.name
                     )
                 )
@@ -509,6 +518,7 @@ exports.AllShowCourt = async ()=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', co.id,
                         'name', co.name
                     )
                 )
@@ -520,6 +530,7 @@ exports.AllShowCourt = async ()=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', s.id,
                         'name', s.name
                     )
                 )
@@ -531,6 +542,7 @@ exports.AllShowCourt = async ()=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', r.id,
                         'name', r.name,
                         'detail', r.description
                     )
@@ -634,5 +646,64 @@ exports.updateVenue = async (id,venue_name,price,file,available)=>{
   };
 
   return true;
+
+}
+
+exports.DeletePros = async (pro_id)=>{
+
+    const result = await com.pool.query('delete from pros where id = ?',[pro_id]);
+
+    if(!result)throw new AppError('Pros Delete Error ',400);
+
+    return true;
+}
+
+exports.DeleteCons = async (con_id)=>{
+
+    const result = await com.pool.query('delete from cons where id = ?',[con_id]);
+
+    if(!result)throw new AppError('Delete Cons Error',400);
+
+    return true;
+
+}
+
+exports.DeleteCourtTimeSlot = async (court_time_slot_id)=>{
+
+    const result = await com.pool.query('delete from court_time_slot where id = ?',[court_time_slot_id]);
+
+    if(!result)throw new AppError('Delete Court Time Slot Error',400);
+
+    return true;
+
+}
+
+exports.DeleteService = async (service_id)=>{
+
+    const result = await com.pool.query('delete from service where id = ?',[service_id]);
+
+    if(!result)throw new AppError('Delete Service Error',400);
+
+    return true;
+
+}
+
+exports.DeleteRule = async (rule_id)=>{
+
+    const result = await com.pool.query('delete from rule where id = ?',[rule_id]);
+
+    if(!result)throw new AppError('Delete Rule Error',400);
+
+    return true;
+
+}
+
+exports.DeleteEquipment = async (equipment_id)=>{
+
+    const result = await com.pool.query('delete from equipment where id = ?',[equipment_id]);
+
+    if(!result)throw new AppError('Delete Equipment Error',400);
+
+    return true;
 
 }

@@ -25,6 +25,12 @@ router.get('/allshowcourt',controller.AllShowCourt);
 
 //Delete Method
 router.delete('/deletevenue/:id',controller.DeleteVenue);
+router.delete('/deletepros/:pro_id',controller.DeletePros);
+router.delete('/deletecons/:con_id',controller.DeleteCons);
+router.delete('/deletecourttimeslot/:slot_id',controller.DeleteCourtTimeSlot);
+router.delete('/deleteservice/:service_id',controller.DeleteService);
+router.delete('/deleterule/:rule_id',controller.DeleteRule);
+router.delete('/deleteequipment/:equipment_id',controller.DeleteEquipment);
 
 
 //Put Method

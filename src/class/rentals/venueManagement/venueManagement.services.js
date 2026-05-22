@@ -156,6 +156,54 @@ class VenueService{
 
     }
 
+    async deletePro(pro_id){
+
+        const result = await repo.DeletePros(pro_id);
+
+        return result;
+
+    }
+
+    async deleteCon(con_id){
+
+        const result = await repo.DeleteCons(con_id);
+
+        return result;
+
+    }
+
+    async DeleteCourtTimeSlot(slot_id){
+
+        const result = await repo.DeleteCourtTimeSlot(slot_id);
+
+        return result;
+
+    }
+
+    async DeleteService(service_id){
+
+        const result = await repo.DeleteService(service_id);
+
+        return result;
+
+    }
+
+    async DeleteRule(rule_id){
+
+        const result = await repo.DeleteRule(rule_id);
+
+        return result;
+
+    }
+
+    async DeleteEquipment(equipment_id){
+
+        const result = await repo.DeleteEquipment(equipment_id);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new VenueService();

@@ -559,6 +559,175 @@ class VenueController{
 
     }
 
+    async DeletePros(req,res,next){
+
+        try{
+
+            const pro_id = req.params.pro_id;
+
+            const result = await service.deletePro(pro_id);
+            
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Pros deleted successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Pros not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteCons(req,res,next){
+
+        try{
+
+            const con_id = req.params.con_id;
+
+            const result = await service.deleteCon(con_id);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Cons deleted successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Cons not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteCourtTimeSlot(req,res,next){
+
+        try{
+
+            const slot_id = req.params.slot_id;
+
+            const result = await service.DeleteCourtTimeSlot(slot_id);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Court time slot deleted successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Court time slot not deleted',
+                    data: result
+                });
+            }
+
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteService(req,res,next){
+
+        try{
+
+            const service_id = req.params.service_id;
+
+            const result = await service.DeleteService(service_id);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Service deleted successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Service not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteRule(req,res,next){
+
+        try{
+
+            const rule_id = req.params.rule_id;
+
+            const result = await service.DeleteRule(rule_id);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Rule deleted successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Rule not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteEquipment(req,res,next){
+
+        try{
+
+            const equipment_id = req.params.equipment_id;
+
+            const result = await service.DeleteEquipment(equipment_id);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Equipment deleted successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Equipment not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new VenueController();
