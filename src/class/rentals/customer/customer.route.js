@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const controller = require('./customer.controller');
-// const auth = require('../../middlewares/auth.middleware');
 
-router.get('/showcustomer',controller.showCustomerData);
+
+router.get('/showcustomer',controller.ShowMobileBookingData);
 
 module.exports = router;
