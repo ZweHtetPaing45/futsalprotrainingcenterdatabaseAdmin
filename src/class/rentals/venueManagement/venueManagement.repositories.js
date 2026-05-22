@@ -73,9 +73,9 @@ exports.NewService = async (venue_id,name)=>{
 
 }
 
-exports.NewCourt = async (venue_id,court_name,hourly_price,open_at,close_at,about_court)=>{
+exports.NewCourt = async (venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active)=>{
 
-    const [result] = await com.pool.query('insert into court (venue_id,court_name,hourly_price,open_at,close_at,about_court) values(?,?,?,?,?,?)',[venue_id,court_name,hourly_price,open_at,close_at,about_court]);
+    const [result] = await com.pool.query('insert into court (venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active) values(?,?,?,?,?,?,?)',[venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active]);
 
     if(!result)throw new AppError('Failed to create court',500);
 
@@ -440,4 +440,131 @@ AND id NOT IN (
 
  
     return remainBookingTimeSlot;
+}
+
+
+exports.UpdateCourtTrueOrFalse = async (court_id,status)=>{
+
+    const [result] = await com.pool.query('update court set court_active = ? where id = ?',[status,court_id]);
+
+    if(result.affectedRows === 0)throw new AppError('Failed to update court',404);
+
+    return true;
+
+}
+
+exports.AllShowCourt = async ()=>{
+
+    const [result] = await com.pool.query(`
+         SELECT 
+            c.id,
+            c.court_name,
+            c.hourly_price,
+            c.open_at,
+            c.close_at,
+            c.about_court,
+            c.court_active,
+
+            -- Time Slots
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'id', ts.id,
+                        'start_time', ts.start_time,
+                        'end_time', ts.end_time
+                    )
+                )
+                FROM court_time_slot ts
+                WHERE ts.court_id = c.id
+            ) AS time_slots,
+
+            -- Gallery
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'court_image_url', g.court_image_url,
+                        'court_public_id', g.court_public_id
+                    )
+                )
+                FROM court_gallery g
+                WHERE g.court_id = c.id
+            ) AS gallery,
+
+            -- Pros
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', p.name
+                    )
+                )
+                FROM pros p
+                WHERE p.court_id = c.id
+            ) AS pros,
+
+            -- Cons
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', co.name
+                    )
+                )
+                FROM cons co
+                WHERE co.court_id = c.id
+            ) AS cons,
+
+            -- Services
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', s.name
+                    )
+                )
+                FROM service s
+                WHERE s.venue_id = c.venue_id
+            ) AS services,
+
+            -- Rules
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'name', r.name,
+                        'detail', r.description
+                    )
+                )
+                FROM rule r
+                WHERE r.venue_id = c.venue_id
+            ) AS rules,
+
+            -- Equipment
+            (
+                SELECT JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'id', e.id,
+                        'product_name', e.product_name,
+                        'rental_price', e.rental_price,
+                        'qty_total', e.qty_total
+                    )
+                )
+                FROM equipment e
+                WHERE e.venue_id = c.venue_id
+            ) AS equipment
+
+        FROM court c ;
+        `);
+
+     if(!result)throw new AppError('Failed to show court',500);
+
+    if(result.length === 0){
+        return [];
+    };
+
+
+    for(let i = 0; i < result.length; i++){
+
+        result[i].court_active = result[i].court_active === 1 ? true : false;
+
+    }
+
+    return result;
+
 }

@@ -1,3 +1,4 @@
+const uploader = require('@zwehtetpaing55/uploader');
 const com = require('../../../../config/com');
 const AppError = require('../../../../utils/AppError');
 const logger = require('../../../../utils/logger');
@@ -83,8 +84,17 @@ exports.ShowMobileBookingData = async ()=>{
 
 exports.DeleteMobileBooking = async (id)=>{
 
+    const [public_id] = await com.pool.query('select payment_public_id from mobile_rental_booking where id = ?',[id]);
+
+    if(!public_id)throw new AppError('Failed to find public id',500);
+
+    console.log('public_id',public_id[0].payment_public_id);
+
+    const DeleteImage = await uploader.delete(public_id[0].payment_public_id);
+
     const result = await com.pool.query('delete from mobile_rental_booking where id = ?',[id]);
 
+    
     if(!result)throw new AppError('Delete mobile booking Error',400);
 
     return true;

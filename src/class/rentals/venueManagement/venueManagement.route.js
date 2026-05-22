@@ -2,7 +2,7 @@ const router = require('express').Router();
 const controller =require('./venueManagement.controller');
 const uploads = require('../../../middlewares/multer');
 
-
+//Post Method
 router.post('/addvenue',uploads.single('venue_image'),controller.NewVenue);
 router.post('/addequipment',controller.NewEquipment);
 router.post('/addrule',controller.NewRule);
@@ -13,12 +13,22 @@ router.post('/addcourtgallery',uploads.single('court_gallery'),controller.NewCou
 router.post('/addpros',controller.NewPros);
 router.post('/addcons',controller.NewCons);
 
+
+//Get Method
 router.get('/showvenue',controller.ShowVenue);
 // router.get('/showequipment/:id',controller.ShowEquipment);
 // router.get('/showrule/:id',controller.ShowRule);
 // router.get('/showservice/:id',controller.ShowService);
 router.get('/showcourt/:id',controller.ShowCourt);
-router.delete('/deletevenue/:id',controller.DeleteVenue);
 router.get('/remainbookingslot/:court_id/:date',controller.RemainBookingTimeSlot);
+router.get('/allshowcourt',controller.AllShowCourt);
+
+//Delete Method
+router.delete('/deletevenue/:id',controller.DeleteVenue);
+
+
+//Put Method
+router.put('/activecourt/:court_id/:status',controller.UpdateCourtTrueOrFalse);
+
 
 module.exports = router;

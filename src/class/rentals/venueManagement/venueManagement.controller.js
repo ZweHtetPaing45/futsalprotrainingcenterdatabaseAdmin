@@ -151,13 +151,17 @@ class VenueController{
 
         try{
 
-            const {venue_id,court_name,hourly_price,open_at,close_at,about_court} = req.body;
+            let {venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active} = req.body;
 
-            if(!venue_id || !court_name || !hourly_price || !open_at || !close_at || !about_court){
+            if(!venue_id || !court_name || !hourly_price || !open_at || !close_at || !about_court || !court_active){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.NewCourt(venue_id,court_name,hourly_price,open_at,close_at,about_court);
+            court_active = court_active === 'true' ? 1 : 0;
+
+            console.log("venue_id",venue_id);
+
+            const result = await service.NewCourt(venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active);
 
             if(result){
                 res.status(201).json({
@@ -165,6 +169,7 @@ class VenueController{
                     message: 'Court added successfully',
                     data: result
                 });
+
             }else{
                 res.status(400).json({
                     success: false,
@@ -446,6 +451,62 @@ class VenueController{
                 res.status(200).json({
                     success: true,
                     message: 'Remain booking time slot shown successfully',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async UpdateCourtTrueOrFalse(req,res,next){
+
+        try{
+
+            let court_id = req.params.court_id;
+            let status = req.params.status;
+
+            // console.log("status",status);
+            // console.log("court_id",court_id);
+
+            status = status === 'true' ? 1 : 0;
+
+            console.log("status",status);
+
+            const result = await service.UpdateCourtTrueOrFalse(court_id,status);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Court status updated successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Court status not updated',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async AllShowCourt(req,res,next){
+
+        try{
+
+            const result = await service.AllShowCourt();
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'All court shown successfully',
                     data: result
                 });
             }

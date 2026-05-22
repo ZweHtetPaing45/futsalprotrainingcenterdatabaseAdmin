@@ -36,9 +36,9 @@ class VenueService{
 
     }
 
-    async NewCourt(venue_id,court_name,hourly_price,open_at,close_at,about_court){
+    async NewCourt(venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active){
 
-        const result = await repo.NewCourt(venue_id,court_name,hourly_price,open_at,close_at,about_court);
+        const result = await repo.NewCourt(venue_id,court_name,hourly_price,open_at,close_at,about_court,court_active);
 
         return result;
 
@@ -127,6 +127,22 @@ class VenueService{
     async RemainBookingTimeSlot(court_id,date){
 
         const result = await repo.RemainBookingTimeSlot(court_id,date);
+
+        return result;
+
+    }
+
+    async UpdateCourtTrueOrFalse(court_id,status){
+
+        const result = await repo.UpdateCourtTrueOrFalse(court_id,status);
+
+        return result;
+
+    }
+
+    async AllShowCourt(){
+
+        const result = await repo.AllShowCourt();
 
         return result;
 

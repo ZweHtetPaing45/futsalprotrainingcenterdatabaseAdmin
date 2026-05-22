@@ -276,6 +276,14 @@ exports.ShowLocalBookingData = async ()=>{
 
 exports.DeleteLocalBooking = async (id)=>{
 
+    const [public_id] = await com.pool.query('select payment_public_id from admin_booking where id =?',[id]);
+
+    if(!public_id)throw new AppError('Failed to find public id',500);
+
+    console.log('public_id',public_id[0].payment_public_id);
+
+    const DeleteImage = await uploader.delete(public_id[0].payment_public_id);
+
     const result = await com.pool.query('delete from admin_booking where id = ?',[id]);
 
     if(!result)throw new AppError('Delete admin booking Error',400);
