@@ -517,6 +517,48 @@ class VenueController{
 
     }
 
+    async updateVenue(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const {venue_name,price,available} = req.body;
+
+            const file = req.file;
+
+            console.log("id",id);
+            console.log("venue_name",venue_name);
+            console.log("price",price);
+            console.log("available",available);
+            console.log("file",file);
+
+            // if(!venue_name || !price || !file || !available || !id){
+            //     throw new AppError('Please fill all the fields', 400);
+            // }
+
+            const result = await service.updateVenue(id,venue_name,price,file,available);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Venue updated successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Venue not updated',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new VenueController();

@@ -148,6 +148,14 @@ class VenueService{
 
     }
 
+    async updateVenue(id,venue_name,price,file,available){
+
+        const result = await repo.updateVenue(id,venue_name,price,file,available);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new VenueService();

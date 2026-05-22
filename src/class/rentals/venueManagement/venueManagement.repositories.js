@@ -147,7 +147,11 @@ exports.ShowVenue = async ()=>{
         return [];
     };
 
-    result[0].available = result[0].available === 1 ? true : false;
+    for(let i = 0; i < result.length; i++){
+
+        result[i].available = result[i].available === 1 ? true : false;
+
+    }
 
     return result;
 }
@@ -566,5 +570,69 @@ exports.AllShowCourt = async ()=>{
     }
 
     return result;
+
+}
+
+exports.updateVenue = async (id,venue_name,price,file,available)=>{
+
+    let query = "UPDATE venue SET ";
+    let values = [];
+ 
+    if (venue_name !== '') {
+    query += "venue_name = ?, ";
+    values.push(venue_name);
+    }
+
+    if(price !== ''){
+        query += "price = ?, ";
+        values.push(price);
+    }
+
+    if(available !== ''){
+        available = available === 'true' ? 1 : 0;
+        query += "available = ?, ";
+        values.push(available);
+    }
+
+    if (file) {
+    const [old] = await com.pool.query(
+      "SELECT venue_public_id FROM venue WHERE id = ?",
+      [id]
+    );
+
+    const pu_id = old[0]?.venue_public_id;
+
+    console.log('pu_id',pu_id);
+
+    if (pu_id) {
+      await uploader.delete(pu_id);
+    }
+
+    const result = await uploader.upload(file, "venue_images");
+
+    query += "venue_image_url = ?, venue_public_id = ?, ";
+    values.push(result.image_url, result.public_id);
+  }
+
+  // ❗️ ဘာမှ update မရှိဘူးဆို
+  if (values.length === 0) {
+    return false;
+  }
+
+  // remove last comma
+  query = query.slice(0, -2);
+
+  query += " WHERE id = ?";
+  values.push(id);
+
+  const [result] = await com.pool.query(query, values);
+
+  if(!result)throw new AppError('Failed to update venue',500);
+
+  if(result.affectedRows === 0){
+    throw new AppError('Failed to update venue',404);
+  };
+
+  return true;
 
 }

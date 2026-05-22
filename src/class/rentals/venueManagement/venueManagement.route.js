@@ -29,6 +29,6 @@ router.delete('/deletevenue/:id',controller.DeleteVenue);
 
 //Put Method
 router.put('/activecourt/:court_id/:status',controller.UpdateCourtTrueOrFalse);
-
+router.put('/updatevenue/:id',uploads.single('venue_image'),controller.updateVenue);
 
 module.exports = router;
