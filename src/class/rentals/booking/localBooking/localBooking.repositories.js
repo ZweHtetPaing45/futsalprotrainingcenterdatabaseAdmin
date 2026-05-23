@@ -29,9 +29,9 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
 
     console.log('booking id',bookingId);
 
-    const [venue_price] = await com.pool.query('select price from venue where id = ?',venue_id);
+    const [court_price] = await com.pool.query('select hourly_price from court where id = ?',court_id);
 
-    const price = venue_price[0].price;
+    const price = court_price[0].hourly_price;
 
     let admin_booking_total_price = 0;
 
@@ -94,6 +94,8 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
             // admin_booking_total_price += eqprice;
 
             total = quantity * eqprice;
+
+            console.log('total',total);
 
             admin_booking_total_price += total;
 

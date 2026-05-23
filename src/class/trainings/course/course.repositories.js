@@ -90,9 +90,20 @@ exports.TrainingProgram = async (
 
     // console.log("training_program_id",training_program_id);
 
+
+    const [result3] = await com.pool.query(
+        `insert into training_schedule_days (day,level_type) values(?,?)`,[
+            day,level_type
+        ]
+    );
+
+    if(!result3)throw new AppError('Failed to create training schedule day',500);
+
+    const training_schedule_day_id = result3.insertId;
+
     const [result2] = await com.pool.query(
-        `insert into training_schedule_time_slots (trainning_program_id,start_time,end_time) values(?,?,?)`,[
-            training_program_id,start_time,end_time
+        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time) values(?,?,?)`,[
+            training_schedule_day_id,training_program_id,start_time,end_time
         ]
     );
 
@@ -106,17 +117,6 @@ exports.TrainingProgram = async (
     // console.log(typeof dayString);
 
     const day = dayString.join(',');
-
-    const [result3] = await com.pool.query(
-        `insert into training_schedule_days (trainning_program_id,day,level_type) values(?,?,?)`,[
-            training_program_id,day,level_type
-        ]
-    );
-
-    if(!result3)throw new AppError('Failed to create training schedule day',500);
-
-    const training_schedule_day_id = result3.insertId;
-
 
     const [result4] = await com.pool.query(
         `insert into training_level (trainning_program_id,title_level,price) values(?,?,?)`,[
