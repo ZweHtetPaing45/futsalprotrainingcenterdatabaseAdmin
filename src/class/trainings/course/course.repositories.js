@@ -90,10 +90,11 @@ exports.TrainingProgram = async (
 
     // console.log("training_program_id",training_program_id);
 
+    console.log('days',days);
 
     const [result3] = await com.pool.query(
         `insert into training_schedule_days (day,level_type) values(?,?)`,[
-            day,level_type
+            days,level_type
         ]
     );
 
@@ -101,8 +102,10 @@ exports.TrainingProgram = async (
 
     const training_schedule_day_id = result3.insertId;
 
+    console.log('training_schedule_day_id',training_schedule_day_id);
+
     const [result2] = await com.pool.query(
-        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time) values(?,?,?)`,[
+        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time) values(?,?,?,?)`,[
             training_schedule_day_id,training_program_id,start_time,end_time
         ]
     );
@@ -111,12 +114,12 @@ exports.TrainingProgram = async (
 
     const training_schedule_time_slot_id = result2.insertId;
 
-    const dayString = days.replace('[','').replace(']','').split(',');
+    // const dayString = days.replace('[','').replace(']','').split(',');
 
-    // console.log('dayString',dayString);
-    // console.log(typeof dayString);
+    // // console.log('dayString',dayString);
+    // // console.log(typeof dayString);
 
-    const day = dayString.join(',');
+    // const day = dayString.join(',');
 
     const [result4] = await com.pool.query(
         `insert into training_level (trainning_program_id,title_level,price) values(?,?,?)`,[
