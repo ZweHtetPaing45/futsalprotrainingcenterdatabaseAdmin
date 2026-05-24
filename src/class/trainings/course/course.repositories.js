@@ -133,7 +133,7 @@ exports.TrainingProgram = async (
     // const day = dayString.join(',');
 
     const [result5] = await com.pool.query(
-        `insert into training_coach (trainning_program_id,coach_image_url,coach_public_id,instructor_name,biography) values(?,?,?,?,?)`,[
+        `insert into training_coach (training_program_id,coach_image_url,coach_public_id,instructor_name,biography) values(?,?,?,?,?)`,[
             training_program_id,coach_image_url,coach_public_id,instructor_name,biography
         ]
     );
