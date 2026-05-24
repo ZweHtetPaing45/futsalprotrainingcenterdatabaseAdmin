@@ -45,6 +45,16 @@ class orderService{
 
     }
 
+    async updateAdminOrderAction(id,action){
+
+        const updateAdminOrderAction = await repo.updateAdminOrderAction(id,action);
+
+        if(!updateAdminOrderAction) throw new AppError('Failed to update order action',400);
+
+        return updateAdminOrderAction;
+
+    }
+
     async deleteOrder(id){
         const deleteOrder = await repo.deleteOrder(id);
 
@@ -66,6 +76,22 @@ class orderService{
         const deleteMobileOrderResult = await repo.mobileDeleteOrder(id);
 
         return deleteMobileOrderResult;
+
+    }
+
+    async mobile_order_data(){
+
+        const result = await repo.mobile_order_data();
+
+        return result;
+
+    }
+
+    async admin_order_data(){
+
+        const result = await repo.admin_order_data();
+
+        return result;
 
     }
 

@@ -334,6 +334,16 @@ exports.updateOrderAction = async (id,action)=>{
 
 }
 
+exports.updateAdminOrderAction = async (id,action)=>{
+    
+    const updateOrderAction = await com.pool.query('update admin_order set order_status = ? where id = ?',[action,id]);
+
+    if(!updateOrderAction)throw new AppError('Failed to update order action',400);
+
+    return true;
+
+}
+
 
 exports.totalResult = async ()=>{
 
@@ -438,5 +448,40 @@ exports.mobileDeleteOrder = async (id)=>{
     if(!deleteOrderId)throw new AppError("Can not delete order",400);
 
     return true;
+
+}
+
+
+exports.mobile_order_data = async ()=>{
+
+        const [mobile_order_count] = await com.pool.query('select count(*) as total_mobile_order from mobile_order;');
+    
+        const mobile_order = mobile_order_count[0].total_mobile_order;
+
+        // console.log('mobile_order',mobile_order);
+
+        const [order_status_total] = await com.pool.query(`
+           SELECT
+           COUNT(CASE WHEN order_status = 'pending' THEN 1 END) AS pending_count,
+           COUNT(CASE WHEN order_status = 'complete' THEN 1 END) AS complete_count,
+           COUNT(CASE WHEN order_status = 'cancel' THEN 1 END) AS cancel_count
+           FROM mobile_order; 
+            `)
+        
+        // console.log('order_status_total',order_status_total[0]);
+
+        return {
+            mobile_order,
+            "order_status_total" :order_status_total[0]
+        };
+}
+
+exports.admin_order_data = async ()=>{
+
+        const [admin_order_count] = await com.pool.query('select count(*) as total_admin_order from admin_order;');
+
+        const admin_order = admin_order_count[0].total_admin_order;
+
+    return {admin_order};
 
 }

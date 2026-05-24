@@ -17,6 +17,14 @@ class ServiceInventory{
 
     }
 
+    async totalInventory(){
+
+        const result = await repo.totalInventory();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new ServiceInventory();

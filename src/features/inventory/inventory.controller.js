@@ -43,6 +43,22 @@ class ControllerInventory{
         }
     }
 
+    async totalInventory(req,res,next){
+
+        try{
+
+            const result = await service.totalInventory();
+
+            if(!result) throw new AppError('Failed to get total inventory',500);
+
+            res.status(200).json(result);
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new ControllerInventory();

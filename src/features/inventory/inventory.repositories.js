@@ -73,3 +73,18 @@ exports.deleteProduct = async (id)=>{
         throw new AppError('Failed to delete product',500);
     }
 }
+
+exports.totalInventory = async ()=>{
+
+      const [result] = await com.pool.query(`
+        SELECT
+        SUM(stock) AS total_inventory,
+        SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS out_of_stock,
+        SUM(CASE WHEN stock > 0 AND stock <= 5 THEN 1 ELSE 0 END) AS low_stock
+        FROM product_variants; 
+
+        `);
+
+    return {'total inventory':result[0]};
+
+}

@@ -29,10 +29,10 @@ class CourseController {
 
             const {learning_description,main_title,title,
                 about_title,details,title_level,about_level,
-                price,start_time,end_time,days,level_type,instructor_name,
+                price,start_time,end_time,days,instructor_name,
                 biography} = req.body;
 
-            if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !days || !level_type || !instructor_name || !biography){
+            if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !days || !instructor_name || !biography){
                 throw new AppError('Please fill all the fields', 400);
             }
 
@@ -42,7 +42,7 @@ class CourseController {
                 file.category_card_image[0],file.main_program_banner_image[0],file.learning_image[0],
                 learning_description,main_title,
                 title,about_title,details,title_level,about_level,
-                price,start_time,end_time,days,level_type,file.coach_file[0],
+                price,start_time,end_time,days,file.coach_file[0],
                 instructor_name,biography
             );
 
@@ -54,6 +54,68 @@ class CourseController {
                 return res.status(201).json({
                     success: true,
                     message: 'Training program created successfully',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async AddDayTimeTraining(req,res,next){
+
+        try{
+
+            const {training_program_id,training_schedule_days_id,start_time,end_time} = req.body;
+
+            if(!training_program_id || !training_schedule_days_id || !start_time || !end_time){
+                throw new AppError('Please fill all the fields', 400);
+            }
+
+            const result = await service.AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time);
+
+            if(!result)throw new AppError('Failed to add day time training',500);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Day time training added successfully',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async AddTrainingLevel(req,res,next){
+
+        try{
+
+            const {training_program_id,title_level,price} = req.body;
+
+            if(!training_program_id || !title_level || !price){
+                throw new AppError('Please fill all the fields', 400);
+            }
+
+            const result = await service.AddTrainingLevel(training_program_id,title_level,price);
+
+            if(!result)throw new AppError('Failed to add training level',500);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training level added successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training level not added',
                     data: result
                 });
             }

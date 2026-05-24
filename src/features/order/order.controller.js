@@ -98,6 +98,28 @@ class orderController{
         }
     }
 
+    async updateAdminOrderAction(req,res,next){
+        try{
+
+            const id = req.params.id;
+
+            const {action} = req.body;
+
+            const result = await service.updateAdminOrderAction(id,action);
+
+            if(!result) throw new AppError('Failed to update order action',400);
+
+            res.status(200).json({
+                status: 'success',
+                message: 'Order action updated successfully',
+                result
+            });
+
+        }catch(error){
+            next(error);
+        }
+    }
+
     async deleteOrder(req,res,next){
 
         try{
@@ -160,6 +182,33 @@ class orderController{
         }catch(error){
             next(error);
         }
+    }
+
+    async mobile_order_data(req,res,next){
+
+       try{
+
+            const result = await service.mobile_order_data();
+            res.status(200).json(result);
+            
+       }catch(error){
+        next(error);
+       }
+
+    }
+
+    async admin_order_data(req,res,next){
+
+        try{
+
+            const result = await service.admin_order_data();
+
+            res.status(200).json(result);
+
+        }catch(error){
+            next(error);
+        }
+
     }
 }
 

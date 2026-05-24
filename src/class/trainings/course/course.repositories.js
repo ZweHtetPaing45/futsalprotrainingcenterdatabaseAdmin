@@ -8,7 +8,7 @@ exports.TrainingProgram = async (
     category_card_file,main_program_banner_file,
     learning_file,learning_description,main_title,
     title,about_title,details,title_level,about_level,
-    price,start_time,end_time,days,level_type,coach_file,
+    price,start_time,end_time,days,coach_file,
     instructor_name,biography
 )=>{
 
@@ -93,8 +93,8 @@ exports.TrainingProgram = async (
     console.log('days',days);
 
     const [result3] = await com.pool.query(
-        `insert into training_schedule_days (day,level_type) values(?,?)`,[
-            days,level_type
+        `insert into training_schedule_days (day) values(?)`,[
+            days
         ]
     );
 
@@ -142,4 +142,28 @@ exports.TrainingProgram = async (
 
     // console.log('training_coach_id', result5.insertId);
     return true;
+}
+
+
+exports.AddDayTimeTraining = async (training_program_id,training_schedule_days_id,start_time,end_time)=>{
+
+    const [result] = await com.pool.query(
+        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time) values(?,?,?,?)`,[
+            training_schedule_days_id,training_program_id,start_time,end_time
+        ]
+    );
+    
+    if(!result)throw new AppError('Failed to add day and time for training program',500);    
+
+    return true;
+}
+
+exports.AddTrainingLevel = async (training_program_id,title_level,price)=>{
+
+    const result = await com.pool.query('insert into training_level (trainning_program_id,title_level,price) values(?,?,?)',[training_program_id,title_level,price]);
+
+    if(!result)throw new AppError('Failed to add training level',500);
+
+    return true;
+
 }

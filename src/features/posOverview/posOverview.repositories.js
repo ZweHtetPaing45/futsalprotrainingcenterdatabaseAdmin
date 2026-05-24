@@ -136,12 +136,58 @@ exports.getPosOverview = async ()=>{
 
         console.log("top_customer_data",top_customer_data);
 
+        const [saleTrend] = await com.pool.query(`
+                    SELECT 
+            months.month_num,
+            months.month_name,
+            COALESCE(SUM(all_orders.total_sale), 0) AS total_sales
+        FROM (
+            SELECT 1 AS month_num, 'January' AS month_name
+            UNION SELECT 2, 'February'
+            UNION SELECT 3, 'March'
+            UNION SELECT 4, 'April'
+            UNION SELECT 5, 'May'
+            UNION SELECT 6, 'June'
+            UNION SELECT 7, 'July'
+            UNION SELECT 8, 'August'
+            UNION SELECT 9, 'September'
+            UNION SELECT 10, 'October'
+            UNION SELECT 11, 'November'
+            UNION SELECT 12, 'December'
+        ) AS months
+
+        LEFT JOIN (
+
+            SELECT 
+                MONTH(create_at) AS month_num,
+                total_amount AS total_sale
+            FROM mobile_order
+            WHERE order_status = 'complete'
+
+            UNION ALL
+
+            SELECT 
+                MONTH(create_at) AS month_num,
+                amount AS total_sale
+            FROM admin_order
+            WHERE order_status = 'complete'
+
+        ) AS all_orders
+
+        ON months.month_num = all_orders.month_num
+
+        GROUP BY months.month_num, months.month_name
+        ORDER BY months.month_num;
+            `);
+    
+
         return {
             total_order,
             total_products,
             total_customer,
             total_revenue,
             popular_product_data,
-            top_customer_data
+            top_customer_data,
+            saleTrend
         }
 }
