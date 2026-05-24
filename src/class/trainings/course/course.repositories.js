@@ -104,9 +104,20 @@ exports.TrainingProgram = async (
 
     console.log('training_schedule_day_id',training_schedule_day_id);
 
+    const [result4] = await com.pool.query(
+        `insert into training_level (training_program_id,title_level,price) values(?,?,?)`,[
+            training_program_id,title_level,price
+        ]
+    );
+
+    if(!result4)throw new AppError('Failed to create training level',500);
+
+    const training_level_id = result4.insertId;
+    // console.log('training_level_id',training_level_id);
+
     const [result2] = await com.pool.query(
-        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time) values(?,?,?,?)`,[
-            training_schedule_day_id,training_program_id,start_time,end_time
+        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time,training_level_id) values(?,?,?,?,?)`,[
+            training_schedule_day_id,training_program_id,start_time,end_time,training_level_id
         ]
     );
 
@@ -120,17 +131,6 @@ exports.TrainingProgram = async (
     // // console.log(typeof dayString);
 
     // const day = dayString.join(',');
-
-    const [result4] = await com.pool.query(
-        `insert into training_level (trainning_program_id,title_level,price) values(?,?,?)`,[
-            training_program_id,title_level,price
-        ]
-    );
-
-    if(!result4)throw new AppError('Failed to create training level',500);
-
-    const training_level_id = result4.insertId;
-    // console.log('training_level_id',training_level_id);
 
     const [result5] = await com.pool.query(
         `insert into training_coach (trainning_program_id,coach_image_url,coach_public_id,instructor_name,biography) values(?,?,?,?,?)`,[
