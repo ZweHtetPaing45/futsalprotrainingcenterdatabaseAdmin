@@ -13,4 +13,7 @@ router.post('/trainingprogram',upload.fields([
 router.post('/adddaytimetraining',controller.AddDayTimeTraining);
 router.post('/addtraininglevel',controller.AddTrainingLevel);
 
+//Get Method
+router.get('/showtraining',controller.ShowTraining);
+
 module.exports = router;

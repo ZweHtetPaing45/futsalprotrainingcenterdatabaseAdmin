@@ -36,6 +36,14 @@ class CourseService{
 
     }
 
+    async ShowTraining(){
+
+        const result = await repo.ShowTraining();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseService();
