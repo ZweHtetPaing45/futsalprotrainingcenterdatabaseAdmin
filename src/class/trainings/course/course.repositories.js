@@ -105,8 +105,8 @@ exports.TrainingProgram = async (
     console.log('training_schedule_day_id',training_schedule_day_id);
 
     const [result4] = await com.pool.query(
-        `insert into training_level (training_program_id,title_level,price) values(?,?,?)`,[
-            training_program_id,title_level,price
+        `insert into training_level (training_program_id,title_level,description,price) values(?,?,?,?)`,[
+            training_program_id,title_level,about_level,price
         ]
     );
 
@@ -145,11 +145,11 @@ exports.TrainingProgram = async (
 }
 
 
-exports.AddDayTimeTraining = async (training_program_id,training_schedule_days_id,start_time,end_time)=>{
+exports.AddDayTimeTraining = async (training_program_id,training_schedule_days_id,start_time,end_time,training_level_id)=>{
 
     const [result] = await com.pool.query(
-        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time) values(?,?,?,?)`,[
-            training_schedule_days_id,training_program_id,start_time,end_time
+        `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time,training_level_id) values(?,?,?,?,?)`,[
+            training_schedule_days_id,training_program_id,start_time,end_time,training_level_id
         ]
     );
     
@@ -158,9 +158,9 @@ exports.AddDayTimeTraining = async (training_program_id,training_schedule_days_i
     return true;
 }
 
-exports.AddTrainingLevel = async (training_program_id,title_level,price)=>{
+exports.AddTrainingLevel = async (training_program_id,description,title_level,price)=>{
 
-    const result = await com.pool.query('insert into training_level (trainning_program_id,title_level,price) values(?,?,?)',[training_program_id,title_level,price]);
+    const result = await com.pool.query('insert into training_level (training_program_id,description,title_level,price) values(?,?,?,?)',[training_program_id,description,title_level,price]);
 
     if(!result)throw new AppError('Failed to add training level',500);
 

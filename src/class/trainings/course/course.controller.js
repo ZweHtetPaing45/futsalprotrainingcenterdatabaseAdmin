@@ -68,13 +68,13 @@ class CourseController {
 
         try{
 
-            const {training_program_id,training_schedule_days_id,start_time,end_time} = req.body;
+            const {training_program_id,training_schedule_days_id,start_time,end_time,training_level_id} = req.body;
 
-            if(!training_program_id || !training_schedule_days_id || !start_time || !end_time){
+            if(!training_program_id || !training_schedule_days_id || !start_time || !end_time || !training_level_id){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time);
+            const result = await service.AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time,training_level_id);
 
             if(!result)throw new AppError('Failed to add day time training',500);
 
@@ -96,13 +96,13 @@ class CourseController {
 
         try{
 
-            const {training_program_id,title_level,price} = req.body;
+            const {training_program_id,description,title_level,price} = req.body;
 
-            if(!training_program_id || !title_level || !price){
+            if(!training_program_id || !title_level || !price || !description){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.AddTrainingLevel(training_program_id,title_level,price);
+            const result = await service.AddTrainingLevel(training_program_id,description,title_level,price);
 
             if(!result)throw new AppError('Failed to add training level',500);
 

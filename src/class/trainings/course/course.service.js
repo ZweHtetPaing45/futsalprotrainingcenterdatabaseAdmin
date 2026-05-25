@@ -20,17 +20,17 @@ class CourseService{
 
     }
 
-    async AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time){
+    async AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time,training_level_id){
 
-        const result = await repo.AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time);
+        const result = await repo.AddDayTimeTraining(training_program_id,training_schedule_days_id,start_time,end_time,training_level_id);
 
         return result;
 
     }
 
-    async AddTrainingLevel(training_program_id,title_level,price){
+    async AddTrainingLevel(training_program_id,description,title_level,price){
 
-        const result = await repo.AddTrainingLevel(training_program_id,title_level,price);
+        const result = await repo.AddTrainingLevel(training_program_id,description,title_level,price);
 
         return result;
 
