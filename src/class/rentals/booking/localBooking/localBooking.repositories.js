@@ -6,6 +6,8 @@ const uploader = require('@zwehtetpaing55/uploader');
 
 exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court_time_slot_ids,department,items,file)=>{
 
+    console.log('items in repo',items);
+
     let image_url;
     let public_id;
 

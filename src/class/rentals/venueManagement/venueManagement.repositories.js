@@ -227,6 +227,7 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id' , g.id,
                         'court_image_url', g.court_image_url,
                         'court_public_id', g.court_public_id
                     )
@@ -239,6 +240,7 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', p.id,
                         'name', p.name
                     )
                 )
@@ -250,6 +252,7 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', co.id,
                         'name', co.name
                     )
                 )
@@ -261,6 +264,7 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', s.id,
                         'name', s.name
                     )
                 )
@@ -272,6 +276,7 @@ exports.ShowCourt = async (venue_id)=>{
             (
                 SELECT JSON_ARRAYAGG(
                     JSON_OBJECT(
+                        'id', r.id,
                         'name', r.name,
                         'detail', r.description
                     )

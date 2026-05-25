@@ -1,48 +1,64 @@
 // Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
 
-// Table follows {
-//   following_user_id integer
-//   followed_user_id integer
-//   created_at timestamp
-// }
 
-// Table training_class{
-//   id integer [primary key]
-// }
 
-Table training_students{
+Table mobile_training_students{
   id integer [primary key]
+  user_id integer
+  payment_id integer
+  training_program_id integer
+  training_level_id integer
+  training_schedule_time_slot_id integer
+  name varchar
+  gender enum('male','female')
+  phone varchar
+  email varchar
+  age integer
+  address text
+  payment_image_url text
+  payment_public_id text
+  create_at timestamp
+}
+
+Table admin_training_students{
+  id integer [primary key]
+  payment_id integer
+  training_program_id integer
+  training_level_id integer
+  training_schedule_time_slot_id integer
   name varchar
   gender enum('male','female')
   age integer
   phone varchar
-  emergency_number varchar
   email varchar
-  
+  payment_image_url text
+  payment_public_id text
+  create_at timestamp_stamp
 }
 
 Table training_level{
   id integer [primary key]
   training_program_id integer
   title_level varchar
-  about_level varchar
+  description varchar
   price integer
   create_at timestamp
 }
 
 Table training_schedule_time_slots{
   id integer [primary key]
+  training_schedule_day_id integer
   training_program_id integer
+  training_level_id integer
   start_time time
   end_time time
 }
 
 Table training_schedule_days{
   id integer [primary key]
-  training_program_id integer
-  day enum('Mon','Tue','Wed','Thu','Fri','Sat','Sun')
-  level_type varchar
+  day eum('Mon','Tue','Wed','Thu','Fri','Sat','Sun')
+  create_at timestamp
 }
 
 Table training_program{
@@ -108,6 +124,7 @@ Table venue{
   price integer
   venue_image_url text
   venue_public_id text
+  available boolean
   create_at timestamp
 }
 
@@ -147,8 +164,6 @@ Table equipment{
   product_name varchar
   rental_price integer
   qty_total integer
-  product_image_url text
-  product_public_id text
   create_at timestamp
 }
 
@@ -156,6 +171,7 @@ Table equipment{
 
 Table mobile_rental_booking{
   id integer [primary key]
+  user_id integer
   venue_id integer
   court_id integer
   payment_id integer
@@ -576,6 +592,35 @@ Ref: "training_program"."id" < "training_level"."training_program_id"
 
 Ref: "training_program"."id" < "training_schedule_time_slots"."training_program_id"
 
-Ref: "training_program"."id" < "training_schedule_days"."training_program_id"
 
 Ref: "training_program"."id" < "training_coach"."training_program_id"
+
+Ref: "training_level"."id" < "admin_training_students"."training_level_id"
+
+Ref: "payment"."id" < "admin_training_students"."payment_id"
+
+
+Ref: "training_schedule_days"."id" < "training_schedule_time_slots"."training_schedule_day_id"
+
+
+Ref: "training_program"."id" < "admin_training_students"."training_program_id"
+
+
+
+
+
+Ref: "training_level"."id" < "training_schedule_time_slots"."training_level_id"
+
+Ref: "training_schedule_time_slots"."id" < "admin_training_students"."training_schedule_time_slot_id"
+
+Ref: "createuser"."id" < "mobile_rental_booking"."user_id"
+
+Ref: "training_schedule_time_slots"."id" < "mobile_training_students"."training_schedule_time_slot_id"
+
+Ref: "training_level"."id" < "mobile_training_students"."training_level_id"
+
+Ref: "payment"."id" < "mobile_training_students"."payment_id"
+
+Ref: "training_program"."id" < "mobile_training_students"."training_program_id"
+
+Ref: "createuser"."id" < "mobile_training_students"."user_id"
