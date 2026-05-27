@@ -30,9 +30,9 @@ class CourseController {
             const {learning_description,main_title,title,
                 about_title,details,title_level,about_level,
                 price,start_time,end_time,days,instructor_name,
-                biography} = req.body;
+                biography,course_name} = req.body;
 
-            if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !days || !instructor_name || !biography){
+            if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !days || !instructor_name || !biography || !course_name){
                 throw new AppError('Please fill all the fields', 400);
             }
 
@@ -43,7 +43,7 @@ class CourseController {
                 learning_description,main_title,
                 title,about_title,details,title_level,about_level,
                 price,start_time,end_time,days,file.coach_file[0],
-                instructor_name,biography
+                instructor_name,biography,course_name
             );
 
             if(!result)throw new AppError('Failed to create training program',500);
@@ -144,6 +144,101 @@ class CourseController {
 
     }
 
+    async AddTrainingStudent(req,res,next){
+
+        try{
+
+            const {name,gender,age,phone,email,payment_id,training_program_id,training_level_id} = req.body;
+
+            const file = req.file;
+
+            if(!name || !gender || !age || !phone || !email || !payment_id || !training_program_id || !training_level_id){
+                throw new AppError('Please fill all the fields', 400);
+            }
+
+            if(!file){
+                throw new AppError('Please fill all the fields', 400);
+            }
+
+            const result = await service.AddTrainingStudent(name,gender,age,phone,email,payment_id,training_program_id,training_level_id,file);
+
+            // if(!result)throw new AppError('Failed to add training student',500);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training student added successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training student not added',
+                    data: result
+                });
+            }
+
+
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async ShowTrainingStudentAll(req,res,next){
+
+        try{
+
+            const result = await service.ShowTrainingStudentAll();
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Show Training student retrieved successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Failed to retrieve training students',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteTrainingStudent(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const result = await service.DeleteTrainingStudent(id);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training student deleted successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training student not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
 
 }
 

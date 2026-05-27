@@ -8,13 +8,13 @@ class CourseService{
     learning_file,learning_description,main_title,
     title,about_title,details,title_level,about_level,
     price,start_time,end_time,days,coach_file,
-    instructor_name,biography){
+    instructor_name,biography,course_name){
 
     const result = await repo.TrainingProgram(category_card_file,main_program_banner_file,
     learning_file,learning_description,main_title,
     title,about_title,details,title_level,about_level,
     price,start_time,end_time,days,coach_file,
-    instructor_name,biography);
+    instructor_name,biography,course_name);
 
     return result;
 
@@ -39,6 +39,30 @@ class CourseService{
     async ShowTraining(){
 
         const result = await repo.ShowTraining();
+
+        return result;
+
+    }
+
+    async AddTrainingStudent(name,gender,age,phone,email,payment_id,training_program_id,training_level_id,file){
+
+        const result = await repo.AddTrainingStudent(name,gender,age,phone,email,payment_id,training_program_id,training_level_id,file);
+
+        return result;
+
+    }
+
+    async ShowTrainingStudentAll(){
+
+        const result = await repo.ShowTrainingStudentAll();
+
+        return result;
+
+    }
+
+    async DeleteTrainingStudent(id){
+
+        const result = await repo.DeleteTrainingStudent(id);
 
         return result;
 
