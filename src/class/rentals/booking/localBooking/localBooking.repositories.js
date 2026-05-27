@@ -11,17 +11,19 @@ exports.AdminBooking = async (venue_id,court_id,payment_method,reciept_no,date,c
     let image_url;
     let public_id;
 
+    let bookingId;
+
     console.log('court_time_slot_ids',court_time_slot_ids);
     console.log('typeof court_time_slot_ids',typeof court_time_slot_ids);
 
     if(file){
 
+        console.log('First');
+
         const result = await uploader.upload(file, 'admin_booking');
 
         image_url = result.image_url;
         public_id = result.public_id;
-
-    }
 
     let [id] = await com.pool.query('select id from payment where payment_method = ?',[payment_method]);
 
@@ -33,9 +35,22 @@ exports.AdminBooking = async (venue_id,court_id,payment_method,reciept_no,date,c
 
     if(!booking)throw new AppError('Admin Booking Error',400);
 
-    const bookingId = booking.insertId;
+    bookingId = booking.insertId;
 
     console.log('booking id',bookingId);
+}else{
+
+    console.log('Second');
+
+    const [booking] = await com.pool.query('insert into admin_booking (venue_id,court_id,reciept_no,date) values(?,?,?,?)',[venue_id,court_id,reciept_no,date]);
+
+    if(!booking)throw new AppError('Admin Booking Error',400);
+
+    bookingId = booking.insertId;
+
+    console.log('booking id',bookingId); 
+
+}
 
     const [court_price] = await com.pool.query('select hourly_price from court where id = ?',court_id);
 
@@ -125,7 +140,11 @@ exports.AdminBooking = async (venue_id,court_id,payment_method,reciept_no,date,c
 
 }   
 
-    const [prindOrder] = await com.pool.query(`
+    let prindOrder;
+
+    if(file || payment_method){
+        
+     [prindOrder] = await com.pool.query(`
          
              select 
                 a.id,
@@ -148,6 +167,40 @@ exports.AdminBooking = async (venue_id,court_id,payment_method,reciept_no,date,c
         `,[bookingId]);
 
     if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
+
+    console.log('prindOrder',prindOrder);
+
+     }else{
+
+        [prindOrder] = await com.pool.query(`
+         
+             select 
+                a.id,
+               -- p.payment_method,
+                a.reciept_no,
+                DATE_FORMAT(a.create_at, '%Y-%m-%d %h:%i:%s %p') AS create_at,
+                DATE_FORMAT(a.date, '%Y-%m-%d') AS date,
+                a.price,
+                a.amount
+
+                from admin_booking a
+                -- join payment p on p.id = a.payment_id
+                join venue v on v.id = a.venue_id
+                join court c on c.id = a.court_id
+                join admin_booking_time_slot abts on abts.booking_id = a.id
+                join court_time_slot cts on cts.id = abts.court_time_slot_id
+                left join admin_booking_equipment abe on abe.booking_id = a.id
+                left join equipment e on e.id = abe.equipment_id
+                where a.id = ?
+        `,[bookingId]);
+
+    if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
+
+    console.log('prindOrder',prindOrder);
+
+
+     }
+
 
     const grouped = {};
 

@@ -25,7 +25,7 @@ class localBookingController{
             console.log('file',file);
             
 
-            if(!venue_id || !court_id || !payment_method || !reciept_no || !date || !court_time_slot_ids || !file){
+            if(!venue_id || !court_id || !reciept_no || !date || !court_time_slot_ids ){
                 throw new AppError('Please fill all the fields', 400);
             }
 
