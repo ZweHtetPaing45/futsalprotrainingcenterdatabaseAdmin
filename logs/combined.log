@@ -1807,3 +1807,12 @@ GROUP BY p.id' at line 55
 2026-05-26 19:54:41 [32minfo[39m:: Server is running on port 5000
 2026-05-26 19:55:17 [32minfo[39m:: Server is running on port 5000
 2026-05-27 14:13:25 [32minfo[39m:: Server is running on port 5000
+2026-05-27 14:26:12 [32minfo[39m:: Server is running on port 5000
+2026-05-27 14:38:18 [32minfo[39m:: Server is running on port 5000
+2026-05-27 15:04:19 [32minfo[39m:: Server is running on port 5000
+2026-05-27 15:08:57 [32minfo[39m:: Server is running on port 5000
+2026-05-27 17:33:01 [32minfo[39m:: Server is running on port 5000
+2026-05-27 17:33:28 [31merror[39m:: Please fill all the fields
+2026-05-27 17:34:25 [32minfo[39m:: Server is running on port 5000
+2026-05-27 17:34:58 [32minfo[39m:: Server is running on port 5000
+2026-05-27 17:35:18 [32minfo[39m:: Server is running on port 5000

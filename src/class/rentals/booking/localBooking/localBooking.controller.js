@@ -8,7 +8,7 @@ class localBookingController{
 
         try{
 
-            const {venue_id,court_id,payment_id,reciept_no,date,court_time_slot_ids,department,items} = req.body;
+            const {venue_id,court_id,payment_method,reciept_no,date,court_time_slot_ids,department,items} = req.body;
 
             const file = req.file;
 
@@ -16,7 +16,7 @@ class localBookingController{
             
             console.log('venue_id',venue_id);
             console.log('court_id',court_id);
-            console.log('payment_id',payment_id);
+            console.log('payment_method',payment_method);
             console.log('reciept_no',reciept_no);
             console.log('date',date);
             console.log('court_time_slot_ids',court_time_slot_ids);
@@ -25,12 +25,12 @@ class localBookingController{
             console.log('file',file);
             
 
-            if(!venue_id || !court_id || !payment_id || !reciept_no || !date || !court_time_slot_ids || !file){
+            if(!venue_id || !court_id || !payment_method || !reciept_no || !date || !court_time_slot_ids || !file){
                 throw new AppError('Please fill all the fields', 400);
             }
 
 
-            const result = await service.AdminBooking(venue_id,court_id,payment_id,reciept_no,date,court_time_slot_ids,department,items,file);
+            const result = await service.AdminBooking(venue_id,court_id,payment_method,reciept_no,date,court_time_slot_ids,department,items,file);
 
             if(result){
                 res.status(201).json({

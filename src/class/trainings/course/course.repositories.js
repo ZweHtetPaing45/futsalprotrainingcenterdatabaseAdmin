@@ -181,6 +181,7 @@ exports.ShowTraining = async () => {
             tp.about_title,
             tp.details,
             tp.learning_description,
+            tp.course_name,
 
             -- training levels
             (

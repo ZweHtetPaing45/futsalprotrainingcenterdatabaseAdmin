@@ -4,7 +4,7 @@ const logger = require('../../../../utils/logger');
 const uploader = require('@zwehtetpaing55/uploader');
 
 
-exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court_time_slot_ids,department,items,file)=>{
+exports.AdminBooking = async (venue_id,court_id,payment_method,reciept_no,date,court_time_slot_ids,department,items,file)=>{
 
     console.log('items in repo',items);
 
@@ -22,6 +22,12 @@ exports.AdminBooking = async (venue_id,court_id,payment_id,reciept_no,date,court
         public_id = result.public_id;
 
     }
+
+    let [id] = await com.pool.query('select id from payment where payment_method = ?',[payment_method]);
+
+    console.log('payment_id',id[0].id);
+
+    const payment_id = id[0].id;
 
     const [booking] = await com.pool.query('insert into admin_booking (venue_id,court_id,payment_id,reciept_no,date,payment_image_url,payment_public_id) values(?,?,?,?,?,?,?)',[venue_id,court_id,payment_id,reciept_no,date,image_url,public_id]);
 

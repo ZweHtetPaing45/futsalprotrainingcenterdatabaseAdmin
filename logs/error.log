@@ -414,3 +414,4 @@ GROUP BY p.id' at line 55
 2026-05-21 14:44:39 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
 2026-05-21 14:45:11 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
 2026-05-21 14:48:59 [31merror[39m:: Failed to delete venue image with public id venue_images/1779275587571-image.png: Delete failed: Request failed with status code 500
+2026-05-27 17:33:28 [31merror[39m:: Please fill all the fields
