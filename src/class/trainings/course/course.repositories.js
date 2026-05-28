@@ -5,11 +5,11 @@ const uploader = require('@zwehtetpaing55/uploader');
 
 
 exports.TrainingProgram = async (
-    category_card_file,main_program_banner_file,
+    category_card_file,
     learning_file,learning_description,main_title,
     title,about_title,details,title_level,about_level,
-    price,start_time,end_time,days,coach_file,
-    instructor_name,biography,course_name
+    price,start_time,end_time,day_id,coach_file,
+    instructor_name,biography,course_id
 )=>{
 
     // console.log('days',days);
@@ -20,8 +20,8 @@ exports.TrainingProgram = async (
     let category_card_image_url;
     let category_card_public_id;
 
-    let main_program_banner_image_url;
-    let main_program_banner_public_id;
+    // let main_program_banner_image_url;
+    // let main_program_banner_public_id;
 
     let coach_image_url;
     let coach_public_id;
@@ -40,16 +40,16 @@ exports.TrainingProgram = async (
 
     }
 
-    if(main_program_banner_file){
+    // if(main_program_banner_file){
 
-        const result = await uploader.upload(main_program_banner_file,'course_images');
+    //     const result = await uploader.upload(main_program_banner_file,'course_images');
 
-        if(!result)throw new AppError('Failed to upload main program banner image',500);
+    //     if(!result)throw new AppError('Failed to upload main program banner image',500);
 
-        main_program_banner_image_url = result.image_url;
-        main_program_banner_public_id = result.public_id;
+    //     main_program_banner_image_url = result.image_url;
+    //     main_program_banner_public_id = result.public_id;
 
-    }
+    // }
 
     if(coach_file){
 
@@ -73,40 +73,56 @@ exports.TrainingProgram = async (
 
     }
 
-    const [result1] = await com.pool.query(
-        `insert into training_program (
-        category_card_image_url,category_card_public_id,
-        main_program_banner_image_url,main_program_banner_public_id,
-        learning_image_url,learning_public_id,learning_description,
-        main_title,title,about_title,details,course_name) values(?,?,?,?,?,?,?,?,?,?,?,?)`,[
-        category_card_image_url,category_card_public_id,
-        main_program_banner_image_url,main_program_banner_public_id,
-        learning_image_url,learning_public_id,learning_description,
-        main_title,title,about_title,details,course_name]);
 
-    const training_program_id = result1.insertId;
+    const updateOrInsertCourse = await com.pool.query(`
+        update training_program set
+          category_card_image_url = ?,
+          category_card_public_id = ?,
+          learning_image_url = ?,
+          learning_public_id = ?,
+          learning_description = ?,
+          main_title = ?,
+          title = ?,
+          about_title = ?,
+          details = ?
 
-    if(!result1)throw new AppError('Failed to create training program',500);
+          where id = ?
+        `,[category_card_image_url,category_card_public_id,learning_image_url,learning_public_id,learning_description,main_title,title,about_title,details,course_id]);
+
+    // const [result1] = await com.pool.query(
+    //     `insert into training_program (
+    //     category_card_image_url,category_card_public_id,
+    //     main_program_banner_image_url,main_program_banner_public_id,
+    //     learning_image_url,learning_public_id,learning_description,
+    //     main_title,title,about_title,details,course_name) values(?,?,?,?,?,?,?,?,?,?,?,?)`,[
+    //     category_card_image_url,category_card_public_id,
+    //     main_program_banner_image_url,main_program_banner_public_id,
+    //     learning_image_url,learning_public_id,learning_description,
+    //     main_title,title,about_title,details,course_name]);
+
+    // const training_program_id = result1.insertId;
+
+    // if(!result1)throw new AppError('Failed to create training program',500);
 
     // console.log("training_program_id",training_program_id);
 
-    console.log('days',days);
+    // console.log('days',days);
 
-    const [result3] = await com.pool.query(
-        `insert into training_schedule_days (day) values(?)`,[
-            days
-        ]
-    );
+    // const [result3] = await com.pool.query(
+    //     `insert into training_schedule_days (day) values(?)`,[
+    //         days
+    //     ]
+    // );
 
-    if(!result3)throw new AppError('Failed to create training schedule day',500);
+    // if(!result3)throw new AppError('Failed to create training schedule day',500);
 
-    const training_schedule_day_id = result3.insertId;
+    // const training_schedule_day_id = result3.insertId;
 
-    console.log('training_schedule_day_id',training_schedule_day_id);
+    // const [findTrainingProgramDay] = await com.pool.query(
 
     const [result4] = await com.pool.query(
         `insert into training_level (training_program_id,title_level,description,price) values(?,?,?,?)`,[
-            training_program_id,title_level,about_level,price
+            course_id,title_level,about_level,price
         ]
     );
 
@@ -117,7 +133,7 @@ exports.TrainingProgram = async (
 
     const [result2] = await com.pool.query(
         `insert into training_schedule_time_slots (training_schedule_days_id,trainning_program_id,start_time,end_time,training_level_id) values(?,?,?,?,?)`,[
-            training_schedule_day_id,training_program_id,start_time,end_time,training_level_id
+            day_id,course_id,start_time,end_time,training_level_id
         ]
     );
 
@@ -134,7 +150,7 @@ exports.TrainingProgram = async (
 
     const [result5] = await com.pool.query(
         `insert into training_coach (training_program_id,coach_image_url,coach_public_id,instructor_name,biography) values(?,?,?,?,?)`,[
-            training_program_id,coach_image_url,coach_public_id,instructor_name,biography
+            course_id,coach_image_url,coach_public_id,instructor_name,biography
         ]
     );
 

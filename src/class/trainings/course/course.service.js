@@ -4,17 +4,17 @@ const repo = require('./course.repositories');
 class CourseService{
 
     async TrainingProgram(
-        category_card_file,main_program_banner_file,
+        category_card_file,
     learning_file,learning_description,main_title,
     title,about_title,details,title_level,about_level,
-    price,start_time,end_time,days,coach_file,
-    instructor_name,biography,course_name){
+    price,start_time,end_time,day_id,coach_file,
+    instructor_name,biography,course_id){
 
-    const result = await repo.TrainingProgram(category_card_file,main_program_banner_file,
+    const result = await repo.TrainingProgram(category_card_file,
     learning_file,learning_description,main_title,
     title,about_title,details,title_level,about_level,
-    price,start_time,end_time,days,coach_file,
-    instructor_name,biography,course_name);
+    price,start_time,end_time,day_id,coach_file,
+    instructor_name,biography,course_id);
 
     return result;
 

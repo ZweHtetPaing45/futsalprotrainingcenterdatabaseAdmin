@@ -19,31 +19,32 @@ class CourseController {
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            if(!file.main_program_banner_image){
-                throw new AppError('Please fill all the fields', 400);
-            }
+            // if(!file.main_program_banner_image){
+            //     throw new AppError('Please fill all the fields', 400);
+            // }
 
             if(!file.learning_image){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const {learning_description,main_title,title,
-                about_title,details,title_level,about_level,
-                price,start_time,end_time,days,instructor_name,
-                biography,course_name} = req.body;
+            const {
+                learning_description,main_title,
+                title,about_title,details,title_level,about_level,
+                price,start_time,end_time,day_id,
+                instructor_name,biography,course_id} = req.body;
 
-            if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !days || !instructor_name || !biography || !course_name){
+            if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !day_id || !instructor_name || !biography || !course_id){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            console.log(file.category_card_image[0],file.main_program_banner_image[0],file.learning_image[0],file.coach_file[0]);
+            console.log(file.category_card_image[0],file.learning_image[0],file.coach_file[0]);
 
             const result = await service.TrainingProgram(
-                file.category_card_image[0],file.main_program_banner_image[0],file.learning_image[0],
+                file.category_card_image[0],file.learning_image[0],
                 learning_description,main_title,
                 title,about_title,details,title_level,about_level,
-                price,start_time,end_time,days,file.coach_file[0],
-                instructor_name,biography,course_name
+                price,start_time,end_time,day_id,file.coach_file[0],
+                instructor_name,biography,course_id
             );
 
             if(!result)throw new AppError('Failed to create training program',500);
