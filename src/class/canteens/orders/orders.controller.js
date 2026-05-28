@@ -8,15 +8,15 @@ class CanteenOrderController{
 
         try{
 
-            const {payment_id,reciept_no,items} = req.body;
+            const {payment_method,reciept_no,items} = req.body;
 
             const file = req.file;
 
-            if(!payment_id || !reciept_no || !items || !file){
+            if(!payment_method || !reciept_no || !items || !file){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.CanteenAddOrder(payment_id,reciept_no,items,file);
+            const result = await service.CanteenAddOrder(payment_method,reciept_no,items,file);
 
             if(result){
                 res.status(201).json({

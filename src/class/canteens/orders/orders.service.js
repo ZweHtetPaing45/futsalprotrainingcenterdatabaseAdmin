@@ -3,9 +3,9 @@ const repo = require('./orders.repositories');
 
 class CanteenOrderService{
 
-    async CanteenAddOrder(payment_id,reciept_no,items,file){
+    async CanteenAddOrder(payment_method,reciept_no,items,file){
 
-        const result = await repo.CanteenAddOrder(payment_id,reciept_no,items,file);
+        const result = await repo.CanteenAddOrder(payment_method,reciept_no,items,file);
 
         return result;
 

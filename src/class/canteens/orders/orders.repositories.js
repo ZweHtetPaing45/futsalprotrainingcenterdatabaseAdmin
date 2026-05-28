@@ -5,10 +5,10 @@ const uploader = require('@zwehtetpaing55/uploader');
 
 
 
-exports.CanteenAddOrder = async (payment_id,reciept_no,items,file)=>{
+exports.CanteenAddOrder = async (payment_method,reciept_no,items,file)=>{
 
     console.log('file',file);
-    console.log('payment_id',payment_id);
+    console.log('payment_method',payment_method);
     console.log('items',items);
 
 
@@ -44,8 +44,12 @@ exports.CanteenAddOrder = async (payment_id,reciept_no,items,file)=>{
     
     console.log('publicId',publicId);
 
+    const [payment_id] = await com.pool.query('select id from payment where payment_method = ?',[payment_method]);
+
+    console.log('payment_id',payment_id[0].id);
+
     const [order] = await com.pool.query('insert into canteen_order(payment_id,payment_image_url,payment_public_id,reciept_no) values (?,?,?,?)',
-    [payment_id,imageUrl,publicId,reciept_no]);
+    [payment_id[0].id,imageUrl,publicId,reciept_no]);
 
     const orderId = order.insertId;
 
