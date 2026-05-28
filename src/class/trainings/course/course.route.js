@@ -16,7 +16,7 @@ router.post('/addtrainingstudent',upload.single('payment_image'),controller.AddT
 //Get Method
 router.get('/showtraining',controller.ShowTraining);
 router.get('/showtrainingstudentall',controller.ShowTrainingStudentAll);
-
+router.get('/showdays',controller.ShowDays);
 
 //Delete Method
 router.delete('/deletetrainingstudent/:id',controller.DeleteTrainingStudent);

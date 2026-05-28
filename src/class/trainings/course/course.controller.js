@@ -241,6 +241,24 @@ class CourseController {
 
     }
 
+    async ShowDays(req,res,next){
+
+        try{
+
+            const result = await service.ShowDays();
+
+            res.status(200).json({
+                success: true,
+                message: 'Days retrieved successfully',
+                data: result
+            });
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new CourseController();

@@ -68,6 +68,14 @@ class CourseService{
 
     }
 
+    async ShowDays(){
+
+        const result = await repo.ShowDays();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseService();

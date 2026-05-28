@@ -501,3 +501,16 @@ exports.DeleteTrainingStudent = async (id)=>{
     return true;
 
 }
+
+exports.ShowDays = async ()=>{
+
+    const [days] = await com.pool.query('select id,day from training_schedule_days');
+
+    if(!days)throw new AppError('Failed to find days',500);
+
+    if(days.length === 0){
+        return [];
+    }
+
+    return days;
+}
