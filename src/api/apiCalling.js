@@ -29,6 +29,7 @@ const courseRouter = require('../class/trainings/course/course.route');
 const bookingcustomerRouter = require('../class/rentals/customer/customer.route');
 const posOverviewRouter = require('../features/posOverview/posOverview.route');
 const courseManagementRouter = require('../class/trainings/courseManagement/courseManagement.route');
+const courseStudentRouter = require('../class/trainings/students/courseStudent.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -66,6 +67,6 @@ router.use('/course',courseRouter);
 router.use('/bookingcustomer',bookingcustomerRouter);
 router.use('/posoverview',posOverviewRouter);
 router.use('/coursemanagement',courseManagementRouter);
-
+router.use('/coursestudent',courseStudentRouter);
 
 module.exports = router;

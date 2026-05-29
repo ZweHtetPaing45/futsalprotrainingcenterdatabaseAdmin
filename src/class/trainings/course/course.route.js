@@ -11,11 +11,10 @@ router.post('/trainingprogram',upload.fields([
 
 router.post('/adddaytimetraining',controller.AddDayTimeTraining);
 router.post('/addtraininglevel',controller.AddTrainingLevel);
-router.post('/addtrainingstudent',upload.single('payment_image'),controller.AddTrainingStudent);
+
 
 //Get Method
 router.get('/showtraining',controller.ShowTraining);
-router.get('/showtrainingstudentall',controller.ShowTrainingStudentAll);
 router.get('/showdays',controller.ShowDays);
 
 //Delete Method
