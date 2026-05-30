@@ -19,6 +19,14 @@ class CourseManagementServices{
 
     }
 
+    async UpdateTraining(id,course_name,file){
+
+        const result = await repo.UpdateTraining(id,course_name,file);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseManagementServices();

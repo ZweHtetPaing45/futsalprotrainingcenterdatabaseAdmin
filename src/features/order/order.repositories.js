@@ -122,7 +122,8 @@ exports.addOrder = async (file,payment_method,items,reciept_no)=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        CONVERT_TZ(o.create_at, '+00:00','+06:30') AS create_at,
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only,
                         o.sub_total
                     FROM admin_order o
                     JOIN admin_order_items oi ON o.id = oi.admin_order_id
@@ -142,7 +143,8 @@ console.log('prindOrder',prindOrder);
                 grouped[row.order_id] = {
                 order_id: row.order_id,
                 reciept_no: row.reciept_no,
-                create_at: row.create_at,
+                Date: row.date_only,
+                Time: row.time_only,
                 customer_name: row.customer_name,
                 items: [],
                 Sub_total: row.sub_total,
@@ -210,8 +212,8 @@ exports.showAdminOrderData = async ()=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS Date,
-                        TIME(o.create_at) AS Time,
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only,
                         o.sub_total
                     FROM admin_order o
                     JOIN admin_order_items oi ON o.id = oi.admin_order_id
@@ -229,8 +231,8 @@ exports.showAdminOrderData = async ()=>{
                 order_status: row.order_status,
                 order_id: row.order_id,
                 reciept_no: row.reciept_no,
-                Date: row.Date,
-                Time: row.Time,
+                Date: row.date_only,
+                Time: row.time_only,
                 customer_name: row.customer_name,
                 items: [],
                 Sub_total: row.sub_total,
@@ -273,8 +275,8 @@ exports.showMobileOrderData = async ()=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS Date,
-                        TIME(o.create_at) AS Time,
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only,
                         o.delivery_fee,
                         o.sub_total,
                         o.order_status
@@ -294,8 +296,8 @@ exports.showMobileOrderData = async ()=>{
                 payment_proof: row.mobile_image_url,
                 order_status: row.order_status,
                 order_id: row.order_id,
-                Date: row.Date,
-                Time: row.Time,
+                Date: row.date_only,
+                Time: row.time_only,
                 customer_name: row.customer_name,
                 items: [],
                 Sub_total: row.sub_total,

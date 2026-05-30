@@ -5,17 +5,25 @@ const logger = require('../../utils/logger');
 
 exports.getPosOverview = async ()=>{
 
-    const [admin_order_count] = await com.pool.query('select count(*) as total_admin_order from admin_order;');
+    const [admin_order_count] = await com.pool.query(`
+        SELECT COUNT(*) AS order_received
+FROM admin_order
+WHERE order_status IN ('pending', 'complete');
+        `);
 
     // console.log("admin_order_count",admin_order_count[0].total_admin_order);
 
-    const admin_order = admin_order_count[0].total_admin_order;
+    const admin_order = admin_order_count[0].order_received;
 
-    const [mobile_order_count] = await com.pool.query('select count(*) as total_mobile_order from mobile_order;');
+    const [mobile_order_count] = await com.pool.query(`
+        SELECT COUNT(*) AS order_received
+FROM mobile_order
+WHERE order_status IN ('pending', 'complete');
+        `);
 
     // console.log("mobile_order_count",mobile_order_count[0].total_mobile_order);
 
-    const mobile_order = mobile_order_count[0].total_mobile_order;
+    const mobile_order = mobile_order_count[0].order_received;
 
     const total_order = admin_order + mobile_order;
 
@@ -137,47 +145,27 @@ exports.getPosOverview = async ()=>{
         console.log("top_customer_data",top_customer_data);
 
         const [saleTrend] = await com.pool.query(`
-                    SELECT 
-            months.month_num,
-            months.month_name,
-            COALESCE(SUM(all_orders.total_sale), 0) AS total_sales
+                            SELECT
+            YEAR(all_orders.create_at) AS year,
+            MONTH(all_orders.create_at) AS month_num,
+            MONTHNAME(all_orders.create_at) AS month_name,
+            SUM(all_orders.amount) AS total_amount
         FROM (
-            SELECT 1 AS month_num, 'January' AS month_name
-            UNION SELECT 2, 'February'
-            UNION SELECT 3, 'March'
-            UNION SELECT 4, 'April'
-            UNION SELECT 5, 'May'
-            UNION SELECT 6, 'June'
-            UNION SELECT 7, 'July'
-            UNION SELECT 8, 'August'
-            UNION SELECT 9, 'September'
-            UNION SELECT 10, 'October'
-            UNION SELECT 11, 'November'
-            UNION SELECT 12, 'December'
-        ) AS months
-
-        LEFT JOIN (
-
-            SELECT 
-                MONTH(create_at) AS month_num,
-                total_amount AS total_sale
-            FROM mobile_order
-            WHERE order_status = 'complete'
+            SELECT create_at, amount
+            FROM admin_order
+            WHERE order_status IN ('pending', 'complete')
 
             UNION ALL
 
-            SELECT 
-                MONTH(create_at) AS month_num,
-                amount AS total_sale
-            FROM admin_order
-            WHERE order_status = 'complete'
-
+            SELECT create_at, total_amount AS amount
+            FROM mobile_order
+            WHERE order_status IN ('pending', 'complete')
         ) AS all_orders
-
-        ON months.month_num = all_orders.month_num
-
-        GROUP BY months.month_num, months.month_name
-        ORDER BY months.month_num;
+        GROUP BY
+            YEAR(all_orders.create_at),
+            MONTH(all_orders.create_at),
+            MONTHNAME(all_orders.create_at)
+        ORDER BY year, month_num;
             `);
     
 

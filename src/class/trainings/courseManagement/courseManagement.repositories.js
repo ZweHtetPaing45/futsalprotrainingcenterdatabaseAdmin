@@ -35,3 +35,53 @@ exports.ShowTrainingImage = async () =>{
 
     return result;
 }
+
+exports.UpdateTraining = async (id,course_name,file) =>{
+    
+    let query = "UPDATE training_program SET ";
+    let values = [];
+
+    if (course_name !== '') {
+    query += "course_name = ?, ";
+    values.push(course_name);
+    }
+
+    if (file) {
+    const [old] = await com.pool.query(
+      "SELECT main_program_banner_public_id FROM training_program WHERE id = ?",
+      [id]
+    );
+
+    const pu_id = old[0]?.main_program_banner_public_id;
+
+    console.log('pu_id',pu_id);
+
+    if (pu_id) {
+      await uploader.delete(pu_id);
+    }
+
+    const result = await uploader.upload(file, "course_images");
+
+    query += "main_program_banner_image_url = ?, main_program_banner_public_id = ?, ";
+    values.push(result.image_url, result.public_id);
+  }
+
+  if (values.length === 0) {
+    return false;
+  }
+
+  // remove last comma
+  query = query.slice(0, -2);
+
+  query += " WHERE id = ?";
+  values.push(id);
+
+  const [result] = await com.pool.query(query, values);
+
+  if (!result) {
+    throw new AppError("Failed to update training", 500);
+  }
+
+  return true;
+
+}

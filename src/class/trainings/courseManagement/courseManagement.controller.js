@@ -53,6 +53,38 @@ class CourseManagementController{
         }
 
     }
+
+    async UpdateTraining(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const {course_name} = req.body;
+
+            const file = req.file;
+
+            const result = await service.UpdateTraining(id,course_name,file);
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Training updated successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Training not updated',
+                    data: result
+                });
+            }   
+
+        }catch(error){
+            next(error);
+        }
+
+    }
 }
 
 module.exports = new CourseManagementController();

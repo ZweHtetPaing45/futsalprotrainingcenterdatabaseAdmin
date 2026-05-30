@@ -40,6 +40,22 @@ exports.ShowTrainingOverview = async ()=>{
 
     if(!new_enrollment)throw new AppError('Failed to get new enrollment',500);
 
+
+    //Training Enrollment
+//     SELECT 
+//     YEAR(all_students.create_at) AS year,
+//     MONTH(all_students.create_at) AS month_num,
+//     COUNT(*) AS total_students
+// FROM (
+//     SELECT create_at FROM admin_training_students
+//     UNION ALL
+//     SELECT create_at FROM mobile_training_students
+// ) AS all_students
+// GROUP BY 
+//     YEAR(all_students.create_at),
+//     MONTH(all_students.create_at)
+// ORDER BY year, month_num;
+
     const [enrollment] = await com.pool.query(`
             SELECT 
         MONTH(all_students.create_at) AS month_num,
