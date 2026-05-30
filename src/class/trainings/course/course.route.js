@@ -14,7 +14,7 @@ router.post('/addtraininglevel',controller.AddTrainingLevel);
 
 
 //Get Method
-router.get('/showtraining',controller.ShowTraining);
+router.get('/showtraining/:id',controller.ShowTraining);
 router.get('/showdays',controller.ShowDays);
 
 //Delete Method

@@ -160,7 +160,8 @@ exports.ShowCanteenOrderData = async ()=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        DATE_FORMAT(o.create_at, '%Y-%m-%d %h:%i:%s %p') AS create_at
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS Date,
+                        TIME(o.create_at) AS Time
                     FROM canteen_order o
                         JOIN canteen_order_item oi ON o.id = oi.canteen_order_id
                         JOIN canteen_products p ON p.id = oi.canteen_product_id
@@ -178,7 +179,8 @@ console.log('prindOrder',prindOrder);
                 payment_method: row.payment_method,
                 payment_image: row.payment_image_url,
                 reciept_no: row.reciept_no,
-                create_at: row.create_at,
+                Date: row.Date,
+                Time: row.Time,
                 items: [],
                 delivery_fee: row.delivery_fee,
                 Total: row.amount,
@@ -198,5 +200,15 @@ console.log('prindOrder',prindOrder);
             console.log('result1',result1);
 
     return result1;
+
+}
+
+exports.TotalCanteenOrder = async ()=>{
+
+    const [result] = await com.pool.query('select count(*) as total_order from canteen_order');
+
+    if(!result)throw new AppError('Failed to get total order',500);
+
+    return result[0].total_order;
 
 }

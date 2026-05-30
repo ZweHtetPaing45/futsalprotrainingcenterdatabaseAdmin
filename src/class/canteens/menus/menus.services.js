@@ -78,6 +78,14 @@ class menuService{
 
     }
 
+    async ShowMenuTotal(){
+
+        const result = await repo.ShowMenuTotal();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new menuService();

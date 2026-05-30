@@ -35,6 +35,24 @@ class CourseManagementController{
         }
         
     }
+
+    async ShowTrainingImage(req,res,next){
+
+        try{
+
+            const result = await service.ShowTrainingImage();
+
+            res.status(200).json({
+                success: true,
+                message: 'Training images retrieved successfully',
+                data: result
+            });
+
+        }catch(error){
+            next(error);
+        }
+
+    }
 }
 
 module.exports = new CourseManagementController();

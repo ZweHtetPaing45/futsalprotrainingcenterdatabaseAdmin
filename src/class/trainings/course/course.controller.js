@@ -131,7 +131,9 @@ class CourseController {
 
         try{
 
-            const result = await service.ShowTraining();
+            const id = req.params.id;
+
+            const result = await service.ShowTraining(id);
 
             res.status(200).json({
                 success: true,

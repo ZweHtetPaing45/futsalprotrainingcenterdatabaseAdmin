@@ -36,9 +36,9 @@ class CourseService{
 
     }
 
-    async ShowTraining(){
+    async ShowTraining(id){
 
-        const result = await repo.ShowTraining();
+        const result = await repo.ShowTraining(id);
 
         return result;
 

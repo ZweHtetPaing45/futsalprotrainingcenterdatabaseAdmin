@@ -30,6 +30,9 @@ const bookingcustomerRouter = require('../class/rentals/customer/customer.route'
 const posOverviewRouter = require('../features/posOverview/posOverview.route');
 const courseManagementRouter = require('../class/trainings/courseManagement/courseManagement.route');
 const courseStudentRouter = require('../class/trainings/students/courseStudent.route');
+const totalbookingRouter = require('../class/rentals/booking/totalBookingResult/totalBookingResult.route');
+const trainingOverviewRouter = require('../class/overview/trainingOverview/trainingOverview.route');
+const rentalOverviewRouter = require('../class/overview/rentalOverview/rentalOverview.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -68,5 +71,8 @@ router.use('/bookingcustomer',bookingcustomerRouter);
 router.use('/posoverview',posOverviewRouter);
 router.use('/coursemanagement',courseManagementRouter);
 router.use('/coursestudent',courseStudentRouter);
+router.use('/totalbooking',totalbookingRouter);
+router.use('/trainingoverview',trainingOverviewRouter);
+router.use('/rentaloverview',rentalOverviewRouter);
 
 module.exports = router;

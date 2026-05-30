@@ -205,3 +205,26 @@ exports.deleteMenu = async (id)=>{
     return true;
 
 }
+
+exports.ShowMenuTotal = async ()=>{
+
+    const [result] = await com.pool.query('select COUNT(*) as total_menu,count(case when available = 1 then 1 end) as available_count,count(case when available = 0 then 1 end) as unavailable_count from canteen_products;');
+
+    if(!result)throw new AppError('Failed to get total menu',500);
+
+    const [NewArrivalMenu] = await com.pool.query('select name from canteen_products order by create_at desc limit 1');
+
+    const total_menu = result[0].total_menu;
+    const available_count = result[0].available_count;
+    const unavailable_count = result[0].unavailable_count;
+
+    const NewArrival = NewArrivalMenu[0].name;
+
+    return {
+        total_menu,
+        available_count,
+        unavailable_count,
+        NewArrival
+    };
+
+}

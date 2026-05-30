@@ -64,6 +64,32 @@ class CanteenOrderController{
 
     }
 
+    async TotalCanteenOrder(req,res,next){
+
+        try{
+
+            const result = await service.TotalCanteenOrder();
+
+            if(result){
+                res.status(201).json({
+                    success: true,
+                    message: 'Total order retrieved successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Failed to retrieve total order',
+                    data: result
+                });
+            }   
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new CanteenOrderController();

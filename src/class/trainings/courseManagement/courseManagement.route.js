@@ -5,5 +5,6 @@ const upload = require('../../../middlewares/multer');
 //POST Method
 router.post('/addcourse',upload.single('category_card_image'),controller.AddCourse);
 
+router.get('/showtraining',controller.ShowTrainingImage);
 
 module.exports = router;

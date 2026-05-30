@@ -11,6 +11,14 @@ class CourseManagementServices{
 
     }
 
+    async ShowTrainingImage(){
+
+        const result = await repo.ShowTrainingImage();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseManagementServices();

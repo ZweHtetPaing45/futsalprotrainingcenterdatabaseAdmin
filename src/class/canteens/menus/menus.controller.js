@@ -197,6 +197,32 @@ class menuController{
 
     }
 
+    async ShowMenuTotal(req,res,next){
+
+        try{
+
+            const result = await service.ShowMenuTotal();
+
+            if(result){
+                res.status(200).json({
+                    success: true,
+                    message: 'Total menu retrieved successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Failed to retrieve total menu',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new menuController();

@@ -19,6 +19,14 @@ class CanteenOrderService{
 
     }
 
+    async TotalCanteenOrder(){
+
+        const result = await repo.TotalCanteenOrder();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CanteenOrderService();

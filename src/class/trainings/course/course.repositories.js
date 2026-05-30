@@ -184,13 +184,13 @@ exports.AddTrainingLevel = async (training_program_id,description,title_level,pr
 
 }
 
-exports.ShowTraining = async () => {
+exports.ShowTraining = async (id) => {
 
     const [result] = await com.pool.query(
         `SELECT 
             tp.id,
             tp.category_card_image_url,
-            tp.main_program_banner_image_url,
+           -- tp.main_program_banner_image_url,
             tp.learning_image_url,
             tp.main_title,
             tp.title,
@@ -244,7 +244,7 @@ exports.ShowTraining = async () => {
                 WHERE tst.trainning_program_id = tp.id
             ) AS schedules
 
-        FROM training_program tp`
+        FROM training_program tp where tp.id = ?`, [id]
     );
 
     if (!result || result.length === 0) {
