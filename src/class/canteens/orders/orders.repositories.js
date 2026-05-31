@@ -105,7 +105,8 @@ exports.CanteenAddOrder = async (payment_method,reciept_no,items,file)=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        CONVERT_TZ(o.create_at, '+00:00','+06:30') AS create_at
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only
                     FROM canteen_order o
                     JOIN canteen_order_item oi ON o.id = oi.canteen_order_id
                     JOIN canteen_products p ON p.id = oi.canteen_product_id
@@ -124,7 +125,8 @@ console.log('prindOrder',prindOrder);
                 order_id: row.order_id,
                 payment_method: row.payment_method,
                 reciept_no: row.reciept_no,
-                create_at: row.create_at,
+                Date: row.date_only,
+                Time: row.time_only,
                 items: [],
                 delivery_fee: row.delivery_fee,
                 Total: row.amount,
@@ -160,8 +162,8 @@ exports.ShowCanteenOrderData = async ()=>{
                         oi.quantity,
                         oi.price,
                         oi.total,
-                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS Date,
-                        TIME(o.create_at) AS Time
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only
                     FROM canteen_order o
                         JOIN canteen_order_item oi ON o.id = oi.canteen_order_id
                         JOIN canteen_products p ON p.id = oi.canteen_product_id
@@ -179,8 +181,8 @@ console.log('prindOrder',prindOrder);
                 payment_method: row.payment_method,
                 payment_image: row.payment_image_url,
                 reciept_no: row.reciept_no,
-                Date: row.Date,
-                Time: row.Time,
+                Data: row.date_only,
+                Time: row.time_only,
                 items: [],
                 delivery_fee: row.delivery_fee,
                 Total: row.amount,
