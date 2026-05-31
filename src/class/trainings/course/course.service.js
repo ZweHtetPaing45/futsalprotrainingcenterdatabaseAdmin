@@ -62,6 +62,22 @@ class CourseService{
 
     }
 
+    async DeleteTrainingLevel(level_id){
+    
+        const result = await repo.DeleteTrainingLevel(level_id);
+
+        return result;
+    
+    }
+
+    async DeleteTrainingSchedule(schedule_id){
+    
+        const result = await repo.DeleteTrainingSchedule(schedule_id);
+
+        return result;
+    
+    }
+
 }
 
 module.exports = new CourseService();

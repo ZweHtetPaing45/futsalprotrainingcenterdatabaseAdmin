@@ -198,6 +198,62 @@ class CourseController {
 
     }
 
+    async DeleteTrainingLevel(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const result = await service.DeleteTrainingLevel(id);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training level deleted successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training level not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
+    async DeleteTrainingSchedule(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const result = await service.DeleteTrainingSchedule(id);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training schedule deleted successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training schedule not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new CourseController();

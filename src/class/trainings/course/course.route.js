@@ -19,5 +19,7 @@ router.get('/showdays',controller.ShowDays);
 
 //Delete Method
 router.delete('/deletetrainingstudent/:id/:source',controller.DeleteTrainingStudent);
+router.delete('/deletetraininglevel/:id',controller.DeleteTrainingLevel);
+router.delete('/deletetrainingschedule/:id',controller.DeleteTrainingSchedule);
 
 module.exports = router;

@@ -315,3 +315,23 @@ exports.ShowDays = async ()=>{
 
     return days;
 }
+
+exports.DeleteTrainingLevel = async (level_id)=>{
+
+    const result = await com.pool.query('delete from training_level where id = ?',[level_id]);
+
+    if(result.affectedRows === 0)throw new AppError('Failed to delete training level',404);
+
+    return true;
+
+}
+
+exports.DeleteTrainingSchedule = async (schedule_id)=>{
+
+    const result = await com.pool.query('delete from training_schedule_time_slots where id = ?',[schedule_id]);
+
+    if(result.affectedRows === 0)throw new AppError('Failed to delete training schedule',404);
+
+    return true;
+
+}
