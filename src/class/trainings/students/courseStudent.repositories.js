@@ -315,6 +315,7 @@ FROM (
             'phone', ats.phone,
             'email', ats.email,
             'payment_image_url', ats.payment_image_url,
+            'source', ats.source,
 
             'scheduleData',
             (
@@ -359,6 +360,7 @@ FROM (
             'phone', ats.phone,
             'email', ats.email,
             'payment_image_url', ats.payment_image_url,
+            'source', ats.source,
 
             'scheduleData',
             (
@@ -395,7 +397,7 @@ GROUP BY course_name;`
     );
 
     if (!rows1.length) {
-        throw new AppError('Failed to find student', 500);
+        return [];
     }
 
     // return rows.map(row => ({

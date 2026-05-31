@@ -18,6 +18,6 @@ router.get('/showtraining/:id',controller.ShowTraining);
 router.get('/showdays',controller.ShowDays);
 
 //Delete Method
-router.delete('/deletetrainingstudent/:id',controller.DeleteTrainingStudent);
+router.delete('/deletetrainingstudent/:id/:source',controller.DeleteTrainingStudent);
 
 module.exports = router;

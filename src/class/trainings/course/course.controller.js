@@ -154,7 +154,11 @@ class CourseController {
 
             const id = req.params.id;
 
-            const result = await service.DeleteTrainingStudent(id);
+            const source = req.params.source;
+
+            console.log(source);
+
+            const result = await service.DeleteTrainingStudent(id,source);
 
             if(result){
                 return res.status(201).json({

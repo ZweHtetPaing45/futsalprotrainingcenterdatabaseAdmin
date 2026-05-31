@@ -46,9 +46,9 @@ class CourseService{
 
 
 
-    async DeleteTrainingStudent(id){
+    async DeleteTrainingStudent(id,source){
 
-        const result = await repo.DeleteTrainingStudent(id);
+        const result = await repo.DeleteTrainingStudent(id,source);
 
         return result;
 

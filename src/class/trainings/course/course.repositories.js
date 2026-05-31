@@ -256,13 +256,50 @@ exports.ShowTraining = async (id) => {
 
 
 
-exports.DeleteTrainingStudent = async (id)=>{
+exports.DeleteTrainingStudent = async (id,source)=>{
 
-    const [result] = await com.pool.query('delete from admin_training_students where id = ?',[id]);
 
-    if(result.affectedRows === 0)throw new AppError('No data found with that id',500);
+    if(source === 'admin'){
 
-    return true;
+        const [findAdminImage] = await com.pool.query('select payment_public_id from admin_training_students where id = ? and source = ?',[id,source]);
+
+        // if(!findAdminStudent)throw new AppError('Failed to find admin student',500);
+
+        console.log('findAdminStudent',findAdminImage[0].payment_public_id);
+
+        if(findAdminImage[0].payment_public_id){
+
+            await uploader.delete(findAdminImage[0].payment_public_id);
+
+        }
+
+        const DeleteAdminStudent = await com.pool.query('delete from admin_training_students where id = ? and source = ?',[id,source]);
+
+        if(!DeleteAdminStudent)throw new AppError('Delete admin training student Error',400);
+
+        return true;
+
+    }else if(source === 'mobile'){
+
+        const [findMobileImage] = await com.pool.query('select payment_image_url from mobile_training_students where id = ? and source = ?',[id,source]);
+
+        console.log('findMobileImage',findMobileImage[0].payment_image_url);
+
+        if(findMobileImage[0].payment_image_url){
+
+            await uploader.delete(findMobileImage[0].payment_public_id);
+
+        }
+
+        const DeleteAdminStudent = await com.pool.query('delete from mobile_training_students where id = ? and source = ?',[id,source]);
+
+        if(!DeleteAdminStudent)throw new AppError('Delete admin training student Error',400);
+
+        return true;
+
+    }
+
+    return false;
 
 }
 
