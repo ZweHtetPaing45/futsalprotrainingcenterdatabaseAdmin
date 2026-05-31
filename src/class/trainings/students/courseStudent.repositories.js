@@ -396,7 +396,7 @@ FROM (
 GROUP BY course_name;`
     );
 
-    if (!rows1.length) {
+    if (!row.length) {
         return [];
     }
 

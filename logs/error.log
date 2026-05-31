@@ -419,3 +419,4 @@ GROUP BY p.id' at line 55
 2026-05-30 16:04:35 [31merror[39m:: Please fill all the fields
 2026-05-31 00:18:25 [31merror[39m:: Please fill all the fields
 2026-05-31 00:18:49 [31merror[39m:: Please fill all the fields
+2026-05-31 20:48:35 [31merror[39m:: Show Training Error

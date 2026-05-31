@@ -248,7 +248,7 @@ exports.ShowTraining = async (id) => {
     );
 
     if (!result || result.length === 0) {
-        throw new AppError('Show Training Error', 400);
+        return [];
     }
 
     return result;

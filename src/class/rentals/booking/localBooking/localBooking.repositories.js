@@ -348,7 +348,11 @@ exports.DeleteLocalBooking = async (id)=>{
 
     console.log('public_id',public_id[0].payment_public_id);
 
-    const DeleteImage = await uploader.delete(public_id[0].payment_public_id);
+    if(public_id[0].payment_public_id){
+
+         await uploader.delete(public_id[0].payment_public_id);
+         
+    }
 
     const result = await com.pool.query('delete from admin_booking where id = ?',[id]);
 
