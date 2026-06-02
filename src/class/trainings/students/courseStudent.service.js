@@ -21,6 +21,14 @@ class CourseStudentService{
         
         }
 
+        async TrainingStudentDetailFindId(student_id,source){
+
+                const result = await repo.TrainingStudentDetailFindId(student_id,source);
+
+                return result;
+
+        }
+
 }
 
 module.exports = new CourseStudentService();

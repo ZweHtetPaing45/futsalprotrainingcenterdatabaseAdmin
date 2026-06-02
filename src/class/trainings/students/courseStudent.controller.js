@@ -71,6 +71,35 @@ class CourseStudentController{
         
             }
         
+        async TrainingStudentDetailFindId(req,res,next){
+
+            try{
+
+                const student_id = req.params.student_id;
+
+                const source = req.params.source;
+
+                const result = await service.TrainingStudentDetailFindId(student_id,source);
+
+                if(result){
+                    return res.status(201).json({
+                        success: true,
+                        message: 'Show Training student retrieved successfully',
+                        data: result
+                    });
+                }else{
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Failed to retrieve training students',
+                        data: result
+                    });
+                }
+
+            }catch(error){
+                next(error);
+            }
+
+        }
 
 }
 

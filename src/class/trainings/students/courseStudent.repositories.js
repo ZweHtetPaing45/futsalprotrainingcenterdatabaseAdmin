@@ -298,7 +298,7 @@ exports.ShowTrainingStudentAll = async () => {
 // `
 //     );
 
-//     const [row3] = await com.pool.query(
+//     const [row] = await com.pool.query(
 //         `
 //         SELECT 
 //     course_name,
@@ -458,3 +458,201 @@ GROUP BY course_name;
 
     return row;
 };
+
+
+// exports.TrainingStudentDetailFindId = async (student_id,source) =>{
+
+//      const [row] = await com.pool.query(
+//         `
+//         SELECT 
+//     course_name,
+//     JSON_ARRAYAGG(student_json) AS students
+// FROM (
+
+//     SELECT 
+//         tp.course_name,
+
+//         JSON_OBJECT(
+//             'id', ats.id,
+//             'name', ats.name,
+//             'gender', ats.gender,
+//             'age', ats.age,
+//             'phone', ats.phone,
+//             'email', ats.email,
+//             'payment_image_url', ats.payment_image_url,
+//             'payment_id', ats.payment_id,
+//             'source', ats.source,
+
+//             'scheduleData',
+//             (
+//                 SELECT JSON_OBJECT(
+//                     'title_level', tl.title_level,
+//                     'price', tl.price
+//                 )
+//                 FROM mobile_training_student_time_slots atsts
+//                 LEFT JOIN training_schedule_time_slots tsts
+//                     ON atsts.training_schedule_time_slot_id = tsts.id
+//                 LEFT JOIN training_level tl
+//                     ON tsts.training_level_id = tl.id
+//                 WHERE atsts.mobile_training_students_id = ats.id
+//                 LIMIT 1
+//             )
+//         ) AS student_json
+
+//     FROM mobile_training_students ats
+//     LEFT JOIN training_program tp
+//         ON ats.training_program_id = tp.id
+
+//     UNION ALL
+
+//     SELECT 
+//         tp.course_name,
+
+//         JSON_OBJECT(
+//             'id', ats.id,
+//             'name', ats.name,
+//             'gender', ats.gender,
+//             'age', ats.age,
+//             'phone', ats.phone,
+//             'email', ats.email,
+//             'payment_image_url', ats.payment_image_url,
+//             'payment_id', ats.payment_id,
+//             'source', ats.source,
+
+//             'scheduleData',
+//             (
+//                 SELECT JSON_OBJECT(
+//                     'title_level', tl.title_level,
+//                     'price', tl.price
+//                 )
+//                 FROM admin_training_student_time_slots atsts
+//                 LEFT JOIN training_schedule_time_slots tsts
+//                     ON atsts.training_schedule_time_slot_id = tsts.id
+//                 LEFT JOIN training_level tl
+//                     ON tsts.training_level_id = tl.id
+//                 WHERE atsts.admin_training_students_id = ats.id
+//                 LIMIT 1
+//             )
+//         ) AS student_json
+
+//     FROM admin_training_students ats
+//     LEFT JOIN training_program tp
+//         ON ats.training_program_id = tp.id
+
+// ) AS all_students
+
+// GROUP BY course_name;
+//         `
+//     );
+
+//     if (!row.length) {
+//         return [];
+//     }
+
+//     return row;
+
+// }
+
+exports.TrainingStudentDetailFindId = async (student_id,source) =>{
+
+    console.log('student_id', student_id);
+    console.log('source', source);
+
+    if (source === 'mobile') {
+
+    query = 
+   ` SELECT
+        tp.course_name,
+        JSON_OBJECT(
+            'id', ats.id,
+            'name', ats.name,
+            'gender', ats.gender,
+            'age', ats.age,
+            'phone', ats.phone,
+            'email', ats.email,
+            'payment_image_url', ats.payment_image_url,
+            'payment_method', ats.payment_id,
+            'source', ats.source,
+
+            'scheduleData',
+            (
+                SELECT JSON_OBJECT(
+                    'title_level', tl.title_level,
+                    'price', tl.price
+                )
+                FROM mobile_training_student_time_slots atsts
+                LEFT JOIN training_schedule_time_slots tsts
+                    ON atsts.training_schedule_time_slot_id = tsts.id
+                LEFT JOIN training_level tl
+                    ON tsts.training_level_id = tl.id
+                WHERE atsts.mobile_training_students_id = ats.id
+                LIMIT 1
+            )
+        ) AS student
+    FROM mobile_training_students ats
+    LEFT JOIN training_program tp
+        ON ats.training_program_id = tp.id
+    WHERE ats.id = ?
+    ;`
+
+} else if (source === 'admin') {
+
+    query = 
+    `SELECT
+        tp.course_name,
+        JSON_OBJECT(
+            'id', ats.id,
+            'name', ats.name,
+            'gender', ats.gender,
+            'age', ats.age,
+            'phone', ats.phone,
+            'email', ats.email,
+            'payment_image_url', ats.payment_image_url,
+            'payment_method', ats.payment_id,
+            'source', ats.source,
+
+            'scheduleData',
+            (
+                SELECT JSON_OBJECT(
+                    'title_level', tl.title_level,
+                    'price', tl.price
+                )
+                FROM admin_training_student_time_slots atsts
+                LEFT JOIN training_schedule_time_slots tsts
+                    ON atsts.training_schedule_time_slot_id = tsts.id
+                LEFT JOIN training_level tl
+                    ON tsts.training_level_id = tl.id
+                WHERE atsts.admin_training_students_id = ats.id
+                LIMIT 1
+            )
+        ) AS student
+    FROM admin_training_students ats
+    LEFT JOIN training_program tp
+        ON ats.training_program_id = tp.id
+    WHERE ats.id = ?
+    ;`
+
+} else {
+    throw new AppError('Invalid source', 400);
+}
+
+const [row] = await com.pool.query(query, [student_id]);
+
+console.log(row[0].student.payment_method);
+
+      if(row[0].student.payment_method != null){
+
+        const [payment] = await com.pool.query('select payment_method from payment where id = ?',[row[0].student.payment_method]);
+
+        console.log('payment_method', payment);
+
+        row[0].student.payment_method = payment[0].payment_method;
+
+      }else{
+        row[0].student.payment_method = "Cash";
+        row[0].student.payment_image_url = "No payment image";
+      }
+ 
+return row;
+
+}
