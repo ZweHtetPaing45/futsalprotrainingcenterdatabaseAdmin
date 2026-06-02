@@ -199,104 +199,202 @@ return {
 
 exports.ShowTrainingStudentAll = async () => {
 
-    const [row2] = await com.pool.query(`
-      SELECT 
-    tp.course_name,
+//     const [row2] = await com.pool.query(`
+//       SELECT 
+//     tp.course_name,
 
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'id', ats.id,
-            'name', ats.name,
-            'gender', ats.gender,
-            'age', ats.age,
-            'phone', ats.phone,
-            'email', ats.email,
-            'payment_image_url', ats.payment_image_url,
+//     JSON_ARRAYAGG(
+//         JSON_OBJECT(
+//             'id', ats.id,
+//             'name', ats.name,
+//             'gender', ats.gender,
+//             'age', ats.age,
+//             'phone', ats.phone,
+//             'email', ats.email,
+//             'payment_image_url', ats.payment_image_url,
 
-            'scheduleData',
-            (
-                SELECT JSON_ARRAYAGG(
-                    JSON_OBJECT(
-                        'id', tsts.id,
-                        'training_program_id', ats.training_program_id,
-                        'training_schedule_days_id', tsts.training_schedule_days_id,
-                        'start_time', tsts.start_time,
-                        'end_time', tsts.end_time,
-                        'create_at', tsts.create_at,
-                        'training_level_id', tsts.training_level_id,
-                        'title_level', tl.title_level,
-                        'day', tsd.day
-                    )
-                )
-                FROM mobile_training_student_time_slots atsts
-                LEFT JOIN training_schedule_time_slots tsts
-                    ON atsts.training_schedule_time_slot_id = tsts.id
-                LEFT JOIN training_level tl
-                    ON tsts.training_level_id = tl.id
-                LEFT JOIN training_schedule_days tsd
-                    ON tsts.training_schedule_days_id = tsd.id
-                WHERE atsts.mobile_training_students_id = ats.id
-            )
-        )
-    ) AS students
+//             'scheduleData',
+//             (
+//                 SELECT JSON_ARRAYAGG(
+//                     JSON_OBJECT(
+//                         'id', tsts.id,
+//                         'training_program_id', ats.training_program_id,
+//                         'training_schedule_days_id', tsts.training_schedule_days_id,
+//                         'start_time', tsts.start_time,
+//                         'end_time', tsts.end_time,
+//                         'create_at', tsts.create_at,
+//                         'training_level_id', tsts.training_level_id,
+//                         'title_level', tl.title_level,
+//                         'day', tsd.day
+//                     )
+//                 )
+//                 FROM mobile_training_student_time_slots atsts
+//                 LEFT JOIN training_schedule_time_slots tsts
+//                     ON atsts.training_schedule_time_slot_id = tsts.id
+//                 LEFT JOIN training_level tl
+//                     ON tsts.training_level_id = tl.id
+//                 LEFT JOIN training_schedule_days tsd
+//                     ON tsts.training_schedule_days_id = tsd.id
+//                 WHERE atsts.mobile_training_students_id = ats.id
+//             )
+//         )
+//     ) AS students
 
-FROM mobile_training_students ats
+// FROM mobile_training_students ats
 
-LEFT JOIN training_program tp
-    ON ats.training_program_id = tp.id
+// LEFT JOIN training_program tp
+//     ON ats.training_program_id = tp.id
 
-GROUP BY tp.course_name;  
-        `)
+// GROUP BY tp.course_name;  
+//         `)
 
-    const [rows1] = await com.pool.query(
-        `SELECT 
-    tp.course_name,
+//     const [rows1] = await com.pool.query(
+//         `SELECT 
+//     tp.course_name,
 
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'id', ats.id,
-            'name', ats.name,
-            'gender', ats.gender,
-            'age', ats.age,
-            'phone', ats.phone,
-            'email', ats.email,
-            'payment_image_url', ats.payment_image_url,
+//     JSON_ARRAYAGG(
+//         JSON_OBJECT(
+//             'id', ats.id,
+//             'name', ats.name,
+//             'gender', ats.gender,
+//             'age', ats.age,
+//             'phone', ats.phone,
+//             'email', ats.email,
+//             'payment_image_url', ats.payment_image_url,
 
-            'scheduleData',
-            (
-                SELECT JSON_ARRAYAGG(
-                    JSON_OBJECT(
-                        'id', tsts.id,
-                        'training_program_id', ats.training_program_id,
-                        'training_schedule_days_id', tsts.training_schedule_days_id,
-                        'start_time', tsts.start_time,
-                        'end_time', tsts.end_time,
-                        'create_at', tsts.create_at,
-                        'training_level_id', tsts.training_level_id,
-                        'title_level', tl.title_level,
-                        'day', tsd.day
-                    )
-                )
-                FROM admin_training_student_time_slots atsts
-                LEFT JOIN training_schedule_time_slots tsts
-                    ON atsts.training_schedule_time_slot_id = tsts.id
-                LEFT JOIN training_level tl
-                    ON tsts.training_level_id = tl.id
-                LEFT JOIN training_schedule_days tsd
-                    ON tsts.training_schedule_days_id = tsd.id
-                WHERE atsts.admin_training_students_id = ats.id
-            )
-        )
-    ) AS students
+//             'scheduleData',
+//             (
+//                 SELECT JSON_ARRAYAGG(
+//                     JSON_OBJECT(
+//                         'id', tsts.id,
+//                         'training_program_id', ats.training_program_id,
+//                         'training_schedule_days_id', tsts.training_schedule_days_id,
+//                         'start_time', tsts.start_time,
+//                         'end_time', tsts.end_time,
+//                         'create_at', tsts.create_at,
+//                         'training_level_id', tsts.training_level_id,
+//                         'title_level', tl.title_level,
+//                         'day', tsd.day
+//                     )
+//                 )
+//                 FROM admin_training_student_time_slots atsts
+//                 LEFT JOIN training_schedule_time_slots tsts
+//                     ON atsts.training_schedule_time_slot_id = tsts.id
+//                 LEFT JOIN training_level tl
+//                     ON tsts.training_level_id = tl.id
+//                 LEFT JOIN training_schedule_days tsd
+//                     ON tsts.training_schedule_days_id = tsd.id
+//                 WHERE atsts.admin_training_students_id = ats.id
+//             )
+//         )
+//     ) AS students
 
-FROM admin_training_students ats
+// FROM admin_training_students ats
 
-LEFT JOIN training_program tp
-    ON ats.training_program_id = tp.id
+// LEFT JOIN training_program tp
+//     ON ats.training_program_id = tp.id
 
-GROUP BY tp.course_name;
-`
-    );
+// GROUP BY tp.course_name;
+// `
+//     );
+
+//     const [row3] = await com.pool.query(
+//         `
+//         SELECT 
+//     course_name,
+//     JSON_ARRAYAGG(student_json) AS students
+// FROM (
+//     SELECT 
+//         tp.course_name AS course_name,
+
+//         JSON_OBJECT(
+//             'id', ats.id,
+//             'name', ats.name,
+//             'gender', ats.gender,
+//             'age', ats.age,
+//             'phone', ats.phone,
+//             'email', ats.email,
+//             'payment_image_url', ats.payment_image_url,
+//             'source', ats.source,
+
+//             'scheduleData',
+//             (
+//                 SELECT JSON_ARRAYAGG(
+//                     JSON_OBJECT(
+//                         'id', tsts.id,
+//                         'training_program_id', ats.training_program_id,
+//                         'training_schedule_days_id', tsts.training_schedule_days_id,
+//                         'start_time', tsts.start_time,
+//                         'end_time', tsts.end_time,
+//                         'create_at', tsts.create_at,
+//                         'training_level_id', tsts.training_level_id,
+//                         'title_level', tl.title_level,
+//                         'day', tsd.day
+//                     )
+//                 )
+//                 FROM mobile_training_student_time_slots atsts
+//                 LEFT JOIN training_schedule_time_slots tsts
+//                     ON atsts.training_schedule_time_slot_id = tsts.id
+//                 LEFT JOIN training_level tl
+//                     ON tsts.training_level_id = tl.id
+//                 LEFT JOIN training_schedule_days tsd
+//                     ON tsts.training_schedule_days_id = tsd.id
+//                 WHERE atsts.mobile_training_students_id = ats.id
+//             )
+//         ) AS student_json
+
+//     FROM mobile_training_students ats
+//     LEFT JOIN training_program tp 
+//         ON ats.training_program_id = tp.id
+
+//     UNION ALL
+
+//     SELECT 
+//         tp.course_name AS course_name,
+
+//         JSON_OBJECT(
+//             'id', ats.id,
+//             'name', ats.name,
+//             'gender', ats.gender,
+//             'age', ats.age,
+//             'phone', ats.phone,
+//             'email', ats.email,
+//             'payment_image_url', ats.payment_image_url,
+//             'source', ats.source,
+
+//             'scheduleData',
+//             (
+//                 SELECT JSON_ARRAYAGG(
+//                     JSON_OBJECT(
+//                         'id', tsts.id,
+//                         'training_program_id', ats.training_program_id,
+//                         'training_schedule_days_id', tsts.training_schedule_days_id,
+//                         'start_time', tsts.start_time,
+//                         'end_time', tsts.end_time,
+//                         'create_at', tsts.create_at,
+//                         'training_level_id', tsts.training_level_id,
+//                         'title_level', tl.title_level,
+//                         'day', tsd.day
+//                     )
+//                 )
+//                 FROM admin_training_student_time_slots atsts
+//                 LEFT JOIN training_schedule_time_slots tsts
+//                     ON atsts.training_schedule_time_slot_id = tsts.id
+//                 LEFT JOIN training_level tl
+//                     ON tsts.training_level_id = tl.id
+//                 LEFT JOIN training_schedule_days tsd
+//                     ON tsts.training_schedule_days_id = tsd.id
+//                 WHERE atsts.admin_training_students_id = ats.id
+//             )
+//         ) AS student_json
+
+//     FROM admin_training_students ats
+//     LEFT JOIN training_program tp 
+//         ON ats.training_program_id = tp.id
+// ) AS all_students
+
+// GROUP BY course_name;`
+//     );
 
     const [row] = await com.pool.query(
         `
@@ -305,44 +403,15 @@ GROUP BY tp.course_name;
     JSON_ARRAYAGG(student_json) AS students
 FROM (
     SELECT 
-        tp.course_name AS course_name,
-
+        tp.course_name,
         JSON_OBJECT(
             'id', ats.id,
             'name', ats.name,
             'gender', ats.gender,
             'age', ats.age,
             'phone', ats.phone,
-            'email', ats.email,
-            'payment_image_url', ats.payment_image_url,
-            'source', ats.source,
-
-            'scheduleData',
-            (
-                SELECT JSON_ARRAYAGG(
-                    JSON_OBJECT(
-                        'id', tsts.id,
-                        'training_program_id', ats.training_program_id,
-                        'training_schedule_days_id', tsts.training_schedule_days_id,
-                        'start_time', tsts.start_time,
-                        'end_time', tsts.end_time,
-                        'create_at', tsts.create_at,
-                        'training_level_id', tsts.training_level_id,
-                        'title_level', tl.title_level,
-                        'day', tsd.day
-                    )
-                )
-                FROM mobile_training_student_time_slots atsts
-                LEFT JOIN training_schedule_time_slots tsts
-                    ON atsts.training_schedule_time_slot_id = tsts.id
-                LEFT JOIN training_level tl
-                    ON tsts.training_level_id = tl.id
-                LEFT JOIN training_schedule_days tsd
-                    ON tsts.training_schedule_days_id = tsd.id
-                WHERE atsts.mobile_training_students_id = ats.id
-            )
+            'email', ats.email
         ) AS student_json
-
     FROM mobile_training_students ats
     LEFT JOIN training_program tp 
         ON ats.training_program_id = tp.id
@@ -350,51 +419,22 @@ FROM (
     UNION ALL
 
     SELECT 
-        tp.course_name AS course_name,
-
+        tp.course_name,
         JSON_OBJECT(
             'id', ats.id,
             'name', ats.name,
             'gender', ats.gender,
             'age', ats.age,
             'phone', ats.phone,
-            'email', ats.email,
-            'payment_image_url', ats.payment_image_url,
-            'source', ats.source,
-
-            'scheduleData',
-            (
-                SELECT JSON_ARRAYAGG(
-                    JSON_OBJECT(
-                        'id', tsts.id,
-                        'training_program_id', ats.training_program_id,
-                        'training_schedule_days_id', tsts.training_schedule_days_id,
-                        'start_time', tsts.start_time,
-                        'end_time', tsts.end_time,
-                        'create_at', tsts.create_at,
-                        'training_level_id', tsts.training_level_id,
-                        'title_level', tl.title_level,
-                        'day', tsd.day
-                    )
-                )
-                FROM admin_training_student_time_slots atsts
-                LEFT JOIN training_schedule_time_slots tsts
-                    ON atsts.training_schedule_time_slot_id = tsts.id
-                LEFT JOIN training_level tl
-                    ON tsts.training_level_id = tl.id
-                LEFT JOIN training_schedule_days tsd
-                    ON tsts.training_schedule_days_id = tsd.id
-                WHERE atsts.admin_training_students_id = ats.id
-            )
+            'email', ats.email
         ) AS student_json
-
     FROM admin_training_students ats
     LEFT JOIN training_program tp 
         ON ats.training_program_id = tp.id
 ) AS all_students
-
-GROUP BY course_name;`
-    );
+GROUP BY course_name;
+        `
+    )
 
     if (!row.length) {
         return [];
