@@ -1996,3 +1996,22 @@ GROUP BY p.id' at line 55
 2026-06-02 09:26:59 [32minfo[39m:: Server is running on port 5000
 2026-06-02 09:51:58 [32minfo[39m:: Server is running on port 5000
 2026-06-02 09:53:14 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:31:00 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:35:25 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:36:37 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:37:57 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:46:24 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:46:28 [31merror[39m:: category_card_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:46:28 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
+2026-06-02 13:46:28 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:46:28 [31merror[39m:: coach_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:46:29 [31merror[39m:: Failed to delete training program
+2026-06-02 13:49:42 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:49:45 [31merror[39m:: category_card_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:49:45 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
+2026-06-02 13:49:45 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:49:46 [31merror[39m:: Failed to delete training program
+2026-06-02 13:52:28 [32minfo[39m:: Server is running on port 5000
+2026-06-02 13:52:30 [31merror[39m:: category_card_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:52:30 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
+2026-06-02 13:52:30 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500

@@ -420,3 +420,15 @@ GROUP BY p.id' at line 55
 2026-05-31 00:18:25 [31merror[39m:: Please fill all the fields
 2026-05-31 00:18:49 [31merror[39m:: Please fill all the fields
 2026-05-31 20:48:35 [31merror[39m:: Show Training Error
+2026-06-02 13:46:28 [31merror[39m:: category_card_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:46:28 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
+2026-06-02 13:46:28 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:46:28 [31merror[39m:: coach_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:46:29 [31merror[39m:: Failed to delete training program
+2026-06-02 13:49:45 [31merror[39m:: category_card_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:49:45 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
+2026-06-02 13:49:45 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:49:46 [31merror[39m:: Failed to delete training program
+2026-06-02 13:52:30 [31merror[39m:: category_card_public_id Delete failed: Request failed with status code 500
+2026-06-02 13:52:30 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
+2026-06-02 13:52:30 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500

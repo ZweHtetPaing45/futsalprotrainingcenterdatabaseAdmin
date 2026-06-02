@@ -254,6 +254,34 @@ class CourseController {
 
     }
 
+    async DeleteTrainingProgram(req,res,next){
+
+        try{
+
+            const id = req.params.id;
+
+            const result = await service.DeleteTrainingProgram(id);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training program deleted successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training program not deleted',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new CourseController();

@@ -78,6 +78,14 @@ class CourseService{
     
     }
 
+    async DeleteTrainingProgram(program_id){
+
+        const result = await repo.DeleteTrainingProgram(program_id);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseService();

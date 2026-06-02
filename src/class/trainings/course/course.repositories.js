@@ -335,3 +335,86 @@ exports.DeleteTrainingSchedule = async (schedule_id)=>{
     return true;
 
 }
+
+exports.DeleteTrainingProgram = async (program_id)=>{
+
+    const [find_training_program_publicId] = await com.pool.query('select category_card_public_id,main_program_banner_public_id,learning_public_id from training_program where id = ?',[program_id]);
+
+    console.log('find_training_program_publicId',find_training_program_publicId);
+
+
+    if(find_training_program_publicId[0].category_card_public_id){
+        
+        try{
+            await uploader.delete(find_training_program_publicId[0].category_card_public_id);
+    
+        }catch(error){
+            logger.error('category_card_public_id',error);
+        }
+
+    }
+
+    if(find_training_program_publicId[0].main_program_banner_public_id){
+
+        try{
+                await uploader.delete(find_training_program_publicId[0].main_program_banner_public_id);
+        }catch(error){
+            logger.error('main_program_banner_public_id',error);
+        }
+
+    }
+
+    if(find_training_program_publicId[0].learning_public_id){
+        
+        try{
+            await uploader.delete(find_training_program_publicId[0].learning_public_id);
+        }catch(error){
+            logger.error('learning_public_id',error);
+        }
+
+    }
+
+    const [find_training_coach] = await com.pool.query('select coach_public_id from training_coach where training_program_id = ?',[program_id]);
+
+    console.log('find_training_coach',find_training_coach);
+
+    if(find_training_coach){
+
+        for(let i = 0; i < find_training_coach.length; i++){
+            if(find_training_coach[i].coach_public_id){
+                try{
+                    await uploader.delete(find_training_coach[i].coach_public_id);
+                }catch(error){
+                    logger.error('coach_public_id',error);
+                }
+            }
+        }
+
+        //await uploader.delete(find_training_coach[0].coach_public_id);
+    }
+
+    const [delete_training_coach] = await com.pool.query('delete from training_coach where training_program_id = ?',[program_id]);
+
+    console.log('delete_training_coach',delete_training_coach);
+
+    if(!delete_training_coach)throw new AppError('Failed to delete training program',404);
+
+    const [delete_training_level] = await com.pool.query('delete from training_level where training_program_id = ?',[program_id]);
+
+    console.log('delete_training_level',delete_training_level);
+
+    if(!delete_training_level)throw new AppError('Failed to delete training program',404);
+
+    const [delete_training_schedule] = await com.pool.query('delete from training_schedule_time_slots where trainning_program_id = ?',[program_id]);
+
+    if(!delete_training_schedule)throw new AppError('Failed to delete training program',404);
+
+    console.log('delete_training_schedule',delete_training_schedule);
+
+    const [delete_training_program] = await com.pool.query('delete from training_program where id = ?',[program_id]);
+
+    if(!delete_training_program === 0)throw new AppError('Failed to delete training program',404);
+    
+
+    return true;
+}
