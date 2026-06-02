@@ -410,7 +410,8 @@ FROM (
             'gender', ats.gender,
             'age', ats.age,
             'phone', ats.phone,
-            'email', ats.email
+            'email', ats.email,
+            'source', ats.source
         ) AS student_json
     FROM mobile_training_students ats
     LEFT JOIN training_program tp 
@@ -426,7 +427,8 @@ FROM (
             'gender', ats.gender,
             'age', ats.age,
             'phone', ats.phone,
-            'email', ats.email
+            'email', ats.email,
+            'source', ats.source
         ) AS student_json
     FROM admin_training_students ats
     LEFT JOIN training_program tp 
