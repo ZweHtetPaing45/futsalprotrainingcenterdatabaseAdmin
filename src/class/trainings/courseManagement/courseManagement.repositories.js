@@ -29,7 +29,7 @@ exports.AddCourse = async (course_name,file) =>{
 }
 
 exports.ShowTrainingImage = async () =>{
-    const [result] = await com.pool.query('select id,main_program_banner_image_url from training_program');
+    const [result] = await com.pool.query('select id,main_program_banner_image_url,course_name from training_program');
 
     if(!result)throw new AppError('Show Training Image Error',400);
 
