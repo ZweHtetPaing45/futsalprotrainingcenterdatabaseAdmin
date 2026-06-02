@@ -3,13 +3,13 @@ const controller = require('./courseManagement.controller');
 const upload = require('../../../middlewares/multer');
 
 //POST Method
-router.post('/addcourse',upload.single('category_card_image'),controller.AddCourse);
+router.post('/addcourse',upload.single('main_program_image'),controller.AddCourse);
 
 //GET Method
 router.get('/showtraining',controller.ShowTrainingImage);
 
 //PUT Method
-router.put('/updatecourse/:id',upload.single('category_card_image'),controller.UpdateTraining);
+router.put('/updatecourse/:id',upload.single('main_program_image'),controller.UpdateTraining);
 
 router.put('/update_training_program_and_coach',upload.fields([
     {name: 'category_card_image', maxCount: 1},
