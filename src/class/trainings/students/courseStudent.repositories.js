@@ -558,9 +558,18 @@ exports.TrainingStudentDetailFindId = async (student_id,source) =>{
     console.log('student_id', student_id);
     console.log('source', source);
 
+    let mobileStudent = [];
+    let adminStudent = [];
+
     if (source === 'mobile') {
 
-    query = 
+        const [userId] = await com.pool.query('select user_id from mobile_training_students where id = ?',[student_id]);
+
+        if(!userId)throw new AppError('Failed to find user id',500);
+
+        console.log(userId);
+
+    [mobileStudent] = await com.pool.query(
    ` SELECT
         tp.course_name,
         JSON_OBJECT(
@@ -592,12 +601,33 @@ exports.TrainingStudentDetailFindId = async (student_id,source) =>{
     FROM mobile_training_students ats
     LEFT JOIN training_program tp
         ON ats.training_program_id = tp.id
-    WHERE ats.id = ?
-    ;`
+    WHERE ats.user_id = ?
+    ;`,[userId[0].user_id]);
+
+    
+console.log('payment_method', mobileStudent[0].student.payment_method);
+
+      for(let i=0; i<mobileStudent.length; i++){
+      
+
+      if(mobileStudent[i].student.payment_method != null){
+
+        const [payment] = await com.pool.query('select payment_method from payment where id = ?',[mobileStudent[i].student.payment_method]);
+
+        console.log('payment_method', payment);
+
+        mobileStudent[i].student.payment_method = payment[0].payment_method;
+
+      }else{
+        mobileStudent[i].student.payment_method = "Cash";
+        mobileStudent[i].student.payment_image_url = "No payment image";
+      }
+
+    }
 
 } else if (source === 'admin') {
 
-    query = 
+    [adminStudent] = await com.pool.query(
     `SELECT
         tp.course_name,
         JSON_OBJECT(
@@ -630,29 +660,55 @@ exports.TrainingStudentDetailFindId = async (student_id,source) =>{
     LEFT JOIN training_program tp
         ON ats.training_program_id = tp.id
     WHERE ats.id = ?
-    ;`
+    ;`,[student_id]);
+
+
+    
+console.log('payment_method', adminStudent[0].student.payment_method);
+
+      if(adminStudent[0].student.payment_method != null){
+
+        const [payment] = await com.pool.query('select payment_method from payment where id = ?',[adminStudent[0].student.payment_method]);
+
+        console.log('payment_method', payment);
+
+        adminStudent[0].student.payment_method = payment[0].payment_method;
+
+      }else{
+        adminStudent[0].student.payment_method = "Cash";
+        adminStudent[0].student.payment_image_url = "No payment image";
+      }
 
 } else {
     throw new AppError('Invalid source', 400);
 }
 
-const [row] = await com.pool.query(query, [student_id]);
+// const [row] = await com.pool.query(query, [student_id]);
 
-console.log(row[0].student.payment_method);
+// console.log(row[0].student.payment_method);
 
-      if(row[0].student.payment_method != null){
+//       if(row[0].student.payment_method != null){
 
-        const [payment] = await com.pool.query('select payment_method from payment where id = ?',[row[0].student.payment_method]);
+//         const [payment] = await com.pool.query('select payment_method from payment where id = ?',[row[0].student.payment_method]);
 
-        console.log('payment_method', payment);
+//         console.log('payment_method', payment);
 
-        row[0].student.payment_method = payment[0].payment_method;
+//         row[0].student.payment_method = payment[0].payment_method;
 
-      }else{
-        row[0].student.payment_method = "Cash";
-        row[0].student.payment_image_url = "No payment image";
-      }
+//       }else{
+//         row[0].student.payment_method = "Cash";
+//         row[0].student.payment_image_url = "No payment image";
+//       }
+
+if(adminStudent.length === 0){
+    return mobileStudent;
+}else if(mobileStudent.length === 0){
+    return adminStudent;
+}
  
-return row;
+// return {
+//     adminStudent,
+//     mobileStudent
+// };
 
 }
