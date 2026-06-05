@@ -23,5 +23,7 @@ router.delete('/deletetraininglevel/:id',controller.DeleteTrainingLevel);
 router.delete('/deletetrainingschedule/:id',controller.DeleteTrainingSchedule);
 router.delete('/deletetraining/:id',controller.DeleteTrainingProgram);
 
- 
+//Put Method
+router.put('/put_training_program_time_slot/:schedule_id',controller.UpdateTrainingProgramTimeSlot);
+
 module.exports = router;

@@ -282,6 +282,38 @@ class CourseController {
 
     }
 
+    async UpdateTrainingProgramTimeSlot(req,res,next){
+
+        try{
+
+            const schedule_id = req.params.schedule_id;
+
+            const {start_time,end_time} = req.body;
+
+            console.log(schedule_id,start_time,end_time);
+
+            const result = await service.UpdateTrainingProgramTimeSlot(schedule_id,start_time,end_time);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training program time slot updated successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training program time slot not updated',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new CourseController();

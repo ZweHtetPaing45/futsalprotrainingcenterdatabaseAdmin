@@ -439,11 +439,15 @@ exports.UpdateTrainingProgramTimeSlot = async (schedule_id,start_time,end_time)=
   }
 
    // remove last comma
-  query = query.slice(0, -2);
+  query = query.slice(0, -1);
 
   query += " WHERE id = ?";
   values.push(schedule_id);
 
   const [result] = await com.pool.query(query, values);
+
+  if(result.affectedRows === 0)throw new AppError('Failed to update training schedule time slot',404);
+
+  return true;
 
 }

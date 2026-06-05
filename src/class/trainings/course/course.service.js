@@ -86,6 +86,14 @@ class CourseService{
 
     }
 
+    async UpdateTrainingProgramTimeSlot(schedule_id,start_time,end_time){
+        
+        const result = await repo.UpdateTrainingProgramTimeSlot(schedule_id,start_time,end_time);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseService();
