@@ -582,6 +582,8 @@ exports.TrainingStudentDetailFindId = async (student_id,source) =>{
             'payment_image_url', ats.payment_image_url,
             'payment_method', ats.payment_id,
             'source', ats.source,
+            'payment_name', '',
+            'payment_number', '',
 
             'scheduleData',
             (
@@ -612,15 +614,20 @@ console.log('payment_method', mobileStudent[0].student.payment_method);
 
       if(mobileStudent[i].student.payment_method != null){
 
-        const [payment] = await com.pool.query('select payment_method from payment where id = ?',[mobileStudent[i].student.payment_method]);
+        const [payment] = await com.pool.query('select payment_method,payment_name,payment_number from payment where id = ?',[mobileStudent[i].student.payment_method]);
 
         console.log('payment_method', payment);
+        console.log('payment_name', payment[0].payment_name);
+        console.log('payment_number', payment[0].payment_number);
 
         mobileStudent[i].student.payment_method = payment[0].payment_method;
-
+        mobileStudent[i].student.payment_name = payment[0].payment_name;
+        mobileStudent[i].student.payment_number = payment[0].payment_number;
       }else{
         mobileStudent[i].student.payment_method = "Cash";
         mobileStudent[i].student.payment_image_url = "No payment image";
+        mobileStudent[i].student.payment_name = "Cash";
+        mobileStudent[i].student.payment_number = "Cash";
       }
 
     }
@@ -639,6 +646,8 @@ console.log('payment_method', mobileStudent[0].student.payment_method);
             'email', ats.email,
             'payment_image_url', ats.payment_image_url,
             'payment_method', ats.payment_id,
+            'payment_name', '',
+            'payment_number', '',
             'source', ats.source,
 
             'scheduleData',
@@ -668,15 +677,21 @@ console.log('payment_method', adminStudent[0].student.payment_method);
 
       if(adminStudent[0].student.payment_method != null){
 
-        const [payment] = await com.pool.query('select payment_method from payment where id = ?',[adminStudent[0].student.payment_method]);
+        const [payment] = await com.pool.query('select payment_method,payment_name,payment_number from payment where id = ?',[adminStudent[0].student.payment_method]);
 
         console.log('payment_method', payment);
+        console.log('payment_name', payment[0].payment_name);
+        console.log('payment_number', payment[0].payment_number);
 
         adminStudent[0].student.payment_method = payment[0].payment_method;
+        adminStudent[0].student.payment_name = payment[0].payment_name;
+        adminStudent[0].student.payment_number = payment[0].payment_number;
 
       }else{
         adminStudent[0].student.payment_method = "Cash";
         adminStudent[0].student.payment_image_url = "No payment image";
+        adminStudent[0].student.payment_name = "Cash";
+        adminStudent[0].student.payment_number = "Cash";
       }
 
 } else {

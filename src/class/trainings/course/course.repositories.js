@@ -418,3 +418,32 @@ exports.DeleteTrainingProgram = async (program_id)=>{
 
     return true;
 }
+
+exports.UpdateTrainingProgramTimeSlot = async (schedule_id,start_time,end_time)=>{
+
+    let query = 'update training_schedule_time_slots set ';
+    let values = [];
+
+    if(start_time){
+        query += 'start_time = ?,';
+        values.push(start_time);
+    }
+
+    if(end_time){
+        query += 'end_time = ?,';
+        values.push(end_time);
+    }
+
+     if (values.length === 0) {
+    return false;
+  }
+
+   // remove last comma
+  query = query.slice(0, -2);
+
+  query += " WHERE id = ?";
+  values.push(schedule_id);
+
+  const [result] = await com.pool.query(query, values);
+
+}
