@@ -97,13 +97,13 @@ class CourseController {
 
         try{
 
-            const {training_program_id,description,title_level,price} = req.body;
+            const {training_program_id,description,title_level,price,main_title,title,about_title,details} = req.body;
 
             if(!training_program_id || !title_level || !price || !description){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.AddTrainingLevel(training_program_id,description,title_level,price);
+            const result = await service.AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details);
 
             if(!result)throw new AppError('Failed to add training level',500);
 
@@ -312,6 +312,37 @@ class CourseController {
             next(error);
         }
 
+    }
+
+    async UpdateTrainingLevelOptionalActive(req,res,next){
+        try{
+
+            const level_id = req.params.level_id;
+            let active = req.params.active;
+
+            active = 'true' === active ? 1 : 0;
+
+            console.log(level_id,active);
+
+            const result = await service.UpdateTrainingLevelOptionalActive(level_id,active);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training level optional active updated successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training level optional active not updated',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
     }
 
 }

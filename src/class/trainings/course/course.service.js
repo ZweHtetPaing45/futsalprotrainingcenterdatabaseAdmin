@@ -28,9 +28,9 @@ class CourseService{
 
     }
 
-    async AddTrainingLevel(training_program_id,description,title_level,price){
+    async AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details){
 
-        const result = await repo.AddTrainingLevel(training_program_id,description,title_level,price);
+        const result = await repo.AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details);
 
         return result;
 
@@ -89,6 +89,14 @@ class CourseService{
     async UpdateTrainingProgramTimeSlot(schedule_id,start_time,end_time){
         
         const result = await repo.UpdateTrainingProgramTimeSlot(schedule_id,start_time,end_time);
+
+        return result;
+
+    }
+
+    async UpdateTrainingLevelOptionalActive(level_id,active){
+
+        const result = await repo.UpdateTrainingLevelOptionalActive(level_id,active);
 
         return result;
 

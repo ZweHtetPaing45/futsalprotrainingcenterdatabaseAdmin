@@ -80,14 +80,10 @@ exports.TrainingProgram = async (
           category_card_public_id = ?,
           learning_image_url = ?,
           learning_public_id = ?,
-          learning_description = ?,
-          main_title = ?,
-          title = ?,
-          about_title = ?,
-          details = ?
+          learning_description = ?
 
           where id = ?
-        `,[category_card_image_url,category_card_public_id,learning_image_url,learning_public_id,learning_description,main_title,title,about_title,details,course_id]);
+        `,[category_card_image_url,category_card_public_id,learning_image_url,learning_public_id,learning_description,course_id]);
 
     // const [result1] = await com.pool.query(
     //     `insert into training_program (
@@ -121,8 +117,8 @@ exports.TrainingProgram = async (
     // const [findTrainingProgramDay] = await com.pool.query(
 
     const [result4] = await com.pool.query(
-        `insert into training_level (training_program_id,title_level,description,price) values(?,?,?,?)`,[
-            course_id,title_level,about_level,price
+        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details) values(?,?,?,?,?,?,?,?)`,[
+            course_id,title_level,about_level,price,main_title,title,about_title,details
         ]
     );
 
@@ -174,9 +170,9 @@ exports.AddDayTimeTraining = async (training_program_id,training_schedule_days_i
     return true;
 }
 
-exports.AddTrainingLevel = async (training_program_id,description,title_level,price)=>{
+exports.AddTrainingLevel = async (training_program_id,description,title_level,price,main_title,title,about_title,details)=>{
 
-    const result = await com.pool.query('insert into training_level (training_program_id,description,title_level,price) values(?,?,?,?)',[training_program_id,description,title_level,price]);
+    const result = await com.pool.query('insert into training_level (training_program_id,description,title_level,price,main_title,title,about_title,details) values(?,?,?,?,?,?,?,?)',[training_program_id,description,title_level,price,main_title,title,about_title,details]);
 
     if(!result)throw new AppError('Failed to add training level',500);
 
@@ -192,10 +188,6 @@ exports.ShowTraining = async (id) => {
             tp.category_card_image_url,
            -- tp.main_program_banner_image_url,
             tp.learning_image_url,
-            tp.main_title,
-            tp.title,
-            tp.about_title,
-            tp.details,
             tp.learning_description,
             tp.course_name,
 
@@ -205,7 +197,12 @@ exports.ShowTraining = async (id) => {
                     JSON_OBJECT(
                         'id', tl.id,
                         'title_level', tl.title_level,
-                        'price', tl.price
+                        'price', tl.price,
+                        'description', tl.description,
+                        'main_title', case when tl.optional_active = 1 then tl.main_title else null end,
+                        'title', case when tl.optional_active = 1 then tl.title else null end,
+                        'about_title', case when tl.optional_active = 1 then tl.about_title else null end,
+                        'details', case when tl.optional_active = 1 then tl.details else null end
                     )
                 )
                 FROM training_level tl
@@ -449,5 +446,15 @@ exports.UpdateTrainingProgramTimeSlot = async (schedule_id,start_time,end_time)=
   if(result.affectedRows === 0)throw new AppError('Failed to update training schedule time slot',404);
 
   return true;
+
+}
+
+exports.UpdateTrainingLevelOptionalActive = async (level_id,active)=>{
+
+    const [result] = await com.pool.query('update training_level set optional_active = ? where id = ?',[active,level_id]);
+
+    if(result.affectedRows === 0)throw new AppError('Failed to update training level optional active',404);
+
+    return true;
 
 }
