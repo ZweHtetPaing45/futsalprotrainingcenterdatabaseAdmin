@@ -77,13 +77,10 @@ exports.TrainingProgram = async (
     const updateOrInsertCourse = await com.pool.query(`
         update training_program set
           category_card_image_url = ?,
-          category_card_public_id = ?,
-          learning_image_url = ?,
-          learning_public_id = ?,
-          learning_description = ?
+          category_card_public_id = ?
 
           where id = ?
-        `,[category_card_image_url,category_card_public_id,learning_image_url,learning_public_id,learning_description,course_id]);
+        `,[category_card_image_url,category_card_public_id,course_id]);
 
     // const [result1] = await com.pool.query(
     //     `insert into training_program (
@@ -117,8 +114,8 @@ exports.TrainingProgram = async (
     // const [findTrainingProgramDay] = await com.pool.query(
 
     const [result4] = await com.pool.query(
-        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instsuctor_name,biography) values(?,?,?,?,?,?,?,?,?,?,?,?)`,[
-            course_id,title_level,about_level,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instructor_name,biography,
+        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instsuctor_name,biography,learning_image_url,learning_public_id,learning_description) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[
+            course_id,title_level,about_level,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instructor_name,biography,learning_image_url,learning_public_id,learning_description,
         ]
     );
 
@@ -199,8 +196,6 @@ exports.ShowTraining = async (id) => {
             tp.id,
             tp.category_card_image_url,
            -- tp.main_program_banner_image_url,
-            tp.learning_image_url,
-            tp.learning_description,
             tp.course_name,
 
             -- training levels
@@ -217,7 +212,9 @@ exports.ShowTraining = async (id) => {
                         'details', case when tl.optional_active = 1 then tl.details else null end,
                         'coach_image_url', tl.coach_image_url,
                         'instsuctor_name', tl.instsuctor_name,
-                        'biography' , tl.biography
+                        'biography' , tl.biography,
+                        'learning_image_url', tl.learning_image_url,
+                        'learning_description', tl.learning_description
                     )
                 )
                 FROM training_level tl
@@ -355,7 +352,7 @@ exports.DeleteTrainingSchedule = async (schedule_id)=>{
 
 exports.DeleteTrainingProgram = async (program_id)=>{
 
-    const [find_training_program_publicId] = await com.pool.query('select category_card_public_id,main_program_banner_public_id,learning_public_id from training_program where id = ?',[program_id]);
+    const [find_training_program_publicId] = await com.pool.query('select category_card_public_id,main_program_banner_public_id from training_program where id = ?',[program_id]);
 
     console.log('find_training_program_publicId',find_training_program_publicId);
 
@@ -381,23 +378,22 @@ exports.DeleteTrainingProgram = async (program_id)=>{
 
     }
 
-    if(find_training_program_publicId[0].learning_public_id){
+    // if(find_training_program_publicId[0].learning_public_id){
         
-        try{
-            await uploader.delete(find_training_program_publicId[0].learning_public_id);
-        }catch(error){
-            logger.error('learning_public_id',error);
-        }
+    //     try{
+    //         await uploader.delete(find_training_program_publicId[0].learning_public_id);
+    //     }catch(error){
+    //         logger.error('learning_public_id',error);
+    //     }
 
-    }
+    // }
 
-    const [find_level_coach_public_id] = await com.pool.query('select coach_public_id,coach_image_url from training_level where training_program_id = ?',[program_id]);
+    const [find_level_coach_public_id] = await com.pool.query('select coach_public_id,coach_image_url,learning_image_url,learning_public_id from training_level where training_program_id = ?',[program_id]);
 
-    if(find_level_coach_public_id.length){
-
-    
+    if(find_level_coach_public_id){
 
     console.log('coach_image_url',find_level_coach_public_id[0].coach_image_url);
+    console.log('learning_image_url',find_level_coach_public_id[0].learning_image_url);
 
     for(let i=0; i<find_level_coach_public_id.length; i++){
 
@@ -407,18 +403,29 @@ exports.DeleteTrainingProgram = async (program_id)=>{
         }catch(error){
             logger.error('coach_public_id',error);
         }
-
-    }
     }
 
+        if(find_level_coach_public_id[i].learning_public_id){
+            try{
 
+                await uploader.delete(find_level_coach_public_id[i].learning_public_id);
+
+            }catch(error){
+                logger.error('learning_public_id',error);
+            }
+
+    }
+    
+
+    }
+
+}
     const [delete_training_level] = await com.pool.query('delete from training_level where training_program_id = ?',[program_id]);
 
     console.log('delete_training_level',delete_training_level);
 
     if(!delete_training_level)throw new AppError('Failed to delete training program',404);
 
-}
 
     const [delete_training_schedule] = await com.pool.query('delete from training_schedule_time_slots where trainning_program_id = ?',[program_id]);
 
@@ -430,9 +437,9 @@ exports.DeleteTrainingProgram = async (program_id)=>{
 
     if(!delete_training_program === 0)throw new AppError('Failed to delete training program',404);
     
-
     return true;
 }
+
 
 exports.UpdateTrainingProgramTimeSlot = async (schedule_id,start_time,end_time)=>{
 
