@@ -321,6 +321,20 @@ exports.ShowDays = async ()=>{
 
 exports.DeleteTrainingLevel = async (level_id)=>{
 
+    const [find_training_coach_image] = await com.pool.query('select coach_image_url,coach_public_id from training_level where id = ?',[level_id]);
+
+    console.log(find_training_coach_image[0].coach_image_url);
+
+    if(find_training_coach_image[0].coach_public_id){
+        try{
+            
+            await uploader.delete(find_training_coach_image[0].coach_public_id);
+
+        }catch(error){
+            logger.error('find_training_coach_image',error);
+        }
+    }
+
     const result = await com.pool.query('delete from training_level where id = ?',[level_id]);
 
     if(result.affectedRows === 0)throw new AppError('Failed to delete training level',404);
