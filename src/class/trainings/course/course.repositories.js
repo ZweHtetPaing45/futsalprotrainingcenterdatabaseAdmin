@@ -117,8 +117,8 @@ exports.TrainingProgram = async (
     // const [findTrainingProgramDay] = await com.pool.query(
 
     const [result4] = await com.pool.query(
-        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details) values(?,?,?,?,?,?,?,?)`,[
-            course_id,title_level,about_level,price,main_title,title,about_title,details
+        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instsuctor_name,biography) values(?,?,?,?,?,?,?,?,?,?,?,?)`,[
+            course_id,title_level,about_level,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instructor_name,biography,
         ]
     );
 
@@ -144,13 +144,13 @@ exports.TrainingProgram = async (
 
     // const day = dayString.join(',');
 
-    const [result5] = await com.pool.query(
-        `insert into training_coach (training_program_id,coach_image_url,coach_public_id,instructor_name,biography) values(?,?,?,?,?)`,[
-            course_id,coach_image_url,coach_public_id,instructor_name,biography
-        ]
-    );
+    // const [result5] = await com.pool.query(
+    //     `insert into training_coach (training_program_id,coach_image_url,coach_public_id,instructor_name,biography) values(?,?,?,?,?)`,[
+    //         course_id,coach_image_url,coach_public_id,instructor_name,biography
+    //     ]
+    // );
 
-    if(!result5)throw new AppError('Failed to create training coach',500);
+    // if(!result5)throw new AppError('Failed to create training coach',500);
 
     // console.log('training_coach_id', result5.insertId);
     return true;
@@ -202,26 +202,16 @@ exports.ShowTraining = async (id) => {
                         'main_title', case when tl.optional_active = 1 then tl.main_title else null end,
                         'title', case when tl.optional_active = 1 then tl.title else null end,
                         'about_title', case when tl.optional_active = 1 then tl.about_title else null end,
-                        'details', case when tl.optional_active = 1 then tl.details else null end
+                        'details', case when tl.optional_active = 1 then tl.details else null end,
+                        'coach_image_url', tl.coach_image_url,
+                        'instsuctor_name', tl.instsuctor_name,
+                        'biography' , tl.biography
                     )
                 )
                 FROM training_level tl
                 WHERE tl.training_program_id = tp.id
             ) AS levels,
 
-            -- coaches
-            (
-                SELECT JSON_ARRAYAGG(
-                    JSON_OBJECT(
-                        'id', tc.id,
-                        'instructor_name', tc.instructor_name,
-                        'biography', tc.biography,
-                        'coach_image_url', tc.coach_image_url
-                    )
-                )
-                FROM training_coach tc
-                WHERE tc.training_program_id = tp.id
-            ) AS coaches,
 
             -- schedules
             (
@@ -282,9 +272,13 @@ exports.DeleteTrainingStudent = async (id,source)=>{
 
         console.log('findMobileImage',findMobileImage[0].payment_image_url);
 
+        console.log('payment_public_id',findMobileImage[0].payment_public_id);
+
+        const payment_public_id = findMobileImage[0].payment_public_id;
+
         if(findMobileImage[0].payment_image_url){
 
-            await uploader.delete(findMobileImage[0].payment_public_id);
+            await uploader.delete(payment_public_id);
 
         }
 
