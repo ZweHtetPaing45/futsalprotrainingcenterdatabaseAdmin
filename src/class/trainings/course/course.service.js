@@ -28,9 +28,9 @@ class CourseService{
 
     }
 
-    async AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details){
+    async AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details,coach_file,instsuctor_name,biography){
 
-        const result = await repo.AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details);
+        const result = await repo.AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details,coach_file,instsuctor_name,biography);
 
         return result;
 

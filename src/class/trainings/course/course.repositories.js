@@ -170,9 +170,21 @@ exports.AddDayTimeTraining = async (training_program_id,training_schedule_days_i
     return true;
 }
 
-exports.AddTrainingLevel = async (training_program_id,description,title_level,price,main_title,title,about_title,details)=>{
+exports.AddTrainingLevel = async (training_program_id,description,title_level,price,main_title,title,about_title,details,coach_file,instsuctor_name,biography)=>{
 
-    const result = await com.pool.query('insert into training_level (training_program_id,description,title_level,price,main_title,title,about_title,details) values(?,?,?,?,?,?,?,?)',[training_program_id,description,title_level,price,main_title,title,about_title,details]);
+    let coach_image_url;
+    let coach_public_id;
+
+    if(coach_file){
+        const result = await uploader.upload(coach_file,'course_images');
+        
+        if(!result)throw new AppError('Failed to upload coach image',500);
+
+        coach_image_url = result.image_url;
+        coach_public_id = result.public_id;
+    }
+
+    const result = await com.pool.query('insert into training_level (training_program_id,description,title_level,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instsuctor_name,biography) values(?,?,?,?,?,?,?,?,?,?,?,?)',[training_program_id,description,title_level,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instsuctor_name,biography]);
 
     if(!result)throw new AppError('Failed to add training level',500);
 
@@ -365,36 +377,34 @@ exports.DeleteTrainingProgram = async (program_id)=>{
 
     }
 
-    const [find_training_coach] = await com.pool.query('select coach_public_id from training_coach where training_program_id = ?',[program_id]);
+    const [find_level_coach_public_id] = await com.pool.query('select coach_public_id,coach_image_url from training_level where training_program_id = ?',[program_id]);
 
-    console.log('find_training_coach',find_training_coach);
+    if(find_level_coach_public_id.length){
 
-    if(find_training_coach){
+    
 
-        for(let i = 0; i < find_training_coach.length; i++){
-            if(find_training_coach[i].coach_public_id){
-                try{
-                    await uploader.delete(find_training_coach[i].coach_public_id);
-                }catch(error){
-                    logger.error('coach_public_id',error);
-                }
-            }
+    console.log('coach_image_url',find_level_coach_public_id[0].coach_image_url);
+
+    for(let i=0; i<find_level_coach_public_id.length; i++){
+
+        if(find_level_coach_public_id[i].coach_public_id){
+        try{
+            await uploader.delete(find_level_coach_public_id[i].coach_public_id);
+        }catch(error){
+            logger.error('coach_public_id',error);
         }
 
-        //await uploader.delete(find_training_coach[0].coach_public_id);
+    }
     }
 
-    const [delete_training_coach] = await com.pool.query('delete from training_coach where training_program_id = ?',[program_id]);
-
-    console.log('delete_training_coach',delete_training_coach);
-
-    if(!delete_training_coach)throw new AppError('Failed to delete training program',404);
 
     const [delete_training_level] = await com.pool.query('delete from training_level where training_program_id = ?',[program_id]);
 
     console.log('delete_training_level',delete_training_level);
 
     if(!delete_training_level)throw new AppError('Failed to delete training program',404);
+
+}
 
     const [delete_training_schedule] = await com.pool.query('delete from training_schedule_time_slots where trainning_program_id = ?',[program_id]);
 

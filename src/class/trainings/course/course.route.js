@@ -10,7 +10,7 @@ router.post('/trainingprogram',upload.fields([
 ]),controller.TrainingProgram);
 
 router.post('/adddaytimetraining',controller.AddDayTimeTraining);
-router.post('/addtraininglevel',controller.AddTrainingLevel);
+router.post('/addtraininglevel',upload.single('coach_file'),controller.AddTrainingLevel);
 
 
 //Get Method

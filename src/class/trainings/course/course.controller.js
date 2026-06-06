@@ -97,13 +97,16 @@ class CourseController {
 
         try{
 
-            const {training_program_id,description,title_level,price,main_title,title,about_title,details} = req.body;
+            const {training_program_id,description,title_level,price,main_title,title,about_title,details,instsuctor_name,biography} = req.body;
+
+            const file = req.file;
+
 
             if(!training_program_id || !title_level || !price || !description){
                 throw new AppError('Please fill all the fields', 400);
             }
 
-            const result = await service.AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details);
+            const result = await service.AddTrainingLevel(training_program_id,description,title_level,price,main_title,title,about_title,details,file,instsuctor_name,biography);
 
             if(!result)throw new AppError('Failed to add training level',500);
 
