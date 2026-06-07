@@ -317,17 +317,37 @@ exports.ShowDays = async ()=>{
 
 exports.DeleteTrainingLevel = async (level_id)=>{
 
-    const [find_training_coach_image] = await com.pool.query('select coach_image_url,coach_public_id from training_level where id = ?',[level_id]);
+    const [find_training_level_image] = await com.pool.query('select coach_image_url,coach_public_id,learning_image_url,learning_public_id,category_card_image_url,category_card_public_id from training_level where id = ?',[level_id]);
 
-    console.log(find_training_coach_image[0].coach_image_url);
+    console.log(find_training_level_image[0].coach_image_url);
 
-    if(find_training_coach_image[0].coach_public_id){
+    if(find_training_level_image[0].coach_public_id){
         try{
             
-            await uploader.delete(find_training_coach_image[0].coach_public_id);
+            await uploader.delete(find_training_level_image[0].coach_public_id);
 
         }catch(error){
-            logger.error('find_training_coach_image',error);
+            logger.error('find_training_level_image',error);
+        }
+    }
+
+    if(find_training_level_image[0].learning_public_id){
+        try{
+
+            await uploader.delete(find_training_level_image[0].learning_public_id);
+
+        }catch(error){
+            logger.error('find_training_level_image',error);
+        }
+    }
+
+    if(find_training_level_image[0].category_card_public_id){
+        try{
+
+            await uploader.delete(find_training_level_image[0].category_card_public_id);
+
+        }catch(error){
+            logger.error('find_training_level_image',error);
         }
     }
 

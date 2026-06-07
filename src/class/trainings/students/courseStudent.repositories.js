@@ -129,8 +129,6 @@ exports.AddTrainingStudent = async (name,gender,age,phone,email,payment_id,train
         ats.email,
         ats.payment_image_url,
 
-        tp.category_card_image_url AS category_card_image_url,
-
         tsts.id,
         tsts.trainning_program_id,
         tsts.training_schedule_days_id,
@@ -141,6 +139,7 @@ exports.AddTrainingStudent = async (name,gender,age,phone,email,payment_id,train
         tsts.training_level_id,
 
         tl.title_level,
+        tl.category_card_image_url AS category_card_image_url,
         tsd.day
 
     FROM admin_training_students ats

@@ -11,11 +11,10 @@ router.get('/showtraining',controller.ShowTrainingImage);
 //PUT Method
 router.put('/updatecourse/:id',upload.single('main_program_image'),controller.UpdateTraining);
 
-router.put('/update_training_program_and_coach',upload.fields([
+router.put('/update_training_level_and_coach/:level_id',upload.fields([
     {name: 'category_card_image', maxCount: 1},
     {name: 'learning_image', maxCount: 1},
-    {name: 'main_program_image', maxCount: 1},
     {name: 'coach_file', maxCount: 1},
-]),controller.UpdateTrainingProgramAndCoach);
+]),controller.UpdateTrainingLevel);
 
 module.exports = router;

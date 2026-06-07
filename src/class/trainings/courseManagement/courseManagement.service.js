@@ -27,40 +27,42 @@ class CourseManagementServices{
 
     }
 
-    async UpdateTrainingProgram(
-        training_program_id,
-        category_file,main_program_file,
-        learning_file,learning_description,
-        main_title,title,about_title,details,
-        course_name){
-
-            const result = await repo.UpdateTrainingProgram(
-                training_program_id,
-                category_file,main_program_file,
-                learning_file,learning_description,
-                main_title,title,about_title,details,
-                course_name);
-
-            return result;
-    }
-
-    async UpdateTrainingCoach(
-        training_coach_id,
-        coach_file,
-        instructor_name,
-        biography
+    async UpdateTrainingLevel(
+                training_level_id,
+                title_level,
+                price,
+                description,
+                learning_description,
+                main_title,
+                title,
+                about_title,
+                details,
+                instructor_name,
+                biography,
+                categoryCardImage,
+                learningImage,
+                coachFile
     ){
-
-        const result = await repo.UpdateTrainingCoach(
-            training_coach_id,
-            coach_file,
-            instructor_name,
-            biography
-        );
+        const result = await repo.UpdateTrainingLevel(
+                training_level_id,
+                title_level,
+                price,
+                description,
+                learning_description,
+                main_title,
+                title,
+                about_title,
+                details,
+                instructor_name,
+                biography,
+                categoryCardImage,
+                learningImage,
+                coachFile
+            );
 
         return result;
-
     }
+
 
 }
 
