@@ -411,9 +411,9 @@ exports.DeleteTrainingProgram = async (program_id)=>{
 
     if(find_level_coach_public_id){
 
-    console.log('coach_image_url',find_level_coach_public_id[0].coach_image_url);
-    console.log('learning_image_url',find_level_coach_public_id[0].learning_image_url);
-    console.log('category_card_image_url',find_level_coach_public_id[0].category_card_image_url);
+    // console.log('coach_image_url',find_level_coach_public_id[0].coach_image_url);
+    // console.log('learning_image_url',find_level_coach_public_id[0].learning_image_url);
+    // console.log('category_card_image_url',find_level_coach_public_id[0].category_card_image_url);
 
     for(let i=0; i<find_level_coach_public_id.length; i++){
 
