@@ -348,6 +348,32 @@ class CourseController {
         }
     }
 
+    async GetTrainingLevelAndCourse(req,res,next){
+        try{
+
+            const program_id = req.params.program_id;
+
+            const result = await service.GetTrainingLevelAndCourse(program_id);
+
+            if(result){
+                return res.status(201).json({
+                    success: true,
+                    message: 'Training level and course retrieved successfully',
+                    data: result
+                });
+            }else{
+                return res.status(400).json({
+                    success: false,
+                    message: 'Training level and course not retrieved',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+    }
+
 }
 
 module.exports = new CourseController();

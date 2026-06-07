@@ -102,6 +102,14 @@ class CourseService{
 
     }
 
+    async GetTrainingLevelAndCourse(program_id){
+        
+        const result = await repo.GetTrainingLevelAndCourse(program_id);
+
+        return result;
+
+    }
+
 }
 
 module.exports = new CourseService();

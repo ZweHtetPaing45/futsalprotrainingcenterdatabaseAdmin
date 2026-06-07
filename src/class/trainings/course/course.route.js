@@ -16,6 +16,7 @@ router.post('/addtraininglevel',upload.single('coach_file'),controller.AddTraini
 //Get Method
 router.get('/showtraining/:id',controller.ShowTraining);
 router.get('/showdays',controller.ShowDays);
+router.get('/get_training_level_and_class/:program_id',controller.GetTrainingLevelAndCourse);
 
 //Delete Method
 router.delete('/deletetrainingstudent/:id/:source',controller.DeleteTrainingStudent);

@@ -510,3 +510,32 @@ exports.UpdateTrainingLevelOptionalActive = async (level_id,active)=>{
     return true;
 
 }
+
+exports.GetTrainingLevelAndCourse = async (program_id)=>{
+    
+    const [result] = await com.pool.query(`
+        
+           SELECT
+    tp.id AS training_program_id,
+    tp.course_name,
+    JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'training_level_id', tl.id,
+            'title_level', tl.title_level,
+            'price', tl.price
+        )
+    ) AS levels
+FROM training_program tp
+LEFT JOIN training_level tl
+    ON tp.id = tl.training_program_id
+WHERE tp.id = ?
+GROUP BY tp.id, tp.course_name;  
+        `,[program_id]);
+
+    if(result.length === 0){
+        return [];
+    }
+
+    return result;
+
+}
