@@ -351,9 +351,7 @@ class CourseController {
     async GetTrainingLevelAndCourse(req,res,next){
         try{
 
-            const program_id = req.params.program_id;
-
-            const result = await service.GetTrainingLevelAndCourse(program_id);
+            const result = await service.GetTrainingLevelAndCourse();
 
             if(result){
                 return res.status(201).json({

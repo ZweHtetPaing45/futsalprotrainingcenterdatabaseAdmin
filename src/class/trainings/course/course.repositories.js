@@ -511,7 +511,7 @@ exports.UpdateTrainingLevelOptionalActive = async (level_id,active)=>{
 
 }
 
-exports.GetTrainingLevelAndCourse = async (program_id)=>{
+exports.GetTrainingLevelAndCourse = async ()=>{
     
     const [result] = await com.pool.query(`
         
@@ -528,9 +528,8 @@ exports.GetTrainingLevelAndCourse = async (program_id)=>{
 FROM training_program tp
 LEFT JOIN training_level tl
     ON tp.id = tl.training_program_id
-WHERE tp.id = ?
 GROUP BY tp.id, tp.course_name;  
-        `,[program_id]);
+        `,);
 
     if(result.length === 0){
         return [];

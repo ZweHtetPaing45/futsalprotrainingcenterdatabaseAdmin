@@ -102,9 +102,9 @@ class CourseService{
 
     }
 
-    async GetTrainingLevelAndCourse(program_id){
+    async GetTrainingLevelAndCourse(){
         
-        const result = await repo.GetTrainingLevelAndCourse(program_id);
+        const result = await repo.GetTrainingLevelAndCourse();
 
         return result;
 
