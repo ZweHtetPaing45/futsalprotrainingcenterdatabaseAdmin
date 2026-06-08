@@ -117,46 +117,6 @@ exports.UpdateTrainingLevel = async (
         values.push(price);
     }
 
-    if(description !== ''){
-        query += "description = ?, ";
-        values.push(description);
-    }
-
-    if(learning_description !== ''){
-        query += "learning_description = ?, ";
-        values.push(learning_description);
-    }
-
-    if(main_title !== ''){
-        query += "main_title = ?, ";
-        values.push(main_title);
-    }
-
-    if(title !== ''){
-        query += "title = ?, ";
-        values.push(title);
-    }
-
-    if(about_title !== ''){
-        query += "about_title = ?, ";
-        values.push(about_title);
-    }
-
-    if(details !== ''){
-        query += "details = ?, ";
-        values.push(details);
-    }
-
-    if(instructor_name !== ''){
-        query += "instructor_name = ?, ";
-        values.push(instructor_name);
-    }
-
-    if(biography !== ''){
-        query += "biography = ?, ";
-        values.push(biography);
-    }
-
     if (categoryCardImage) {
     const [old] = await com.pool.query(
       "SELECT category_card_public_id FROM training_level WHERE id = ?",
@@ -182,7 +142,28 @@ exports.UpdateTrainingLevel = async (
     values.push(result.image_url, result.public_id);
   }
 
-  if (learningImage) {
+
+    if(description !== ''){
+        query += "description = ?, ";
+        values.push(description);
+    }
+
+    if(learning_description !== ''){
+        query += "learning_description = ?, ";
+        values.push(learning_description);
+    }
+
+    if(main_title !== ''){
+        query += "main_title = ?, ";
+        values.push(main_title);
+    }
+
+    if(title !== ''){
+        query += "title = ?, ";
+        values.push(title);
+    }
+
+     if (learningImage) {
     const [old] = await com.pool.query(
       "SELECT learning_public_id FROM training_level WHERE id = ?",
       [training_level_id]
@@ -208,6 +189,28 @@ exports.UpdateTrainingLevel = async (
     query += "learning_image_url = ?, learning_public_id = ?, ";
     values.push(result.image_url, result.public_id);
   }
+
+    if(about_title !== ''){
+        query += "about_title = ?, ";
+        values.push(about_title);
+    }
+
+    if(details !== ''){
+        query += "details = ?, ";
+        values.push(details);
+    }
+
+    if(instructor_name !== ''){
+        query += "instructor_name = ?, ";
+        values.push(instructor_name);
+    }
+
+    if(biography !== ''){
+        query += "biography = ?, ";
+        values.push(biography);
+    }
+
+ 
 
   if (coachFile) {
     const [old] = await com.pool.query(

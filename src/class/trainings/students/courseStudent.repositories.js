@@ -410,7 +410,8 @@ FROM (
             'age', ats.age,
             'phone', ats.phone,
             'email', ats.email,
-            'source', ats.source
+            'source', ats.source,
+            'warning', case when ats.warning = 1 then 'true' else 'false' end
         ) AS student_json
     FROM mobile_training_students ats
     LEFT JOIN training_program tp 
@@ -427,7 +428,8 @@ FROM (
             'age', ats.age,
             'phone', ats.phone,
             'email', ats.email,
-            'source', ats.source
+            'source', ats.source,
+            'warning', case when ats.warning = 1 then 'true' else 'false' end 
         ) AS student_json
     FROM admin_training_students ats
     LEFT JOIN training_program tp 

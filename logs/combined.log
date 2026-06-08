@@ -2171,3 +2171,6 @@ GROUP BY p.id' at line 55
 2026-06-08 15:49:12 [32minfo[39m:: Server is running on port 5000
 2026-06-08 15:50:01 [31merror[39m:: Failed to delete old category card image
 2026-06-08 15:56:00 [31merror[39m:: Failed to delete old category card image
+2026-06-08 16:47:15 [32minfo[39m:: Server is running on port 5000
+2026-06-08 16:51:36 [32minfo[39m:: Server is running on port 5000
+2026-06-08 16:52:03 [32minfo[39m:: Server is running on port 5000
