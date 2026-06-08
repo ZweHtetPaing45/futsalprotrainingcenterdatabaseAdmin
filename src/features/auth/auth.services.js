@@ -9,7 +9,7 @@ class AdminAuthService {
 
         const userData = await repo.findEmailData(email);
 
-        // console.log(userData);
+        console.log(userData);
 
         if(userData === null){
             return 'User not found';

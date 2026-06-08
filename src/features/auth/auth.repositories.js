@@ -2,7 +2,17 @@ const com = require('../../config/com');
 
 exports.findEmailData = async (email)=>{
     
-    const [findEmail] = await com.pool.query('select name,email,role_id,status,password from staff where email = ?',[email]);
+    const [findEmail] = await com.pool.query(`
+            SELECT
+            s.id,
+            s.name,
+            s.email,
+            s.status,
+            s.password
+        FROM staff s
+        JOIN roles r ON s.role_id = r.id
+        WHERE r.role_name = 'admin' and email = ?
+        `,[email]);
 
     if(findEmail.length === 0)return null;
 
@@ -11,3 +21,4 @@ exports.findEmailData = async (email)=>{
     return findEmail[0];
     
 }
+
