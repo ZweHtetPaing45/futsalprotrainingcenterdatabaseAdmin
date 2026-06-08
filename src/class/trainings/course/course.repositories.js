@@ -114,7 +114,7 @@ exports.TrainingProgram = async (
     // const [findTrainingProgramDay] = await com.pool.query(
 
     const [result4] = await com.pool.query(
-        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instsuctor_name,biography,learning_image_url,learning_public_id,learning_description,category_card_image_url,category_card_public_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[
+        `insert into training_level (training_program_id,title_level,description,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instructor_name,biography,learning_image_url,learning_public_id,learning_description,category_card_image_url,category_card_public_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[
             course_id,title_level,about_level,price,main_title,title,about_title,details,coach_image_url,coach_public_id,instructor_name,biography,learning_image_url,learning_public_id,learning_description,category_card_image_url,category_card_public_id
         ]
     );
