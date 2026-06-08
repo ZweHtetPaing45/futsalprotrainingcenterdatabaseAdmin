@@ -7,7 +7,16 @@ const uploader = require('@zwehtetpaing55/uploader');
 
 exports.showCustomerData = async ()=>{
 
-    const [customerData] = await com.pool.query('select id,name,address,phone,email from createuser;')
+    const [customerData] = await com.pool.query(`
+        select
+            id,
+            name,
+            address,
+            phone,
+            email,
+            case when warning = 1 then 'true' else 'false' end as warning
+        from createuser
+        `)
 
     if(customerData.length === 0){
         return 'No Data Found';
@@ -48,4 +57,15 @@ exports.deleteCustomer = async (id)=>{
 
     return true;
 
+}
+
+exports.WarningCustomer = async (id,warning)=>{
+
+    const [update_warning] = await com.pool.query(`
+        update createuser set warning = ? where id = ?
+        `,[warning,id]);
+
+    if(warning.affectedRows === 0)throw new AppError('No data found with that id',500);
+
+    return true;
 }

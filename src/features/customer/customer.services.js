@@ -19,7 +19,15 @@ class customerServices {
 
         if(!result)throw new AppError('Failed to delete customer data',500);
 
-        return true;
+        return result;
+
+    }
+
+    async WarningCustomer(id,warning){
+
+        const result = await repo.WarningCustomer(id,warning);
+
+        return result;
 
     }
 

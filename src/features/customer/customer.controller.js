@@ -42,6 +42,35 @@ class customerController{
         }
     }
 
+
+    async WarningCustomer(req,res,next){
+        try{
+
+            const id = req.params.id;
+            let warning = req.params.warning;
+
+            warning = warning === 'true' ? 1 : 0;
+
+            const result = await service.WarningCustomer(id,warning);
+
+            if(result){
+                res.status(200).json({
+                    status: 'success',
+                    message: 'Customer data updated successfully',
+                    result
+                });
+            }else{
+                res.status(400).json({
+                    status: 'failed',
+                    message: 'Customer data not updated',
+                    result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+    }
 }
 
 module.exports = new customerController();
