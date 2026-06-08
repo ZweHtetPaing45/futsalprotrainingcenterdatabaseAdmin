@@ -162,7 +162,6 @@ exports.UpdateTrainingLevel = async (
       "SELECT category_card_public_id FROM training_level WHERE id = ?",
       [training_level_id]
     );
-    
 
     const pu_id = old[0]?.category_card_public_id;
 
@@ -191,11 +190,13 @@ exports.UpdateTrainingLevel = async (
 
     const pu_id = old[0]?.learning_public_id;
 
-    console.log('pu_id',pu_id);
+    // console.log('pu_id',pu_id);
 
     if (pu_id) {
       try{
+
           await uploader.delete(pu_id);
+
       }catch(error){
         logger.error('Failed to delete old learning image', { error });
       }
@@ -216,7 +217,7 @@ exports.UpdateTrainingLevel = async (
 
     const pu_id = old[0]?.coach_public_id;
 
-    console.log('pu_id',pu_id);
+    // console.log('pu_id',pu_id);
 
     if (pu_id) {
       try{

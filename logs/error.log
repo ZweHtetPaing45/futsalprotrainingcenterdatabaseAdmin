@@ -445,3 +445,5 @@ GROUP BY p.id' at line 55
 2026-06-06 15:42:00 [31merror[39m:: main_program_banner_public_id Delete failed: read ECONNRESET
 2026-06-06 15:42:00 [31merror[39m:: learning_public_id Delete failed: Request failed with status code 500
 2026-06-07 18:19:58 [31merror[39m:: main_program_banner_public_id Delete failed: Request failed with status code 500
+2026-06-08 15:50:01 [31merror[39m:: Failed to delete old category card image
+2026-06-08 15:56:00 [31merror[39m:: Failed to delete old category card image
