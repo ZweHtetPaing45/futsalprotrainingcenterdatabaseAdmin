@@ -162,10 +162,11 @@ exports.UpdateTrainingLevel = async (
       "SELECT category_card_public_id FROM training_level WHERE id = ?",
       [training_level_id]
     );
+    
 
     const pu_id = old[0]?.category_card_public_id;
 
-    console.log('pu_id',pu_id);
+    // console.log('pu_id',pu_id);
 
     if (pu_id) {
       try{
