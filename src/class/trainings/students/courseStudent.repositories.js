@@ -401,40 +401,46 @@ exports.ShowTrainingStudentAll = async () => {
     course_name,
     JSON_ARRAYAGG(student_json) AS students
 FROM (
-    SELECT 
-        tp.course_name,
-        JSON_OBJECT(
-            'id', ats.id,
-            'name', ats.name,
-            'gender', ats.gender,
-            'age', ats.age,
-            'phone', ats.phone,
-            'email', ats.email,
-            'source', ats.source,
-            'warning', case when ats.warning = 1 then 'true' else 'false' end
-        ) AS student_json
-    FROM mobile_training_students ats
-    LEFT JOIN training_program tp 
-        ON ats.training_program_id = tp.id
+    SELECT *
+    FROM (
+        SELECT 
+            tp.course_name,
+            ats.id,
+            JSON_OBJECT(
+                'id', ats.id,
+                'age', ats.age,
+                'name', ats.name,
+                'email', ats.email,
+                'phone', ats.phone,
+                'gender', ats.gender,
+                'source', ats.source,
+                'warning', CASE WHEN ats.warning = 1 THEN 'true' ELSE 'false' END
+            ) AS student_json
+        FROM mobile_training_students ats
+        LEFT JOIN training_program tp 
+            ON ats.training_program_id = tp.id
 
-    UNION ALL
+        UNION ALL
 
-    SELECT 
-        tp.course_name,
-        JSON_OBJECT(
-            'id', ats.id,
-            'name', ats.name,
-            'gender', ats.gender,
-            'age', ats.age,
-            'phone', ats.phone,
-            'email', ats.email,
-            'source', ats.source,
-            'warning', case when ats.warning = 1 then 'true' else 'false' end 
-        ) AS student_json
-    FROM admin_training_students ats
-    LEFT JOIN training_program tp 
-        ON ats.training_program_id = tp.id
-) AS all_students
+        SELECT 
+            tp.course_name,
+            ats.id,
+            JSON_OBJECT(
+                'id', ats.id,
+                'age', ats.age,
+                'name', ats.name,
+                'email', ats.email,
+                'phone', ats.phone,
+                'gender', ats.gender,
+                'source', ats.source,
+                'warning', CASE WHEN ats.warning = 1 THEN 'true' ELSE 'false' END
+            )
+        FROM admin_training_students ats
+        LEFT JOIN training_program tp 
+            ON ats.training_program_id = tp.id
+    ) merged
+    ORDER BY id DESC
+) sorted
 GROUP BY course_name;
         `
     )
@@ -457,7 +463,14 @@ GROUP BY course_name;
     //     scheduleData: row.scheduleData
     // }));
 
-    return row;
+    const result = row.map(course => {
+  return {
+    ...course,
+    students: course.students.sort((a, b) => b.id - a.id)
+  };
+});
+
+    return result;
 };
 
 
