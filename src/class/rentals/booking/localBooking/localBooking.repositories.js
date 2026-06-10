@@ -269,9 +269,9 @@ exports.ShowLocalBookingData = async ()=>{
                 a.id,
                 v.venue_name,
                 c.court_name,
-                p.payment_method,
+                COALESCE(p.payment_method, 'Cash') as payment_method,
                 a.reciept_no,
-                a.payment_image_url,
+                COALESCE(a.payment_image_url, 'Cash no photo') as payment_image_url,
                 DATE_FORMAT(a.create_at, '%Y-%m-%d') AS Date,
                 DATE_FORMAT(a.create_at, '%h:%i:%s %p') AS Time,
                 DATE_FORMAT(a.date, '%Y-%m-%d') AS date,
@@ -288,53 +288,16 @@ exports.ShowLocalBookingData = async ()=>{
                 ) AS items
 
                 FROM admin_booking a
-                JOIN payment p ON p.id = a.payment_id
-                JOIN venue v ON v.id = a.venue_id
-                JOIN court c ON c.id = a.court_id
+                LEFT JOIN payment p ON p.id = a.payment_id
+                LEFT JOIN venue v ON v.id = a.venue_id
+                LEFT JOIN court c ON c.id = a.court_id
                 LEFT JOIN admin_booking_equipment abe ON abe.booking_id = a.id
                 LEFT JOIN equipment e ON e.id = abe.equipment_id
 
-                GROUP BY a.id;
+                GROUP BY a.id
+
+                order by id desc;
                                 `);
-
-    // if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
-
-    // if(prindOrder === 0){
-    //     return "No data found";
-    // };
-
-    //  const grouped = {};
-
-    //         prindOrder.forEach(row => {
-    //         if (!grouped[row.id]) {
-    //             grouped[row.id] = {
-    //             Registration: row.id,
-    //             payment_method: row.payment_method,
-    //             reciept_no: row.reciept_no,
-    //             payment_image_url: row.payment_image_url,
-    //             venue_name: row.venue_name,
-    //             court_name: row.court_name,
-    //             equipment: row.product_name,
-    //             create_at: row.create_at,
-    //             date: row.date,
-    //             items: [],
-    //             Court_Fee: row.price,
-    //             Total: row.amount,
-    //             };
-    //         }
-
-    //         grouped[row.id].items.push({
-    //             equipment: row.product_name,
-    //             quantity: row.equipment_quantity,
-    //             price: row.equipment_price,
-    //             total: row.equipment_total
-    //         });
-
-    //         });
-
-    //         const result1 = Object.values(grouped);
-
-    //         console.log('result1',result1);
 
     return prindOrder;
 

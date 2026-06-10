@@ -11,6 +11,14 @@ class RentalOverviewService{
 
     }
 
+    async ShowBookingData(){
+
+        const result = await repo.ShowBookingData();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new RentalOverviewService();
