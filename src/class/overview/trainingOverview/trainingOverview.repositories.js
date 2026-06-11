@@ -90,3 +90,77 @@ exports.ShowTrainingOverview = async ()=>{
     };
 
 }
+
+exports.TrainingStudentOverview = async () => {
+
+    const [row] = await com.pool.query(
+        `
+      SELECT 
+    tp.course_name,
+    ats.id,
+    ats.name,
+    tl.title_level,
+    tl.price,
+    DATE_FORMAT(tl.create_at, '%Y-%m-%d') AS date,
+    p.payment_method,
+    ats.payment_image_url,
+    ats.source
+FROM mobile_training_students ats
+LEFT JOIN training_program tp 
+    ON ats.training_program_id = tp.id
+LEFT JOIN training_level tl
+    ON ats.training_program_id = tl.training_program_id
+LEFT JOIN payment p 
+    ON ats.payment_id = p.id
+
+UNION ALL
+
+SELECT 
+    tp.course_name,
+    ats.id,
+    ats.name,
+    tl.title_level,
+    tl.price,
+    DATE_FORMAT(tl.create_at, '%Y-%m-%d') AS date,
+    p.payment_method,
+    ats.payment_image_url,
+    ats.source
+FROM admin_training_students ats
+LEFT JOIN training_program tp 
+    ON ats.training_program_id = tp.id
+LEFT JOIN training_level tl
+    ON ats.training_program_id = tl.training_program_id
+LEFT JOIN payment p 
+    ON ats.payment_id = p.id
+
+ORDER BY id DESC;
+        `
+    )
+
+    if (!row.length) {
+        return [];
+    }
+
+    // return rows.map(row => ({
+    //     studentInfo: {
+    //         id: row.id,
+    //         name: row.name,
+    //         gender: row.gender,
+    //         age: row.age,
+    //         phone: row.phone,
+    //         email: row.email,
+    //         payment_image_url: row.payment_image_url,
+    //         course_name: row.course_name
+    //     },
+    //     scheduleData: row.scheduleData
+    // }));
+
+//     const result = row.map(course => {
+//   return {
+//     ...course,
+//     students: course.students.sort((a, b) => b.id - a.id)
+//   };
+// });
+
+    return row;
+};

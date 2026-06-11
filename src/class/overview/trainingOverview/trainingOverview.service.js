@@ -11,6 +11,14 @@ class TrainingOverviewService{
 
     }
 
+    async TrainingStudentOverview(){
+
+        const result = await repo.TrainingStudentOverview();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new TrainingOverviewService();
