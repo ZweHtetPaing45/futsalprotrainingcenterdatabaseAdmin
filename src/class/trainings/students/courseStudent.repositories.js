@@ -741,3 +741,27 @@ if(adminStudent.length === 0){
 // };
 
 }
+
+exports.UpdateWarning = async(id,source,warning)=>{
+
+    if(source === 'admin'){
+
+        const result = await com.pool.query('update admin_training_students set warning = ? where id = ?',[warning,id]);
+
+        if(!result) throw new AppError('Admin Training Student Error',400);
+
+        return true;
+
+    } else if(source === 'mobile'){
+
+        const result = await com.pool.query('update mobile_training_students set warning = ? where id = ?',[warning,id]);
+
+        if(!result) throw new AppError('Mobile Training Student Error',400);
+
+        return true;
+
+    }
+
+    return false;
+
+}

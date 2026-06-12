@@ -260,11 +260,16 @@ exports.DeleteTrainingStudent = async (id,source)=>{
 
         // if(!findAdminStudent)throw new AppError('Failed to find admin student',500);
 
-        console.log('findAdminStudent',findAdminImage[0].payment_public_id);
+        console.log('findAdminStudent',findAdminImage[0]?.payment_public_id);
 
         if(findAdminImage[0].payment_public_id){
 
-            await uploader.delete(findAdminImage[0].payment_public_id);
+            try{
+                await uploader.delete(findAdminImage[0].payment_public_id);
+                
+            }catch(error){
+                logger.error("Can not found admin payment image",error);
+            }
 
         }
 
@@ -276,17 +281,21 @@ exports.DeleteTrainingStudent = async (id,source)=>{
 
     }else if(source === 'mobile'){
 
-        const [findMobileImage] = await com.pool.query('select payment_image_url from mobile_training_students where id = ? and source = ?',[id,source]);
+        const [findMobileImage] = await com.pool.query('select payment_image_url,payment_public_id from mobile_training_students where id = ? and source = ?',[id,source]);
 
-        console.log('findMobileImage',findMobileImage[0].payment_image_url);
+        console.log('findMobileImage',findMobileImage[0]?.payment_image_url);
 
-        console.log('payment_public_id',findMobileImage[0].payment_public_id);
+        console.log('payment_public_id',findMobileImage[0]?.payment_public_id);
 
         const payment_public_id = findMobileImage[0].payment_public_id;
 
         if(findMobileImage[0].payment_image_url){
 
-            await uploader.delete(payment_public_id);
+            try{
+                await uploader.delete(payment_public_id);
+            }catch(error){
+                logger.error('mobile payment can not found',error);
+            }
 
         }
 

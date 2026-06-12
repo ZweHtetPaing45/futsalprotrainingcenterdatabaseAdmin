@@ -447,3 +447,5 @@ GROUP BY p.id' at line 55
 2026-06-07 18:19:58 [31merror[39m:: main_program_banner_public_id Delete failed: Request failed with status code 500
 2026-06-08 15:50:01 [31merror[39m:: Failed to delete old category card image
 2026-06-08 15:56:00 [31merror[39m:: Failed to delete old category card image
+2026-06-12 13:28:22 [31merror[39m:: mobile payment can not found Delete failed: 
+2026-06-12 13:29:20 [31merror[39m:: Can not found admin payment image Delete failed: 

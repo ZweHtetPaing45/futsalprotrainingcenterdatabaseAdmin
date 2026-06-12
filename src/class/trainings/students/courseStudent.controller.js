@@ -101,6 +101,35 @@ class CourseStudentController{
 
         }
 
+        async UpdateWarning(req,res,next){
+            try{
+
+                const id = req.params.stu_id;
+                const source = req.params.source;
+                const warning = req.params.warning;
+
+                const result = await service.UpdateWarning(id,source,warning);
+
+                if(result){
+                    return res.status(201).json({
+                        success: true,
+                        message: 'Warning Training student successfully',
+                        data: result
+                    });
+                }else{
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Failed to warning training students',
+                        data: result
+                    });
+                }
+                
+
+            }catch(error){
+                next(error);
+            }
+        }
+
 }
 
 module.exports = new CourseStudentController();

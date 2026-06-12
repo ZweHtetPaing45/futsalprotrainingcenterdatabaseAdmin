@@ -29,6 +29,14 @@ class CourseStudentService{
 
         }
 
+        async UpdateWarning(id,source,warning){
+
+                const result = await repo.UpdateWarning(id,source,warning);
+
+                return result;
+
+        }
+
 }
 
 module.exports = new CourseStudentService();
