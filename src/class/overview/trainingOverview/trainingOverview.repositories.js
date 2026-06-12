@@ -109,7 +109,7 @@ FROM mobile_training_students ats
 LEFT JOIN training_program tp 
     ON ats.training_program_id = tp.id
 LEFT JOIN training_level tl
-    ON ats.training_program_id = tl.training_program_id
+    ON ats.training_level_id = tl.id
 LEFT JOIN payment p 
     ON ats.payment_id = p.id
 
@@ -129,7 +129,7 @@ FROM admin_training_students ats
 LEFT JOIN training_program tp 
     ON ats.training_program_id = tp.id
 LEFT JOIN training_level tl
-    ON ats.training_program_id = tl.training_program_id
+    ON ats.training_level_id = tl.id
 LEFT JOIN payment p 
     ON ats.payment_id = p.id
 
