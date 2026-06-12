@@ -106,7 +106,11 @@ class CourseStudentController{
 
                 const id = req.params.stu_id;
                 const source = req.params.source;
-                const warning = req.params.warning;
+                let warning = req.params.warning;
+
+                warning = warning === 'true' ? 1 : 0 ;
+
+                // console.log(warning);
 
                 const result = await service.UpdateWarning(id,source,warning);
 
