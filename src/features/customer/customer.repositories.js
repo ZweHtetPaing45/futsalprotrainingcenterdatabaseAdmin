@@ -29,7 +29,7 @@ exports.deleteCustomer = async (id)=>{
 
     const publicId = await com.pool.query('select public_id from createuser where id = ?',[id]);
 
-    console.log(publicId[0][0].public_id);
+    // console.log(publicId[0][0].public_id);
 
     // if(publicId.length === 0)throw new AppError('No data found with that id',404);
 
@@ -45,7 +45,13 @@ exports.deleteCustomer = async (id)=>{
 
 }
     
-    const deleteImage = await uploader.delete(publicId[0][0].public_id);
+    if(publicId[0][0].public_id){
+        try{
+            const deleteImage = await uploader.delete(publicId[0][0].public_id);
+        }catch(error){
+            logger.error('User Delete Account image Error',400);
+        }
+    }
 
     // if(!deleteImage)throw new AppError('Failed to delete customer image',500);
 
@@ -53,7 +59,7 @@ exports.deleteCustomer = async (id)=>{
 
     console.log(deleteData);
 
-    if(deleteData.affectedRows === 0)throw new AppError('No data found with that id',500);
+    // if(deleteData.affectedRows === 0)throw new AppError('No data found with that id',500);
 
     return true;
 
