@@ -484,6 +484,78 @@ exports.admin_order_data = async ()=>{
 
         const admin_order = admin_order_count[0].total_admin_order;
 
-    return {admin_order};
+        
+        const [order_status_total] = await com.pool.query(`
+           SELECT
+           COUNT(CASE WHEN order_status = 'pending' THEN 1 END) AS pending_count,
+           COUNT(CASE WHEN order_status = 'complete' THEN 1 END) AS complete_count,
+           COUNT(CASE WHEN order_status = 'cancel' THEN 1 END) AS cancel_count
+           FROM admin_order; 
+            `)
+
+    return {
+        admin_order,
+         "order_status_total" :order_status_total[0]
+    };
+
+}
+
+exports.MobileAdminOrderDataList = async ()=>{
+
+    const [admin_order_result] = await com.pool.query(`
+                        SELECT 
+                        o.id AS order_id,
+                        o.reciept_no,
+                        o.amount,
+                        o.admin_image_url,
+                        p2.payment_method,
+                        o.order_status,
+                        t.tax,
+                        p.name AS product_name,
+                        oi.quantity,
+                        oi.price,
+                        oi.total,
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only,
+                        o.sub_total
+                    FROM admin_order o
+                    JOIN admin_order_items oi ON o.id = oi.admin_order_id
+                    JOIN products p ON p.id = oi.product_id
+                    LEFT JOIN payment p2 ON p2.id = o.payment_id
+                    LEFT JOIN tax t ON t.id = o.tax_id order by o.id desc
+        `);
+
+        if(!admin_order_result)throw new AppError('admin_order_result',400);
+
+        const [mobile_order_result] = await com.pool.query(`
+                        SELECT 
+                        o.id AS order_id,
+                        o.mobile_image_url,
+                        o.customer_name,
+                        o.total_amount,
+                        p2.payment_method,
+                        t.tax,
+                        p.name AS product_name,
+                        oi.quantity,
+                        oi.price,
+                        oi.total,
+                        DATE_FORMAT(o.create_at, '%Y-%m-%d') AS date_only,
+                        DATE_FORMAT(o.create_at, '%h:%i:%s %p') AS time_only,
+                        o.delivery_fee,
+                        o.sub_total,
+                        o.order_status
+                    FROM mobile_order o
+                    JOIN mobile_order_items oi ON o.id = oi.order_id
+                    JOIN products p ON p.id = oi.product_id
+                    LEFT JOIN payment p2 ON p2.id = o.payment_id
+                    LEFT JOIN tax t ON t.id = o.tax_id order by o.id desc;
+            `);
+
+            if(!mobile_order_result) throw new AppError('mobile_order_result',400);
+
+            return {
+                admin_order_result,
+                mobile_order_result
+            }
 
 }

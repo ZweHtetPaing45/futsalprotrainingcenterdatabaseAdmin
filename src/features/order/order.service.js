@@ -95,6 +95,14 @@ class orderService{
 
     }
 
+    async MobileAdminOrderDataList(){
+
+        const result = await repo.MobileAdminOrderDataList();
+
+        return result;
+
+    }
+
 }
 
 module.exports = new orderService();

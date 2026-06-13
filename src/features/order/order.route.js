@@ -10,6 +10,7 @@ router.get('/showmobileorder',controller.showMobileOrderData);
 router.get('/totalResult',controller.totalResult);
 router.get('/totalmobileresult',controller.mobile_order_data);
 router.get('/totaladminresult',controller.admin_order_data);
+router.get('/all_order',controller.MobileAdminOrderDataList);
 
 //Put Method
 router.put('/updateorderaction/:id', validate(updateOrder), controller.updateOrderAction);

@@ -210,6 +210,32 @@ class orderController{
         }
 
     }
+
+    async MobileAdminOrderDataList(req,res,next){
+
+        try{
+
+            const result = await service.MobileAdminOrderDataList();
+
+            if(result){
+                res.status(201).json({
+                    success: true,
+                    message: 'Order List successfully',
+                    data: result
+                });
+            }else{
+                res.status(400).json({
+                    success: false,
+                    message: 'Order List not show data list',
+                    data: result
+                });
+            }
+
+        }catch(error){
+            next(error);
+        }
+
+    }
 }
 
 module.exports = new orderController();
