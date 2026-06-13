@@ -527,6 +527,43 @@ exports.MobileAdminOrderDataList = async ()=>{
 
         if(!admin_order_result)throw new AppError('admin_order_result',400);
 
+        const grouped = {};
+
+            admin_order_result.forEach(row => {
+            if (!grouped[row.order_id]) {
+                grouped[row.order_id] = {
+                payment_method: row.payment_method,
+                payment_proof: row.admin_image_url,
+                order_status: row.order_status,
+                order_id: row.order_id,
+                reciept_no: row.reciept_no,
+                Date: row.date_only,
+                Time: row.time_only,
+                customer_name: row.customer_name,
+                items: [],
+                Sub_total: row.sub_total,
+                tax: row.tax,
+                delivery_fee: row.delivery_fee,
+                Total: row.amount,
+                };
+            }
+
+            grouped[row.order_id].items.push({
+                product_name: row.product_name,
+                quantity: row.quantity,
+                price: row.price,
+                total: row.total
+            });
+            });
+
+            const result1 = Object.values(grouped);
+
+            result1.sort((a,b)=> b.order_id - a.order_id);
+
+            console.log('result1',result1);
+
+
+
         const [mobile_order_result] = await com.pool.query(`
                         SELECT 
                         o.id AS order_id,
@@ -553,9 +590,45 @@ exports.MobileAdminOrderDataList = async ()=>{
 
             if(!mobile_order_result) throw new AppError('mobile_order_result',400);
 
+            const grouped2 = {};
+
+            mobile_order_result.forEach(row => {
+            if (!grouped2[row.order_id]) {
+                grouped2[row.order_id] = {
+                payment_method: row.payment_method,
+                customer_name: row.customer_name,
+                payment_proof: row.mobile_image_url,
+                order_status: row.order_status,
+                order_id: row.order_id,
+                Date: row.date_only,
+                Time: row.time_only,
+                customer_name: row.customer_name,
+                items: [],
+                Sub_total: row.sub_total,
+                tax: row.tax,
+                delivery_fee: row.delivery_fee,
+                Total: row.total_amount,
+                };
+            }
+
+            grouped2[row.order_id].items.push({
+                product_name: row.product_name,
+                quantity: row.quantity,
+                price: row.price,
+                total: row.total
+            });
+            });
+
+            const result2 = Object.values(grouped2);
+
+            result1.sort((a,b)=> b.order_id - a.order_id);
+
+            console.log('result2',result2);
+
+
             return {
-                admin_order_result,
-                mobile_order_result
+                result1,
+                result2
             }
 
 }

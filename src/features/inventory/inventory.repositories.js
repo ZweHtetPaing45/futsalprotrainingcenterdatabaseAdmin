@@ -76,7 +76,7 @@ exports.deleteProduct = async (id)=>{
 
 exports.totalInventory = async ()=>{
 
-      const [result] = await com.pool.query(`
+      let [result] = await com.pool.query(`
         SELECT
         SUM(stock) AS total_inventory,
         SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS out_of_stock,
@@ -85,6 +85,23 @@ exports.totalInventory = async ()=>{
 
         `);
 
-    return {'total inventory':result[0]};
+      const [top_category] = await com.pool.query(`
+        SELECT c.id,
+        c.name,
+        COUNT(p.id) AS total_products
+        FROM categories c
+        JOIN products p
+        ON c.id = p.category_id
+        GROUP BY c.id, c.name
+        ORDER BY total_products DESC
+        LIMIT 1;
+        `);
+
+        if(!top_category)throw new AppError('top category error',400);
+
+    return {
+        'total inventory':result[0],
+        'total category': top_category[0].name
+    };
 
 }
