@@ -101,7 +101,7 @@ exports.totalInventory = async ()=>{
 
     return {
         'total inventory':result[0],
-        'total category': top_category[0].name
+        'top category': top_category[0].name
     };
 
 }
