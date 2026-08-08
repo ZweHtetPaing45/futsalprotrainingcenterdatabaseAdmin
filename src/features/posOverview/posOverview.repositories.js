@@ -90,20 +90,29 @@ WHERE order_status IN ('pending', 'complete');
         LIMIT 1;
         `);
 
-        const popular_product = popular_product_id[0].product_id;
+        
+        const popular_product = popular_product_id[0]?.product_id ?? null;
 
-        // console.log("popular_product",popular_product);
+        console.log("popular_product",popular_product_id);
 
-        const [product] = await com.pool.query('select name,price from products where id = ?',[popular_product]);
+        let popular_product_name = null;
+        let popular_product_price = null;
+        let popular_product_image = null;
 
-        const [product_image] = await com.pool.query('select image_url from product_images where product_id = ?',[popular_product]);
+        if(popular_product){
+        
+        const [productResult] = await com.pool.query('select name,price from products where id = ?',[popular_product]);
 
-        const popular_product_name = product[0].name;
+        const [productImageResult] = await com.pool.query('select image_url from product_images where product_id = ?',[popular_product]);
 
-        const popular_product_price = product[0].price;
+        popular_product_name = productResult[0]?.name ?? null;
 
-        const popular_product_image = product_image[0].image_url;
+        popular_product_price = productResult[0]?.price ?? null;
 
+        popular_product_image = productImageResult[0]?.image_url ?? null;
+
+        }
+        
         // console.log("popular_product_name",popular_product_name);
         // console.log("popular_product_price",popular_product_price);
         // console.log("popular_product_image",popular_product_image);
@@ -124,14 +133,24 @@ WHERE order_status IN ('pending', 'complete');
             LIMIT 1;
             `);
 
-        const [top_customer] = await com.pool.query('select name,image_url,address from createuser where id = ?',[top_customer_id[0].user_id]);
+        const top_customer_user_id = top_customer_id[0]?.user_id ?? null;
 
-        const top_customer_name = top_customer[0].name;
+        let top_customer_name = null;
+        let top_customer_image = null;
+        let top_customer_address = null;
 
-        const top_customer_image = top_customer[0].image_url;
+        if(top_customer_user_id){
 
-        const top_customer_address = top_customer[0].address;
+        const [top_customer] = await com.pool.query('select name,image_url,address from createuser where id = ?',[top_customer_user_id]);
 
+        top_customer_name = top_customer[0]?.name ?? null;
+
+        top_customer_image = top_customer[0]?.image_url ?? null;
+
+        top_customer_address = top_customer[0]?.address ?? null;
+
+        }
+        
         // console.log("top_customer_name",top_customer_name);
         // console.log("top_customer_image",top_customer_image);
         // console.log("top_customer_address",top_customer_address);
