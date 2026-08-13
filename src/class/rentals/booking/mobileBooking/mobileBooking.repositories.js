@@ -7,40 +7,99 @@ const logger = require('../../../../utils/logger');
 exports.ShowMobileBookingData = async ()=>{
 
     const [prindOrder] = await com.pool.query(`
+        
+        SELECT
+    m.id,
+    v.venue_name,
+    c.court_name,
+    COALESCE(p.payment_method, 'Cash') AS payment_method,
+    COALESCE(m.payment_image_url, 'Cash no photo') AS payment_image_url,
+    m.name AS Customer,
+
+    DATE_FORMAT(m.create_at, '%Y-%m-%d') AS Date,
+    DATE_FORMAT(m.create_at, '%h:%i:%s %p') AS Time,
+    DATE_FORMAT(m.date, '%Y-%m-%d') AS date,
+
+    m.rental AS Court_Fee,
+    m.amount AS Total,
+
+    -- Time Slot
+    MAX(cts.start_time) AS start_time,
+    MAX(cts.end_time) AS end_time,
+
+    JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'equipment', e.product_name,
+            'quantity', abe.quantity,
+            'price', abe.price,
+            'total', abe.total
+        )
+    ) AS items
+
+FROM mobile_rental_booking m
+
+LEFT JOIN payment p
+    ON p.id = m.payment_id
+
+LEFT JOIN venue v
+    ON v.id = m.venue_id
+
+LEFT JOIN court c
+    ON c.id = m.court_id
+
+-- Mobile Rental Time Slot
+LEFT JOIN mobile_rental_time_slot mrts
+    ON mrts.mobile_rental_booking_id = m.id
+
+-- Court Time Slot
+LEFT JOIN court_time_slot cts
+    ON cts.id = mrts.court_time_slot_id
+
+LEFT JOIN mobile_rental_booking_equipment abe
+    ON abe.mobile_rental_booking_id = m.id
+
+LEFT JOIN equipment e
+    ON e.id = abe.equipment_id
+
+GROUP BY m.id
+
+ORDER BY m.id DESC;
+
+        `);
          
-                SELECT
-                m.id,
-                v.venue_name,
-                c.court_name,
-                COALESCE(p.payment_method, 'Cash') as payment_method,
-                COALESCE(m.payment_image_url, 'Cash no photo') as payment_image_url,
-                m.name as Customer,
-                DATE_FORMAT(m.create_at, '%Y-%m-%d') AS Date,
-                DATE_FORMAT(m.create_at, '%h:%i:%s %p') AS Time,
-                DATE_FORMAT(m.date, '%Y-%m-%d') AS date,
-                m.rental as Court_Fee,
-                m.amount as Total,
+                // SELECT
+                // m.id,
+                // v.venue_name,
+                // c.court_name,
+                // COALESCE(p.payment_method, 'Cash') as payment_method,
+                // COALESCE(m.payment_image_url, 'Cash no photo') as payment_image_url,
+                // m.name as Customer,
+                // DATE_FORMAT(m.create_at, '%Y-%m-%d') AS Date,
+                // DATE_FORMAT(m.create_at, '%h:%i:%s %p') AS Time,
+                // DATE_FORMAT(m.date, '%Y-%m-%d') AS date,
+                // m.rental as Court_Fee,
+                // m.amount as Total,
 
-                JSON_ARRAYAGG(  
-                    JSON_OBJECT(  
-                        'equipment', e.product_name,  
-                        'quantity', abe.quantity,  
-                        'price', abe.price,  
-                        'total', abe.total  
-                    )  
-                ) AS items
+                // JSON_ARRAYAGG(  
+                //     JSON_OBJECT(  
+                //         'equipment', e.product_name,  
+                //         'quantity', abe.quantity,  
+                //         'price', abe.price,  
+                //         'total', abe.total  
+                //     )  
+                // ) AS items
 
-                FROM mobile_rental_booking m
-                LEFT JOIN payment p ON p.id = m.payment_id
-                LEFT JOIN venue v ON v.id = m.venue_id
-                LEFT JOIN court c ON c.id = m.court_id
-                LEFT JOIN mobile_rental_booking_equipment abe ON abe.mobile_rental_booking_id = m.id
-                LEFT JOIN equipment e ON e.id = abe.equipment_id
+                // FROM mobile_rental_booking m
+                // LEFT JOIN payment p ON p.id = m.payment_id
+                // LEFT JOIN venue v ON v.id = m.venue_id
+                // LEFT JOIN court c ON c.id = m.court_id
+                // LEFT JOIN mobile_rental_booking_equipment abe ON abe.mobile_rental_booking_id = m.id
+                // LEFT JOIN equipment e ON e.id = abe.equipment_id
 
-                GROUP BY m.id
+                // GROUP BY m.id
 
-                order by id desc;
-                                `);
+                // order by id desc;
+            
 
     // if(!prindOrder)throw new AppError('Admin Booking Print Data Error',400);
 

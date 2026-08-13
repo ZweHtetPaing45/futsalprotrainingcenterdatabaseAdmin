@@ -9,7 +9,7 @@ class CourseController {
 
             const file = req.files;
 
-            // console.log(file);
+            console.log(file);
 
             if(!file){
                 throw new AppError('Please fill all the fields', 400);
@@ -32,6 +32,21 @@ class CourseController {
                 title,about_title,details,title_level,about_level,
                 price,start_time,end_time,day_id,
                 instructor_name,biography,course_id} = req.body;
+
+            console.log('learning_description',learning_description);
+            console.log('main_title',main_title);
+            console.log('title',title);
+            console.log('about_title',about_title);
+            console.log('details',details);
+            console.log('title_level',title_level);
+            console.log('about_level',about_level);
+            console.log('price',price);
+            console.log('start_time',start_time);
+            console.log('end_time',end_time);
+            console.log('day_id',day_id);
+            console.log('instructor_name',instructor_name);
+            console.log('biography',biography);
+            console.log('course_id',course_id);
 
             if(!learning_description || !main_title || !title || !about_title || !details || !title_level || !about_level || !price || !start_time || !end_time || !day_id || !instructor_name || !biography || !course_id){
                 throw new AppError('Please fill all the fields', 400);

@@ -13,7 +13,7 @@ router.post('/adddaytimetraining',controller.AddDayTimeTraining);
 router.post('/addtraininglevel',upload.single('coach_file'),controller.AddTrainingLevel);
 
 
-//Get Method
+//Get Method 
 router.get('/showtraining/:id',controller.ShowTraining);
 router.get('/showdays',controller.ShowDays);
 router.get('/get_training_level_and_class/',controller.GetTrainingLevelAndCourse);
