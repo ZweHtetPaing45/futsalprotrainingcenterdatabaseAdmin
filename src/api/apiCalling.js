@@ -35,6 +35,7 @@ const trainingOverviewRouter = require('../class/overview/trainingOverview/train
 const rentalOverviewRouter = require('../class/overview/rentalOverview/rentalOverview.route');
 const canteenOverviewRouter = require('../class/overview/canteenOverview/canteenOverview.route');
 const reportRouter = require('../features/report/report.route');
+const walkInRouter = require('../class/rentals/walk-in/walk-in.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -78,6 +79,7 @@ router.use('/trainingoverview',trainingOverviewRouter);
 router.use('/rentaloverview',rentalOverviewRouter);
 router.use('/canteenoverview',canteenOverviewRouter);
 router.use('/report',reportRouter);
+router.use('/walk_in',walkInRouter);
 
 
 module.exports = router;
