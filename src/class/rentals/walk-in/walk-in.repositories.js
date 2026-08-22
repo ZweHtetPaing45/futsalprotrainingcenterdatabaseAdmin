@@ -259,7 +259,7 @@ exports.allCourtWalkIn = async ()=>{
         JSON_OBJECT(
             'court_id', c.id,
             'court_name', c.court_name,
-
+            'walk_in_id', wi.id,
             'court_images',
             COALESCE(
                 (
