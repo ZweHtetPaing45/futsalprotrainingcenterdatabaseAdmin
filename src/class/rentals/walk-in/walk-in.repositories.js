@@ -23,6 +23,7 @@ exports.walkInBooking = async (walk_in_id,payment_method,vanue_id,court_id,name,
 
     // console.log('items in repo',items);
 
+    console.log('payment_method',payment_method);
     let image_url;
     let public_id;
 
@@ -193,6 +194,7 @@ exports.allWalkInBookingList = async ()=>{
         wib.name AS booking_name,
         wib.phone,
         wib.date,
+        wib.payment_image_url,
 
         CONCAT(
             TIME_FORMAT(wi.open_at, '%h:%i'),
