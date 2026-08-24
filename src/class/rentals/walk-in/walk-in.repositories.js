@@ -250,6 +250,70 @@ exports.allWalkInBookingList = async ()=>{
     return rows;
 }
 
+exports.mobileAllWalkInBookingList = async ()=>{
+
+    const [rows] = await com.pool.query(`
+            SELECT
+        wi.id As Walk_In_id,
+        wib.id AS booking_id,
+        wib.name AS booking_name,
+        wib.phone,
+        wib.date,
+        wib.payment_image_url,
+
+        CONCAT(
+            TIME_FORMAT(wi.open_at, '%h:%i'),
+            ' - ',
+            TIME_FORMAT(wi.close_at, '%h:%i')
+        ) AS time,
+
+        v.venue_name,
+        c.court_name,
+
+        p.payment_method,
+
+        wi.daily_price AS walk_in_price,
+
+        COALESCE(SUM(wie.total), 0) AS equipment_price,
+
+        wib.amount
+
+    FROM mobile_walk_in_bookings wib
+
+    LEFT JOIN walk_ins wi
+        ON wi.id = wib.walk_in_id
+
+    LEFT JOIN payment p
+        ON p.id = wib.payment_id
+
+    LEFT JOIN venue v
+        ON v.id = wib.vanue_id
+
+    LEFT JOIN court c
+        ON c.id = wib.court_id
+
+    LEFT JOIN mobile_walk_in_equipment wie
+        ON wie.mobile_walk_in_booking_id = wib.id
+
+    GROUP BY
+        wib.id,
+        wib.name,
+        wib.phone,
+        wib.date,
+        wi.open_at,
+        wi.close_at,
+        v.venue_name,
+        c.court_name,
+        p.payment_method,
+        wi.daily_price,
+        wib.amount
+
+    ORDER BY wib.id DESC;   
+        `);
+
+    return rows;
+}
+
 
 exports.allCourtWalkIn = async ()=>{
 

@@ -10,6 +10,7 @@ router.post('/booking',upload.single('payment_image'),walkInController.addbookin
 //Get Method
 router.get('/',walkInController.allWalkInList);
 router.get('/court_list',walkInController.allCourtWalkIn);
+router.get('/mobile_booking_list',walkInController.mobileAllWalkInBookingList);
 
 //Patch Method
 router.patch('/:walk_in_id',walkInController.updateWalkIn);

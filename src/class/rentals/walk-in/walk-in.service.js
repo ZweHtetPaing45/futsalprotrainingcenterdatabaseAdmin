@@ -30,6 +30,14 @@ class WalkInService{
 
     }
 
+    async mobileAllWalkInBookingList(){
+
+        const result = await walkRepo.mobileAllWalkInBookingList();
+
+        return result;
+
+    }
+
     async allCourtWalkIn(){
 
         const result = await walkRepo.allCourtWalkIn();

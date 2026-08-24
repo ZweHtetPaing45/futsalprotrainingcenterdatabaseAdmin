@@ -63,6 +63,23 @@ class WalkInController{
 
     }
 
+    async mobileAllWalkInBookingList(req,res,next){
+
+        try{
+
+            const result = await walkInService.mobileAllWalkInBookingList();
+
+            res.status(200).json({
+                message : "Mobile All list booking",
+                result
+            });
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
     async allCourtWalkIn(req,res,next){
 
         try{
