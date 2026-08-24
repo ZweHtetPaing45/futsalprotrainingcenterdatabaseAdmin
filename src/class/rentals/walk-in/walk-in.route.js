@@ -15,4 +15,5 @@ router.get('/mobile_booking_list',walkInController.mobileAllWalkInBookingList);
 //Patch Method
 router.patch('/:walk_in_id',walkInController.updateWalkIn);
 
+
 module.exports = router;
