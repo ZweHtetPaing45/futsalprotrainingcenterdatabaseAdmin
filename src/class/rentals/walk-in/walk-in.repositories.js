@@ -124,6 +124,7 @@ if(items){
     wib.id AS booking_id,
     wib.name AS booking_name,
     wib.phone,
+    wib.payment_image_url,
     DATE_FORMAT(wib.date, '%Y-%m-%d') AS date,
     DATE_FORMAT(wib.create_at, '%h:%i:%s %p') AS Time,
     CONCAT(
