@@ -156,6 +156,14 @@ class VenueService{
 
     }
 
+    async updateEquipment(equipment_id,product_name,rental_price,qty_total){
+
+        const result = await repo.updateEquipment(equipment_id,product_name,rental_price,qty_total);
+
+        return result;
+
+    }
+
     async deletePro(pro_id){
 
         const result = await repo.DeletePros(pro_id);

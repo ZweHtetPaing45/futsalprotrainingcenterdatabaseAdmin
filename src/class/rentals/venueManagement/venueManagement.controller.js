@@ -728,6 +728,27 @@ class VenueController{
 
     }
 
+    async updateEquipment(req,res,next){
+
+        try{
+
+            const {product_name,rental_price,qty_total} = req.body;
+
+            const equipment_id = req.params.equipmentId;
+
+            const result = await service.updateEquipment(equipment_id,product_name,rental_price,qty_total);
+
+            res.status(201).json({
+                message: "Equipment Update",
+                result
+            })
+
+        }catch(error){
+            next(error);
+        }
+
+    }
+
 }
 
 module.exports = new VenueController();
