@@ -37,6 +37,7 @@ const canteenOverviewRouter = require('../class/overview/canteenOverview/canteen
 const reportRouter = require('../features/report/report.route');
 const walkInRouter = require('../class/rentals/walk-in/walk-in.route');
 const bannerRouter = require('../features/setting/banner/banner.route');
+const tournamentBannerRouter = require('../class/tournament/banner/tbanner.route');
 
 
 router.use('/product', addProductRouter,(error)=>{
@@ -82,6 +83,7 @@ router.use('/canteenoverview',canteenOverviewRouter);
 router.use('/report',reportRouter);
 router.use('/walk_in',walkInRouter);
 router.use('/banner', bannerRouter);
+router.use('/tournament/banner', tournamentBannerRouter);
 
 
 module.exports = router;
