@@ -458,3 +458,5 @@ GROUP BY p.id' at line 55
 2026-08-21 01:08:52 [31merror[39m:: Please fill all the fields
 2026-08-25 19:25:57 [31merror[39m:: Not enough stock for product ID: 11
 2026-09-13 14:18:56 [31merror[39m:: Banner image is required
+2026-09-24 16:39:26 [31merror[39m:: tournament_name, dates, match_format_id, status_id and a valid tournament_fee are required
+2026-09-24 16:47:39 [31merror[39m:: tournament_name, dates, match_format_id, status_id and a valid tournament_fee are required
