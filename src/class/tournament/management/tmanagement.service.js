@@ -45,6 +45,7 @@ const normalize = (body) => {
 
 exports.addTournament = (body, file) => repository.addTournament(normalize(body), file);
 exports.showTournaments = () => repository.showTournaments();
+exports.showMatchFormats = () => repository.showMatchFormats();
 exports.showTournament = (id) => repository.showTournament(id);
 exports.updateTournament = (id, body, file) => repository.updateTournament(id, normalize(body), file);
 exports.deleteTournament = (id) => repository.deleteTournament(id);

@@ -4,6 +4,7 @@ const upload = require('../../../middlewares/multer');
 
 router.post('/addtournament', upload.single('banner_image'), controller.addTournament);
 router.get('/showtournaments', controller.showTournaments);
+router.get('/showmatchformats', controller.showMatchFormats);
 router.get('/showtournament/:id', controller.showTournament);
 router.put('/updatetournament/:id', upload.single('banner_image'), controller.updateTournament);
 router.delete('/deletetournament/:id', controller.deleteTournament);

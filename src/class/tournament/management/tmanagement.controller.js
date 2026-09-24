@@ -18,6 +18,14 @@ class TournamentManagementController {
 		}
 	}
 
+	async showMatchFormats(req, res, next) {
+		try {
+			res.status(200).json({ status: 'success', data: await service.showMatchFormats() });
+		} catch (error) {
+			next(error);
+		}
+	}
+
 	async showTournament(req, res, next) {
 		try {
 			res.status(200).json({ status: 'success', data: await service.showTournament(req.params.id) });

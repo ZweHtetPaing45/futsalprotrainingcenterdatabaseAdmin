@@ -116,6 +116,13 @@ exports.showTournaments = async () => {
 	return rows;
 };
 
+exports.showMatchFormats = async () => {
+	const [rows] = await com.pool.query(
+		'SELECT id, name FROM match_formats ORDER BY id'
+	);
+	return rows;
+};
+
 exports.showTournament = async (id) => getTournament(com.pool, id);
 
 exports.updateTournament = async (id, data, file) => {
