@@ -655,43 +655,41 @@ exports.updateVenue = async (id,venue_name,price,file,available)=>{
 }
 
 exports.updateEquipment = async (equipment_id,product_name,rental_price,qty_total)=>{
-     
-    let query = "UPDATE equipment SET ";
-    let values = [];
 
+    const updates = [];
+    const values = [];
 
-    if(product_name !== undefined || ''){
-        query += "product_name = ?, ";
+    if(product_name !== undefined){
+        updates.push('product_name = ?');
         values.push(product_name);
     }
 
-    if(rental_price !== undefined || ''){
-        query += "rental_price = ?, ";
+    if(rental_price !== undefined){
+        updates.push('rental_price = ?');
         values.push(rental_price);
     }
 
-    if(qty_total !== undefined || ''){
-        query += "qty_total = ?, ";
+    if(qty_total !== undefined){
+        updates.push('qty_total = ?');
         values.push(qty_total);
     }
 
-    // ❗️ ဘာမှ update မရှိဘူးဆို
-    if (values.length === 0) {
+    if(updates.length === 0){
         return false;
     }
 
-    // remove last comma
-    query = query.slice(0, -2);
-
-    query += " WHERE id = ?";
+    const query = `UPDATE equipment SET ${updates.join(', ')} WHERE id = ?`;
     values.push(equipment_id);
 
     const [result] = await com.pool.query(query, values);
 
-    if(!result)throw new AppError('Failed to update venue',500);
+    if(!result)throw new AppError('Failed to update equipment',500);
 
     if(result.affectedRows === 0){
-        throw new AppError('Failed to update equipment',404);
+        const [equipment] = await com.pool.query('SELECT id FROM equipment WHERE id = ?',[equipment_id]);
+        if(equipment.length === 0){
+            throw new AppError('Equipment not found',404);
+        }
     };
 
     return true;

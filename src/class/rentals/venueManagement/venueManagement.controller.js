@@ -736,12 +736,17 @@ class VenueController{
 
             const equipment_id = req.params.equipmentId;
 
+            if(product_name === undefined && rental_price === undefined && qty_total === undefined){
+                throw new AppError('Please provide at least one field to update',400);
+            }
+
             const result = await service.updateEquipment(equipment_id,product_name,rental_price,qty_total);
 
-            res.status(201).json({
-                message: "Equipment Update",
-                result
-            })
+            res.status(200).json({
+                success: true,
+                message: 'Equipment updated successfully',
+                data: result
+            });
 
         }catch(error){
             next(error);
